@@ -40,6 +40,7 @@ export const Room = ({ width = 10, length = 10, height = 4 }: RoomProps) => {
         ref={floorRef}
         args={[width, wallThickness, length]}
         position={[0, -wallThickness / 2, 0]}
+        receiveShadow
       >
         <meshStandardMaterial
           map={textures.floorTexture}
@@ -53,6 +54,7 @@ export const Room = ({ width = 10, length = 10, height = 4 }: RoomProps) => {
         ref={ceilingRef}
         args={[width, wallThickness, length]}
         position={[0, height + wallThickness / 2, 0]}
+        receiveShadow
       >
         <meshStandardMaterial
           map={textures.floorTexture}
@@ -66,6 +68,7 @@ export const Room = ({ width = 10, length = 10, height = 4 }: RoomProps) => {
         ref={wallFrontRef}
         args={[width, height, wallThickness]}
         position={[0, height / 2, -length / 2]}
+        receiveShadow
       >
         <meshStandardMaterial
           map={textures.wallTexture}
@@ -79,6 +82,7 @@ export const Room = ({ width = 10, length = 10, height = 4 }: RoomProps) => {
         ref={wallBackRef}
         args={[width, height, wallThickness]}
         position={[0, height / 2, length / 2]}
+        receiveShadow
       >
         <meshStandardMaterial
           map={textures.wallTexture}
@@ -92,6 +96,7 @@ export const Room = ({ width = 10, length = 10, height = 4 }: RoomProps) => {
         ref={wallLeftRef}
         args={[wallThickness, height, length]}
         position={[-width / 2, height / 2, 0]}
+        receiveShadow
       >
         <meshStandardMaterial
           map={textures.wallTexture}
@@ -105,6 +110,7 @@ export const Room = ({ width = 10, length = 10, height = 4 }: RoomProps) => {
         ref={wallRightRef}
         args={[wallThickness, height, length]}
         position={[width / 2, height / 2, 0]}
+        receiveShadow
       >
         <meshStandardMaterial
           map={textures.wallTexture}

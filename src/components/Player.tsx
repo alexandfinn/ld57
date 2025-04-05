@@ -35,7 +35,7 @@ export const Player = () => {
   const LEFT_THRESHOLD = 3.0 // Lower threshold for left turns
   const RIGHT_THRESHOLD = 0.0 // Higher threshold for right turns
   const LERP_SPEED = 0.03 // Adjust this value to control lerp speed
-  const FOLLOW_DELAY = 0.5 // Time in seconds before torch follows regardless of threshold
+  const FOLLOW_DELAY = 0.7 // Time in seconds before torch follows regardless of threshold
   
   // Breathing animation parameters
   const breathingAmplitude = 0.04 // How much the torch moves up and down
@@ -153,11 +153,12 @@ export const Player = () => {
   return (
     <>
       <PointerLockControls ref={controlsRef} />
-      {/* Player mesh - invisible in first person */}
+      {/* Player mesh - now visible and casting shadows */}
       <group position={position}>
-        <Box visible={false} args={[1, 2, 1]}>
-          <meshStandardMaterial color="blue" />
-        </Box>
+        <mesh castShadow>
+          <capsuleGeometry args={[0.25, 1.5, 4, 8]} />
+          <meshStandardMaterial color="red" />
+        </mesh>
       </group>
       
       {/* Player's torch with threshold-based movement, lerping, and breathing animation */}

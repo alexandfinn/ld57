@@ -48,11 +48,16 @@ export const Torch = ({
       {/* Add flickering point light for ambient illumination */}
       <pointLight
         ref={pointLightRef}
-        position={[0, 0.5, 0]}
-        intensity={4000}
+        position={[0, 2.7, 0]}
+        intensity={10}
         color="#ffa64d"
-        distance={80}
-        decay={0.2}
+        distance={20}
+        decay={0.3}
+        castShadow
+        shadow-mapSize-width={512}
+        shadow-mapSize-height={512}
+        shadow-radius={8}
+        shadow-bias={-0.0001}
       />
     </group>
   );
