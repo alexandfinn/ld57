@@ -1,12 +1,13 @@
 import { Canvas } from "@react-three/fiber";
 import { Player } from "./components/Player";
+import { Room } from "./components/Room";
 import { 
   Environment, 
   Grid, 
   OrbitControls, 
   PerspectiveCamera, 
   Box,
-  Stats 
+  Stats
 } from "@react-three/drei";
 
 export const App = () => {
@@ -15,18 +16,24 @@ export const App = () => {
       <Canvas>
         <PerspectiveCamera
           makeDefault
-          position={[0, 1.7, 0]}
+          position={[0, 2, 5]}
           fov={75}
           near={0.1}
-          far={1000}
+          far={15}
         />
         
-        <ambientLight intensity={1.5} />
-        <directionalLight position={[10, 10, 5]} intensity={2} />
-        <directionalLight position={[-10, -10, -5]} intensity={1} />
+        {/* Reduced ambient light intensity for darker atmosphere */}
+        <ambientLight intensity={0.4} />
         
-        {/* Environment for better lighting */}
-        <Environment preset="sunset" />
+        
+        {/* Changed environment preset to night for darker atmosphere */}
+        <Environment preset="night" />
+        
+        {/* Add fog to limit visibility */}
+        <fog attach="fog" args={['#000000', 5, 15]} />
+        
+        {/* Room component */}
+        <Room width={20} length={20} height={4} />
         
         {/* Grid for better spatial reference */}
         <Grid
