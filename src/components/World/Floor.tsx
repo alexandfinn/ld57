@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { Plane, useTexture } from "@react-three/drei";
 import { Mesh, RepeatWrapping, DoubleSide } from "three";
+import { RigidBody } from "@react-three/rapier";
 
 export const Floor = () => {
   const floorRef = useRef<Mesh>(null);
@@ -16,19 +17,21 @@ export const Floor = () => {
   floorTexture.repeat.set(width / 2, length / 2);
 
   return (
-    <Plane
-      ref={floorRef}
-      args={[width, length]}
-      rotation={[-Math.PI / 2, 0, 0]}
-      position={[0, 0, 0]}
-      receiveShadow
-    >
-      <meshStandardMaterial
-        map={floorTexture}
-        roughness={1}
-        metalness={0}
-        side={DoubleSide}
-      />
-    </Plane>
+    <RigidBody type="fixed" colliders="cuboid">
+      <Plane
+        ref={floorRef}
+        args={[width, length]}
+        rotation={[-Math.PI / 2, 0, 0]}
+        position={[0, 0, 0]}
+        receiveShadow
+      >
+        <meshStandardMaterial
+          map={floorTexture}
+          roughness={1}
+          metalness={0}
+          side={DoubleSide}
+        />
+      </Plane>
+    </RigidBody>
   );
 };

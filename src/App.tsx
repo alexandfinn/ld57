@@ -1,5 +1,6 @@
 import { Environment, PerspectiveCamera, Stats } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
+import { Physics } from "@react-three/rapier";
 import { Player } from "./components/Player";
 import { Room } from "./components/World/Room";
 import { Torch } from "./components/Torch";
@@ -26,9 +27,10 @@ export const App = () => {
 
         {!DEBUG && <fog attach="fog" args={["#000000", 5, 15]} />}
 
-        <Room />
-
-        <Player />
+        <Physics debug={DEBUG}>
+          <Room />
+          <Player />
+        </Physics>
 
         {DEBUG && <Stats className="stats" />}
       </Canvas>

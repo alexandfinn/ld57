@@ -3,19 +3,25 @@ import { useFrame, useThree } from '@react-three/fiber'
 import { usePlayerState } from '../store/usePlayerState'
 import { useGameState } from '../store/useGameState'
 import { Vector3, Euler } from 'three'
-import { PointerLockControls, Box } from '@react-three/drei'
+import { PointerLockControls } from '@react-three/drei'
 import { Torch } from './Torch'
+import { RigidBody, CapsuleCollider, useRapier, RapierRigidBody } from '@react-three/rapier'
+import { PointerLockControls as PointerLockControlsImpl } from 'three-stdlib'
+
+const SPEED = 5
+const direction = new Vector3()
+const frontVector = new Vector3()
+const sideVector = new Vector3()
 
 export const Player = () => {
   const { camera } = useThree()
-  const controlsRef = useRef<any>(null)
+  const controlsRef = useRef<PointerLockControlsImpl>(null)
+  const playerRef = useRef<RapierRigidBody>(null)
+  const rapier = useRapier()
+  
   const { 
-    position, 
-    rotation, 
-    moveForward, 
-    moveBackward, 
-    moveLeft, 
-    moveRight, 
+    position,
+    rotation,
     updateRotation,
     updatePosition
   } = usePlayerState()
@@ -32,27 +38,24 @@ export const Player = () => {
   const lastSignificantTurnTime = useRef(0)
   
   // Thresholds and timing constants
-  const LEFT_THRESHOLD = 3.0 // Lower threshold for left turns
-  const RIGHT_THRESHOLD = 0.0 // Higher threshold for right turns
-  const LERP_SPEED = 0.03 // Adjust this value to control lerp speed
-  const FOLLOW_DELAY = 0.7 // Time in seconds before torch follows regardless of threshold
+  const LEFT_THRESHOLD = 3.0
+  const RIGHT_THRESHOLD = 0.0
+  const LERP_SPEED = 0.03
+  const FOLLOW_DELAY = 0.7
   
   // Breathing animation parameters
-  const breathingAmplitude = 0.04 // How much the torch moves up and down
-  const breathingSpeed = 1.5 // Speed of the breathing animation
-  const breathingOffset = useRef(0) // Current offset for breathing animation
+  const breathingAmplitude = 0.04
+  const breathingSpeed = 1.5
+  const breathingOffset = useRef(0)
 
   // Handle keyboard input
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (isPaused) return
-      
-      // Add key to pressed keys set
       keysPressed.current.add(e.key.toLowerCase())
     }
     
     const handleKeyUp = (e: KeyboardEvent) => {
-      // Remove key from pressed keys set
       keysPressed.current.delete(e.key.toLowerCase())
     }
 
@@ -77,27 +80,49 @@ export const Player = () => {
       updateRotation(euler.y)
     }
 
-    controlsRef.current.addEventListener('change', handleMouseMove)
-    return () => controlsRef.current?.removeEventListener('change', handleMouseMove)
+    const controls = controlsRef.current
+    controls.addEventListener('change', handleMouseMove)
+    return () => {
+      controls.removeEventListener('change', handleMouseMove)
+    }
   }, [camera, isPaused, updateRotation])
 
   // Update player position and handle movement
   useFrame((state, delta) => {
-    if (!controlsRef.current || isPaused) return
-    
-    // Apply movement based on currently pressed keys
-    if (keysPressed.current.has('w')) moveForward()
-    if (keysPressed.current.has('s')) moveBackward()
-    if (keysPressed.current.has('a')) moveLeft()
-    if (keysPressed.current.has('d')) moveRight()
-    
-    // Update position based on velocity
-    updatePosition()
+    if (!controlsRef.current || !playerRef.current || isPaused) return
+
+    const forward = Number(keysPressed.current.has('w'))
+    const backward = Number(keysPressed.current.has('s'))
+    const left = Number(keysPressed.current.has('a'))
+    const right = Number(keysPressed.current.has('d'))
+    const jump = keysPressed.current.has(' ')
+
+    // Get current velocity
+    const velocity = playerRef.current.linvel()
     
     // Update camera position to match player position
-    camera.position.copy(position)
+    const playerPosition = playerRef.current.translation()
+    camera.position.set(playerPosition.x, playerPosition.y + 1.5, playerPosition.z)
+    updatePosition(new Vector3(playerPosition.x, playerPosition.y, playerPosition.z))
     
-    // Calculate rotation difference
+    // Movement
+    frontVector.set(0, 0, backward - forward)
+    sideVector.set(left - right, 0, 0)
+    direction.subVectors(frontVector, sideVector)
+      .normalize()
+      .multiplyScalar(SPEED)
+      .applyEuler(state.camera.rotation)
+    
+    // Apply movement
+    playerRef.current.setLinvel({ x: direction.x, y: velocity.y, z: direction.z })
+
+    // Handle jumping
+    const grounded = playerRef.current.translation().y <= 0.1
+    if (jump && grounded) {
+      playerRef.current.setLinvel({ x: velocity.x, y: 7.5, z: velocity.z })
+    }
+    
+    // Calculate rotation difference for torch
     const rotationDiff = rotation - lastRotation.current
     
     // Normalize rotation difference to be between -PI and PI
@@ -112,26 +137,18 @@ export const Player = () => {
     if (shouldFollowRegardless || 
         (normalizedDiff > 0 && Math.abs(normalizedDiff) > RIGHT_THRESHOLD) || 
         (normalizedDiff < 0 && Math.abs(normalizedDiff) > LEFT_THRESHOLD)) {
-      // Set target rotation and start lerping
       targetTorchRotation.current = rotation
       isLerping.current = true
       lastRotation.current = rotation
       lastSignificantTurnTime.current = state.clock.elapsedTime
     }
     
-    // Lerp torch rotation when threshold is reached
+    // Lerp torch rotation
     if (isLerping.current) {
-      // Calculate the angle difference
       let angleDiff = targetTorchRotation.current - torchRotation.current
-      
-      // Normalize angle difference to be between -PI and PI
       if (angleDiff > Math.PI) angleDiff -= 2 * Math.PI
       if (angleDiff < -Math.PI) angleDiff += 2 * Math.PI
-      
-      // Apply lerp
       torchRotation.current += angleDiff * LERP_SPEED
-      
-      // Check if we're close enough to stop lerping
       if (Math.abs(angleDiff) < 0.01) {
         isLerping.current = false
         torchRotation.current = targetTorchRotation.current
@@ -146,22 +163,26 @@ export const Player = () => {
   const baseOffset = new Vector3(-0.25, -0.25, -0.5)
   const rotatedOffset = baseOffset.clone().applyAxisAngle(new Vector3(0, 1, 0), torchRotation.current)
   const torchPosition = position.clone().add(rotatedOffset)
-  
-  // Apply breathing animation to torch position
   torchPosition.y += breathingOffset.current
 
   return (
     <>
       <PointerLockControls ref={controlsRef} />
-      {/* Player mesh - now visible and casting shadows */}
-      <group position={position}>
+      <RigidBody
+        ref={playerRef}
+        colliders={false}
+        mass={1}
+        type="dynamic"
+        position={[0, 2, 0]}
+        enabledRotations={[false, false, false]}
+      >
+        <CapsuleCollider args={[0.75, 0.5]} />
         <mesh castShadow>
           <capsuleGeometry args={[0.25, 1.5, 4, 8]} />
           <meshStandardMaterial color="red" />
         </mesh>
-      </group>
+      </RigidBody>
       
-      {/* Player's torch with threshold-based movement, lerping, and breathing animation */}
       <Torch 
         position={[torchPosition.x, torchPosition.y, torchPosition.z]} 
         rotation={[0, torchRotation.current, 0]}
