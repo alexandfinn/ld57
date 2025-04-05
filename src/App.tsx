@@ -3,7 +3,6 @@ import { Canvas } from "@react-three/fiber";
 import { Physics } from "@react-three/rapier";
 import { Player } from "./components/Player";
 import { Room } from "./components/World/Room";
-import { Torch } from "./components/Torch";
 
 const DEBUG = false;
 
@@ -20,8 +19,6 @@ export const App = () => {
         />
 
         {DEBUG && <ambientLight intensity={2} />}
-
-        <Torch position={[0, 1, 0]} />
 
         <Environment preset="night" />
 

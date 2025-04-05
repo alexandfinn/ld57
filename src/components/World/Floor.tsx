@@ -9,8 +9,8 @@ export const Floor = () => {
   // Load floor texture
   const floorTexture = useTexture("/textures/floor.png");
 
-  const width = 100;
-  const length = 100;
+  const width = 1000;
+  const length = 1000;
 
   // Configure texture repeating
   floorTexture.wrapS = floorTexture.wrapT = RepeatWrapping;
