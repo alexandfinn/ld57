@@ -5,7 +5,8 @@ import {
   Grid, 
   OrbitControls, 
   PerspectiveCamera, 
-  Box 
+  Box,
+  Stats 
 } from "@react-three/drei";
 
 export const App = () => {
@@ -48,6 +49,9 @@ export const App = () => {
         </Box>
         
         <Player />
+        
+        {/* FPS Counter */}
+        <Stats className="stats" />
       </Canvas>
     </div>
   );
