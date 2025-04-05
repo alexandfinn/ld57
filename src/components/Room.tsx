@@ -43,8 +43,8 @@ export const Room = ({ width = 10, length = 10, height = 4 }: RoomProps) => {
       >
         <meshStandardMaterial
           map={textures.floorTexture}
-          roughness={0.7}
-          metalness={0.1}
+          roughness={1}
+          metalness={0}
         />
       </Box>
 
@@ -56,8 +56,8 @@ export const Room = ({ width = 10, length = 10, height = 4 }: RoomProps) => {
       >
         <meshStandardMaterial
           map={textures.floorTexture}
-          roughness={0.7}
-          metalness={0.1}
+          roughness={1}
+          metalness={0}
         />
       </Box>
 
@@ -69,8 +69,8 @@ export const Room = ({ width = 10, length = 10, height = 4 }: RoomProps) => {
       >
         <meshStandardMaterial
           map={textures.wallTexture}
-          roughness={0.8}
-          metalness={0.1}
+          roughness={1}
+          metalness={0}
         />
       </Box>
 
@@ -82,8 +82,8 @@ export const Room = ({ width = 10, length = 10, height = 4 }: RoomProps) => {
       >
         <meshStandardMaterial
           map={textures.wallTexture}
-          roughness={0.8}
-          metalness={0.1}
+          roughness={1}
+          metalness={0}
         />
       </Box>
 
@@ -95,8 +95,8 @@ export const Room = ({ width = 10, length = 10, height = 4 }: RoomProps) => {
       >
         <meshStandardMaterial
           map={textures.wallTexture}
-          roughness={0.8}
-          metalness={0.1}
+          roughness={1}
+          metalness={0}
         />
       </Box>
 
@@ -108,8 +108,8 @@ export const Room = ({ width = 10, length = 10, height = 4 }: RoomProps) => {
       >
         <meshStandardMaterial
           map={textures.wallTexture}
-          roughness={0.8}
-          metalness={0.1}
+          roughness={1}
+          metalness={0}
         />
       </Box>
     </group>
