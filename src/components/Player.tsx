@@ -205,7 +205,6 @@ export const Player = () => {
         ref={torchRef}
         position={[0, 0, 0]} // Initial position will be updated in useFrame
         rotation={[0, 0, 0]} // Initial rotation will be updated in useFrame
-        scale={[0.5, 0.5, 0.5]}
       />
     </>
   );
