@@ -5,7 +5,7 @@ import { Player } from "./components/Player";
 import { Room } from "./components/World/Room";
 import { Torch } from "./components/Torch";
 
-const DEBUG = true;
+const DEBUG = false;
 
 export const App = () => {
   return (

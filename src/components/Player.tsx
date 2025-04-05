@@ -1,6 +1,5 @@
 import { useRef, useEffect } from "react";
 import { useFrame, useThree } from "@react-three/fiber";
-import { useGameState } from "../store/useGameState";
 import { Vector3, Euler, Group } from "three";
 import { PointerLockControls } from "@react-three/drei";
 import { Torch } from "./Torch";
@@ -24,7 +23,6 @@ export const Player = () => {
   const playerRef = useRef<RapierRigidBody>(null);
   const torchRef = useRef<Group>(null);
   const rapier = useRapier();
-  const { isPaused } = useGameState();
 
   // Track which keys are currently pressed
   const keysPressed = useRef<Set<string>>(new Set());
@@ -50,33 +48,11 @@ export const Player = () => {
   const breathingSpeed = 1.5;
   const breathingOffset = useRef(0);
 
-  // Handle keyboard input
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (isPaused) return;
-      keysPressed.current.add(e.key.toLowerCase());
-    };
-
-    const handleKeyUp = (e: KeyboardEvent) => {
-      keysPressed.current.delete(e.key.toLowerCase());
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-    window.addEventListener("keyup", handleKeyUp);
-
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-      window.removeEventListener("keyup", handleKeyUp);
-    };
-  }, [isPaused]);
-
   // Handle mouse movement for camera rotation
   useEffect(() => {
     if (!controlsRef.current) return;
 
     const handleMouseMove = () => {
-      if (isPaused) return;
-
       const euler = new Euler(0, 0, 0, "YXZ");
       euler.setFromQuaternion(camera.quaternion);
       playerRotation.current = euler.y;
@@ -87,11 +63,11 @@ export const Player = () => {
     return () => {
       controls.removeEventListener("change", handleMouseMove);
     };
-  }, [camera, isPaused]);
+  }, [camera]);
 
   // Update player position and handle movement
   useFrame((state, delta) => {
-    if (!controlsRef.current || !playerRef.current || isPaused) return;
+    if (!controlsRef.current || !playerRef.current) return;
 
     const forward = Number(keysPressed.current.has("w"));
     const backward = Number(keysPressed.current.has("s"));
@@ -193,6 +169,24 @@ export const Player = () => {
     }
   });
 
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      keysPressed.current.add(e.key.toLowerCase());
+    };
+
+    const handleKeyUp = (e: KeyboardEvent) => {
+      keysPressed.current.delete(e.key.toLowerCase());
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("keyup", handleKeyUp);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("keyup", handleKeyUp);
+    };
+  }, []);
+
   return (
     <>
       <PointerLockControls ref={controlsRef} />
@@ -205,10 +199,6 @@ export const Player = () => {
         enabledRotations={[false, false, false]}
       >
         <CapsuleCollider args={[0.75, 0.5]} />
-        <mesh castShadow>
-          <capsuleGeometry args={[0.25, 1.5, 4, 8]} />
-          <meshStandardMaterial color="red" />
-        </mesh>
       </RigidBody>
 
       <Torch
