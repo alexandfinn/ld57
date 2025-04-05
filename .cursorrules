@@ -1,0 +1,24 @@
+1. Use TypeScript exclusively for all code.
+2. Keep code modular:
+   - Each component (Player, Monster, etc.) must manage its own state in its own file.
+   - A separate global GameState (or interaction state) should handle events or interactions between components.
+3. Use Zustand for state management:
+   - Each component has its own Zustand store (e.g., usePlayerState, useMonsterState).
+   - A global store (useGameState) handles cross-component interactions.
+4. All rendering must be done in the 3D scene via @react-three/fiber.
+4.1 Use drei whenever possible
+5. No flat or HTML-based HUD; everything is part of the 3D world.
+6. Code should be clear, maintainable, and scalable:
+   - Prioritize clarity and separation of concerns.
+   - Keep related logic (like a component’s state and its presentation) in the same file.
+7. The project structure should be similar to:
+   - src/
+       - components/
+           - Player.tsx
+           - (Monster.tsx, etc. for future expansion)
+       - store/
+           - useGameState.ts
+       - App.tsx
+       - main.tsx
+8. Start simple with just the Player component. Global interactions (GameState) should be scaffolded for future expansion.
+9. Write clear comments to explain your code logic, especially state interactions.
