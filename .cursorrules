@@ -3,9 +3,6 @@
 - Keep code modular:
    - Each component (Player, Monster, etc.) must manage its own state in its own file.
    - A separate global GameState (or interaction state) should handle events or interactions between components.
-- Use Zustand for state management:
-   - Each component has its own Zustand store (e.g., usePlayerState, useMonsterState).
-   - A global store (useGameState) handles cross-component interactions.
 - All rendering must be done in the 3D scene via @react-three/fiber.
 - Use drei whenever possible
 - No flat or HTML-based HUD; everything is part of the 3D world.

@@ -1,8 +1,7 @@
 import { useRef, useEffect } from "react";
 import { useFrame, useThree } from "@react-three/fiber";
-import { usePlayerState } from "../store/usePlayerState";
 import { useGameState } from "../store/useGameState";
-import { Vector3, Euler } from "three";
+import { Vector3, Euler, Group } from "three";
 import { PointerLockControls } from "@react-three/drei";
 import { Torch } from "./Torch";
 import {
@@ -23,18 +22,20 @@ export const Player = () => {
   const { camera } = useThree();
   const controlsRef = useRef<PointerLockControlsImpl>(null);
   const playerRef = useRef<RapierRigidBody>(null);
+  const torchRef = useRef<Group>(null);
   const rapier = useRapier();
-
-  const { rotation, updateRotation, updatePosition } = usePlayerState();
   const { isPaused } = useGameState();
 
   // Track which keys are currently pressed
   const keysPressed = useRef<Set<string>>(new Set());
 
+  // Player rotation state
+  const playerRotation = useRef(0);
+
   // Refs for torch movement with threshold and lerping
-  const lastRotation = useRef(rotation);
-  const torchRotation = useRef(rotation);
-  const targetTorchRotation = useRef(rotation);
+  const lastRotation = useRef(0);
+  const torchRotation = useRef(0);
+  const targetTorchRotation = useRef(0);
   const isLerping = useRef(false);
   const lastSignificantTurnTime = useRef(0);
 
@@ -78,7 +79,7 @@ export const Player = () => {
 
       const euler = new Euler(0, 0, 0, "YXZ");
       euler.setFromQuaternion(camera.quaternion);
-      updateRotation(euler.y);
+      playerRotation.current = euler.y;
     };
 
     const controls = controlsRef.current;
@@ -86,7 +87,7 @@ export const Player = () => {
     return () => {
       controls.removeEventListener("change", handleMouseMove);
     };
-  }, [camera, isPaused, updateRotation]);
+  }, [camera, isPaused]);
 
   // Update player position and handle movement
   useFrame((state, delta) => {
@@ -108,9 +109,6 @@ export const Player = () => {
       playerPosition.y + 1.5,
       playerPosition.z
     );
-    updatePosition(
-      new Vector3(playerPosition.x, playerPosition.y, playerPosition.z)
-    );
 
     // Movement
     frontVector.set(0, 0, backward - forward);
@@ -122,20 +120,26 @@ export const Player = () => {
       .applyEuler(state.camera.rotation);
 
     // Apply movement
-    playerRef.current.setLinvel({
-      x: direction.x,
-      y: velocity.y,
-      z: direction.z,
-    });
+    playerRef.current.setLinvel(
+      {
+        x: direction.x,
+        y: velocity.y,
+        z: direction.z,
+      },
+      true
+    );
 
     // Handle jumping
     const grounded = playerRef.current.translation().y <= 0.1;
     if (jump && grounded) {
-      playerRef.current.setLinvel({ x: velocity.x, y: 7.5, z: velocity.z });
+      playerRef.current.setLinvel(
+        { x: velocity.x, y: 7.5, z: velocity.z },
+        true
+      );
     }
 
     // Calculate rotation difference for torch
-    const rotationDiff = rotation - lastRotation.current;
+    const rotationDiff = playerRotation.current - lastRotation.current;
 
     // Normalize rotation difference to be between -PI and PI
     let normalizedDiff = rotationDiff;
@@ -152,9 +156,9 @@ export const Player = () => {
       (normalizedDiff > 0 && Math.abs(normalizedDiff) > RIGHT_THRESHOLD) ||
       (normalizedDiff < 0 && Math.abs(normalizedDiff) > LEFT_THRESHOLD)
     ) {
-      targetTorchRotation.current = rotation;
+      targetTorchRotation.current = playerRotation.current;
       isLerping.current = true;
-      lastRotation.current = rotation;
+      lastRotation.current = playerRotation.current;
       lastSignificantTurnTime.current = state.clock.elapsedTime;
     }
 
@@ -173,19 +177,21 @@ export const Player = () => {
     // Update breathing animation
     breathingOffset.current =
       Math.sin(state.clock.elapsedTime * breathingSpeed) * breathingAmplitude;
+
+    // Calculate torch position based on current player position and rotation
+    const baseOffset = new Vector3(-0.25, -0.25, -0.5);
+    const rotatedOffset = baseOffset
+      .clone()
+      .applyAxisAngle(new Vector3(0, 1, 0), torchRotation.current);
+    const torchPosition = new Vector3().copy(playerPosition).add(rotatedOffset);
+    torchPosition.y += breathingOffset.current + 1.5; // Add player height offset
+
+    // Update torch position in the scene
+    if (torchRef.current) {
+      torchRef.current.position.copy(torchPosition);
+      torchRef.current.rotation.y = torchRotation.current;
+    }
   });
-
-  // Get the current player position for torch placement
-  const currentPosition = playerRef.current ? playerRef.current.translation() : { x: 0, y: 0, z: 0 };
-  tempVec.set(currentPosition.x, currentPosition.y, currentPosition.z);
-
-  // Calculate torch position based on current torch rotation and breathing animation
-  const baseOffset = new Vector3(-0.25, -0.25, -0.5);
-  const rotatedOffset = baseOffset
-    .clone()
-    .applyAxisAngle(new Vector3(0, 1, 0), torchRotation.current);
-  const torchPosition = tempVec.clone().add(rotatedOffset);
-  torchPosition.y += breathingOffset.current + 1.5; // Add player height offset
 
   return (
     <>
@@ -206,8 +212,9 @@ export const Player = () => {
       </RigidBody>
 
       <Torch
-        position={[torchPosition.x, torchPosition.y, torchPosition.z]}
-        rotation={[0, torchRotation.current, 0]}
+        ref={torchRef}
+        position={[0, 0, 0]} // Initial position will be updated in useFrame
+        rotation={[0, 0, 0]} // Initial rotation will be updated in useFrame
         scale={[0.5, 0.5, 0.5]}
       />
     </>

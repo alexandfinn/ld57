@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, forwardRef } from "react";
 import { useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { useTorchState } from "../store/useTorchState";
@@ -10,11 +10,11 @@ interface TorchProps {
   scale?: [number, number, number];
 }
 
-export const Torch = ({
+export const Torch = forwardRef<THREE.Group, TorchProps>(({
   position,
   rotation = [0, 0, 0],
   scale = [1, 1, 1],
-}: TorchProps) => {
+}, ref) => {
   const { scene } = useGLTF("/models/wall_torch.glb");
   const pointLightRef = useRef<THREE.PointLight>(null);
   const { flickerIntensity, updateFlicker } = useTorchState();
@@ -42,7 +42,7 @@ export const Torch = ({
   });
 
   return (
-    <group position={position} rotation={rotation} scale={scale}>
+    <group ref={ref} position={position} rotation={rotation} scale={scale}>
       {/* Render the torch model */}
       <primitive object={scene} />
       {/* Add flickering point light for ambient illumination */}
@@ -61,4 +61,4 @@ export const Torch = ({
       />
     </group>
   );
-};
+});
