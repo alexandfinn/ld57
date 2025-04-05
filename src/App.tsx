@@ -3,6 +3,8 @@ import { Canvas } from "@react-three/fiber";
 import { Physics } from "@react-three/rapier";
 import { Player } from "./components/Player";
 import { Room } from "./components/World/Room";
+import { Chest } from "./components/Chest";
+import { Skull } from "./components/Skull";
 
 const DEBUG = false;
 
@@ -27,6 +29,8 @@ export const App = () => {
         <Physics debug={DEBUG}>
           <Room />
           <Player />
+          <Chest />
+          <Skull />
         </Physics>
 
         {DEBUG && <Stats className="stats" />}
