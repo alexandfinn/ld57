@@ -5,7 +5,6 @@
    - A separate global GameState (or interaction state) should handle events or interactions between components.
 - All rendering must be done in the 3D scene via @react-three/fiber.
 - Use drei whenever possible
-- No flat or HTML-based HUD; everything is part of the 3D world.
 - Code should be clear, maintainable, and scalable:
    - Prioritize clarity and separation of concerns.
    - Keep related logic (like a component’s state and its presentation) in the same file.

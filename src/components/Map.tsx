@@ -1,7 +1,7 @@
 import { useRef, useEffect, useState } from "react";
 import { Mesh, Vector2, CanvasTexture, ShaderMaterial, Vector3 } from "three";
 import { useThree } from "@react-three/fiber";
-import { useTexture } from "@react-three/drei";
+import { useTexture, Html, Text } from "@react-three/drei";
 import { RigidBody } from "@react-three/rapier";
 
 interface MapProps {
@@ -10,6 +10,8 @@ interface MapProps {
   scale?: [number, number, number];
   isMapUp?: boolean;
 }
+
+type DrawingTool = "pen" | "eraser";
 
 export const Map = ({ 
   position = [0, 0, 0], 
@@ -21,6 +23,7 @@ export const Map = ({
   const { camera, raycaster } = useThree();
   const [isDrawing, setIsDrawing] = useState(false);
   const lastPoint = useRef<Vector2 | null>(null);
+  const [currentTool, setCurrentTool] = useState<DrawingTool>("pen");
   
   // Load map texture
   const mapTexture = useTexture("/textures/map.png");
@@ -174,28 +177,41 @@ export const Map = ({
 
   // Function to draw a point with pencil texture
   const drawPoint = (point: Vector2) => {
-    if (!canvasRef.current || !pencilTexture) return;
+    if (!canvasRef.current) return;
     const ctx = canvasRef.current.getContext('2d');
     if (!ctx) return;
 
-    // Draw a point with the pencil texture
-    ctx.save();
-    ctx.globalAlpha = 0.8;
-    ctx.drawImage(
-      pencilTexture.image,
-      point.x - 2,
-      point.y - 2,
-      4,
-      4
-    );
-    ctx.restore();
+    if (currentTool === "pen" && pencilTexture) {
+      // Draw a point with the pencil texture
+      ctx.save();
+      ctx.globalAlpha = 0.8;
+      ctx.drawImage(
+        pencilTexture.image,
+        point.x - 2,
+        point.y - 2,
+        4,
+        4
+      );
+      ctx.restore();
+    } else if (currentTool === "eraser") {
+      // Erase a circular area
+      ctx.save();
+      ctx.globalCompositeOperation = 'destination-out';
+      ctx.beginPath();
+      ctx.arc(point.x, point.y, 8, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(255, 255, 255, 1)'; // Fully opaque white for complete erasure
+      ctx.fill();
+      ctx.restore();
+    }
     
-    drawingTextureRef.current!.needsUpdate = true;
+    if (drawingTextureRef.current) {
+      drawingTextureRef.current.needsUpdate = true;
+    }
   };
 
   // Function to draw a line between two points with pencil texture
   const drawLine = (start: Vector2, end: Vector2) => {
-    if (!canvasRef.current || !pencilTexture) return;
+    if (!canvasRef.current) return;
     const ctx = canvasRef.current.getContext('2d');
     if (!ctx) return;
 
@@ -203,32 +219,51 @@ export const Map = ({
     const dx = end.x - start.x;
     const dy = end.y - start.y;
     const distance = Math.sqrt(dx * dx + dy * dy);
-    const angle = Math.atan2(dy, dx);
     
-    // Draw multiple points along the line to create a textured line
-    const steps = Math.max(1, Math.floor(distance / 1));
-    for (let i = 0; i <= steps; i++) {
-      const t = i / steps;
-      const x = start.x + dx * t;
-      const y = start.y + dy * t;
-      
-      // Add some randomness to the position for a more natural look
-      const offsetX = (Math.random() - 0.5) * 0.25;
-      const offsetY = (Math.random() - 0.5) * 0.25;
-      
-      ctx.save();
-      ctx.globalAlpha = 0.7 + Math.random() * 0.3;
-      ctx.drawImage(
-        pencilTexture.image,
-        x + offsetX - 2,
-        y + offsetY - 2,
-        4,
-        4
-      );
-      ctx.restore();
+    if (currentTool === "pen" && pencilTexture) {
+      // Draw multiple points along the line to create a textured line
+      const steps = Math.max(1, Math.floor(distance / 1));
+      for (let i = 0; i <= steps; i++) {
+        const t = i / steps;
+        const x = start.x + dx * t;
+        const y = start.y + dy * t;
+        
+        // Add some randomness to the position for a more natural look
+        const offsetX = (Math.random() - 0.5) * 0.25;
+        const offsetY = (Math.random() - 0.5) * 0.25;
+        
+        ctx.save();
+        ctx.globalAlpha = 0.7 + Math.random() * 0.3;
+        ctx.drawImage(
+          pencilTexture.image,
+          x + offsetX - 2,
+          y + offsetY - 2,
+          4,
+          4
+        );
+        ctx.restore();
+      }
+    } else if (currentTool === "eraser") {
+      // Erase along the line
+      const steps = Math.max(1, Math.floor(distance / 4));
+      for (let i = 0; i <= steps; i++) {
+        const t = i / steps;
+        const x = start.x + dx * t;
+        const y = start.y + dy * t;
+        
+        ctx.save();
+        ctx.globalCompositeOperation = 'destination-out';
+        ctx.beginPath();
+        ctx.arc(x, y, 8, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(255, 255, 255, 1)'; // Fully opaque white for complete erasure
+        ctx.fill();
+        ctx.restore();
+      }
     }
     
-    drawingTextureRef.current!.needsUpdate = true;
+    if (drawingTextureRef.current) {
+      drawingTextureRef.current.needsUpdate = true;
+    }
   };
 
   // Handle pointer down to start drawing
@@ -276,16 +311,29 @@ export const Map = ({
     const ctx = canvasRef.current.getContext('2d');
     if (!ctx) return;
 
+    ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
     ctx.fillStyle = 'rgba(0, 0, 0, 0)';
     ctx.fillRect(0, 0, canvasRef.current.width, canvasRef.current.height);
-    drawingTextureRef.current!.needsUpdate = true;
+    
+    if (drawingTextureRef.current) {
+      drawingTextureRef.current.needsUpdate = true;
+    }
   };
 
-  // Add a key handler to clear the canvas with 'C' key
+  // Toggle between pen and eraser
+  const toggleTool = () => {
+    setCurrentTool(prev => prev === "pen" ? "eraser" : "pen");
+  };
+
+  // Add a key handler to clear the canvas with 'C' key and toggle tool with 'T' key
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key.toLowerCase() === 'c' && isMapUp) {
-        clearCanvas();
+      if (isMapUp) {
+        if (e.key.toLowerCase() === 'c') {
+          clearCanvas();
+        } else if (e.key.toLowerCase() === 't') {
+          toggleTool();
+        }
       }
     };
 
@@ -308,6 +356,84 @@ export const Map = ({
       >
         <planeGeometry args={[0.4, 0.3]} />
         {materialRef.current && <primitive object={materialRef.current} attach="material" />}
+        
+        {/* HUD for map tools */}
+        {isMapUp && (
+          <group position={[0, -0.13, 0.01]}>
+            <Html
+              transform
+              distanceFactor={0.15}
+              position={[0, 0, 0]}
+              style={{
+                width: '200px',
+                display: 'flex',
+                justifyContent: 'center',
+                pointerEvents: 'none'
+              }}
+            >
+              <div style={{
+                background: 'rgba(50, 30, 10, 0.8)',
+                padding: '5px 10px',
+                borderRadius: '5px',
+                color: '#f0d6a6',
+                fontFamily: 'serif',
+                display: 'flex',
+                gap: '10px',
+                alignItems: 'center',
+                pointerEvents: 'auto'
+              }}>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setCurrentTool("pen");
+                  }}
+                  style={{
+                    background: currentTool === "pen" ? '#8b5a2b' : 'transparent',
+                    border: '1px solid #f0d6a6',
+                    color: '#f0d6a6',
+                    padding: '3px 8px',
+                    borderRadius: '3px',
+                    cursor: 'pointer'
+                  }}
+                >
+                  Pen
+                </button>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setCurrentTool("eraser");
+                  }}
+                  style={{
+                    background: currentTool === "eraser" ? '#8b5a2b' : 'transparent',
+                    border: '1px solid #f0d6a6',
+                    color: '#f0d6a6',
+                    padding: '3px 8px',
+                    borderRadius: '3px',
+                    cursor: 'pointer'
+                  }}
+                >
+                  Eraser
+                </button>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    clearCanvas();
+                  }}
+                  style={{
+                    background: 'transparent',
+                    border: '1px solid #f0d6a6',
+                    color: '#f0d6a6',
+                    padding: '3px 8px',
+                    borderRadius: '3px',
+                    cursor: 'pointer'
+                  }}
+                >
+                  Clear
+                </button>
+              </div>
+            </Html>
+          </group>
+        )}
       </mesh>
     </RigidBody>
   );
