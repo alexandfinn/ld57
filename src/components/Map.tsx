@@ -13,6 +13,9 @@ interface MapProps {
 
 type DrawingTool = "pen" | "eraser";
 
+// Local storage key for map data
+const MAP_STORAGE_KEY = 'dungeon-map-drawing-data';
+
 export const Map = ({ 
   position = [0, 0, 0], 
   rotation = [0, 0, 0],
@@ -94,6 +97,19 @@ export const Map = ({
       ctx.lineWidth = 3;
       ctx.lineCap = 'round';
       ctx.lineJoin = 'round';
+      
+      // Load saved map data from localStorage if it exists
+      const savedMapData = localStorage.getItem(MAP_STORAGE_KEY);
+      if (savedMapData) {
+        const img = new Image();
+        img.onload = () => {
+          ctx.drawImage(img, 0, 0);
+          if (drawingTextureRef.current) {
+            drawingTextureRef.current.needsUpdate = true;
+          }
+        };
+        img.src = savedMapData;
+      }
     }
 
     // Create texture from canvas
@@ -142,6 +158,14 @@ export const Map = ({
       materialRef.current.uniforms.drawingTexture.value = drawingTextureRef.current;
     }
   }, [drawingTextureRef.current]);
+
+  // Save map data to localStorage when drawing changes
+  const saveMapToLocalStorage = () => {
+    if (canvasRef.current) {
+      const dataUrl = canvasRef.current.toDataURL('image/png');
+      localStorage.setItem(MAP_STORAGE_KEY, dataUrl);
+    }
+  };
 
   // Function to get canvas point from mouse event
   const getCanvasPoint = (e: any): Vector2 | null => {
@@ -207,6 +231,9 @@ export const Map = ({
     if (drawingTextureRef.current) {
       drawingTextureRef.current.needsUpdate = true;
     }
+    
+    // Save to localStorage after drawing
+    saveMapToLocalStorage();
   };
 
   // Function to draw a line between two points with pencil texture
@@ -264,6 +291,9 @@ export const Map = ({
     if (drawingTextureRef.current) {
       drawingTextureRef.current.needsUpdate = true;
     }
+    
+    // Save to localStorage after drawing
+    saveMapToLocalStorage();
   };
 
   // Handle pointer down to start drawing
@@ -318,6 +348,9 @@ export const Map = ({
     if (drawingTextureRef.current) {
       drawingTextureRef.current.needsUpdate = true;
     }
+    
+    // Clear localStorage when canvas is cleared
+    localStorage.removeItem(MAP_STORAGE_KEY);
   };
 
   // Toggle between pen and eraser
