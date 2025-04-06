@@ -1,8 +1,9 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { useFrame, useThree } from "@react-three/fiber";
 import { Vector3, Euler, Group } from "three";
 import { PointerLockControls } from "@react-three/drei";
 import { Torch } from "./Torch";
+import { Map } from "./Map";
 import {
   RigidBody,
   CapsuleCollider,
@@ -22,6 +23,7 @@ export const Player = () => {
   const controlsRef = useRef<PointerLockControlsImpl>(null);
   const playerRef = useRef<RapierRigidBody>(null);
   const torchRef = useRef<Group>(null);
+  const mapRef = useRef<Group>(null);
   const rapier = useRapier();
 
   // Track which keys are currently pressed
@@ -47,6 +49,18 @@ export const Player = () => {
   const breathingAmplitude = 0.04;
   const breathingSpeed = 1.5;
   const breathingOffset = useRef(0);
+
+  // Map state
+  const [isMapInHand, setIsMapInHand] = useState(true);
+  
+  // Lerping for map and torch transitions
+  const mapPositionRef = useRef(new Vector3());
+  const mapRotationRef = useRef(new Euler());
+  const torchPositionRef = useRef(new Vector3());
+  const torchRotationRef = useRef(new Euler());
+  const lerpFactor = useRef(0);
+  const isTransitioning = useRef(false);
+  const transitionDuration = 0.5; // seconds
 
   // Handle mouse movement for camera rotation
   useEffect(() => {
@@ -159,19 +173,73 @@ export const Player = () => {
     const rotatedOffset = baseOffset
       .clone()
       .applyAxisAngle(new Vector3(0, 1, 0), torchRotation.current);
-    const torchPosition = new Vector3().copy(playerPosition).add(rotatedOffset);
-    torchPosition.y += breathingOffset.current + 1.5; // Add player height offset
+    const torchPos = new Vector3().copy(playerPosition).add(rotatedOffset);
+    torchPos.y += breathingOffset.current + 1.5; // Add player height offset
 
     // Update torch position in the scene
     if (torchRef.current) {
-      torchRef.current.position.copy(torchPosition);
-      torchRef.current.rotation.y = torchRotation.current;
+      if (isMapInHand) {
+        // Normal position in left hand
+        torchRef.current.position.copy(torchPos);
+        torchRef.current.rotation.y = torchRotation.current;
+      } else {
+        // Move torch away to the left when map is being viewed
+        const awayOffset = new Vector3(-0.5, -0.25, -0.5);
+        const rotatedAwayOffset = awayOffset
+          .clone()
+          .applyAxisAngle(new Vector3(0, 1, 0), torchRotation.current);
+        const awayPosition = new Vector3().copy(playerPosition).add(rotatedAwayOffset);
+        awayPosition.y += breathingOffset.current + 1.5;
+        
+        // Lerp to the away position
+        torchRef.current.position.lerp(awayPosition, 0.1);
+        torchRef.current.rotation.y = torchRotation.current;
+      }
+    }
+
+    // Update map position with lerping
+    if (mapRef.current) {
+      if (isMapInHand) {
+        // Position in right hand (opposite side from torch)
+        const mapOffset = new Vector3(0.25, -0.25, -0.5);
+        const rotatedMapOffset = mapOffset
+          .clone()
+          .applyAxisAngle(new Vector3(0, 1, 0), torchRotation.current);
+        const handPosition = new Vector3().copy(playerPosition).add(rotatedMapOffset);
+        handPosition.y += breathingOffset.current + 1.5; // Add player height offset
+        
+        // Lerp to hand position
+        mapRef.current.position.lerp(handPosition, 0.1);
+        mapRef.current.rotation.y = torchRotation.current;
+        mapRef.current.rotation.x = -0.4; // Tilt towards the player for better visibility
+        mapRef.current.rotation.z = -0.2; // Slight tilt to make it more visible
+      } else {
+        // Position closer to face for better viewing
+        const mapPos = new Vector3().copy(playerPosition);
+        mapPos.y += 1.5; // Add player height offset
+        
+        // Position closer to the player's view
+        const forward = new Vector3(0, 0, -0.3); // Closer to face
+        forward.applyQuaternion(camera.quaternion);
+        mapPos.add(forward);
+        
+        // Lerp to face position
+        mapRef.current.position.lerp(mapPos, 0.1);
+        mapRef.current.rotation.y = playerRotation.current;
+        mapRef.current.rotation.x = 0; // Flat when viewing
+        mapRef.current.rotation.z = 0; // No tilt when viewing
+      }
     }
   });
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       keysPressed.current.add(e.key.toLowerCase());
+      
+      // Toggle map position when 'm' is pressed
+      if (e.key.toLowerCase() === 'm') {
+        setIsMapInHand(!isMapInHand);
+      }
     };
 
     const handleKeyUp = (e: KeyboardEvent) => {
@@ -185,7 +253,7 @@ export const Player = () => {
       window.removeEventListener("keydown", handleKeyDown);
       window.removeEventListener("keyup", handleKeyUp);
     };
-  }, []);
+  }, [isMapInHand]);
 
   return (
     <>
@@ -206,6 +274,10 @@ export const Player = () => {
         position={[0, 0, 0]} // Initial position will be updated in useFrame
         rotation={[0, 0, 0]} // Initial rotation will be updated in useFrame
       />
+      
+      <group ref={mapRef}>
+        <Map />
+      </group>
     </>
   );
 };

@@ -57,10 +57,10 @@ export const Torch = forwardRef<THREE.Group, TorchProps>(
         <pointLight
           ref={pointLightRef}
           position={[0, 1.7, 0]}
-          intensity={10}
+          intensity={300}
           color="#ffa64d"
           distance={20}
-          decay={0.3}
+          decay={0.4}
           castShadow
           shadow-mapSize-width={512}
           shadow-mapSize-height={512}
