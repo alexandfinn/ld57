@@ -1,7 +1,7 @@
 import { useRef, useEffect, useState } from "react";
 import { Mesh, Vector2, CanvasTexture, ShaderMaterial, Vector3 } from "three";
-import { useThree } from "@react-three/fiber";
-import { useTexture, Html, Text } from "@react-three/drei";
+import { useThree, useFrame } from "@react-three/fiber";
+import { useTexture, Html, Text, Billboard } from "@react-three/drei";
 import { RigidBody } from "@react-three/rapier";
 
 interface MapProps {
@@ -27,6 +27,10 @@ export const Map = ({
   const [isDrawing, setIsDrawing] = useState(false);
   const lastPoint = useRef<Vector2 | null>(null);
   const [currentTool, setCurrentTool] = useState<DrawingTool>("pen");
+  
+  // Store original position and rotation when the component mounts
+  const originalPosition = useRef(new Vector3(...position));
+  const originalRotation = useRef<[number, number, number]>([...rotation]);
 
   // Load map texture
   const mapTexture = useTexture("/textures/map.png");
@@ -759,157 +763,188 @@ export const Map = ({
     };
   }, [isMapUp, selectionData]);
 
+  // Store original values when the component mounts or props change
+  useEffect(() => {
+    if (!isMapUp && mapRef.current) {
+      originalPosition.current.set(position[0], position[1], position[2]);
+      originalRotation.current = [...rotation];
+    }
+  }, [position, rotation, isMapUp]);
+
   return (
     <RigidBody type="fixed">
-      <mesh
-        ref={mapRef}
-        position={position}
-        rotation={rotation}
-        scale={scale}
-        onPointerDown={handlePointerDown}
-        onPointerMove={handlePointerMove}
-        onPointerUp={handlePointerUp}
-      >
-        <planeGeometry args={[0.4, 0.3]} />
-        {materialRef.current && (
-          <primitive object={materialRef.current} attach="material" />
-        )}
+      {isMapUp ? (
+        // When map is up, use Billboard to face camera
+        <Billboard
+          follow={true}
+          lockX={false}
+          lockY={false}
+          lockZ={false}
+        >
+          <mesh
+            ref={mapRef}
+            position={position}
+            scale={scale}
+            onPointerDown={handlePointerDown}
+            onPointerMove={handlePointerMove}
+            onPointerUp={handlePointerUp}
+          >
+            <planeGeometry args={[0.4, 0.3]} />
+            {materialRef.current && (
+              <primitive object={materialRef.current} attach="material" />
+            )}
 
-        {/* HUD for map tools */}
-        {isMapUp && (
-          <group position={[0, -0.13, 0.01]}>
-            <Html
-              transform
-              distanceFactor={0.15}
-              position={[0, 0, 0]}
-              style={{
-                width: "400px",
-                display: "flex",
-                justifyContent: "center",
-                pointerEvents: "none",
-              }}
-            >
-              <div
+            {/* HUD for map tools */}
+            <group position={[0, -0.13, 0.01]}>
+              <Html
+                transform
+                distanceFactor={0.15}
+                position={[0, 0, 0]}
                 style={{
-                  padding: "5px 10px",
-                  borderRadius: "5px",
+                  width: "400px",
                   display: "flex",
-                  gap: "8px",
-                  alignItems: "center",
-                  pointerEvents: "auto",
+                  justifyContent: "center",
+                  pointerEvents: "none",
                 }}
               >
                 <div
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setCurrentTool("pen");
-                  }}
                   style={{
-                    width: "64px",
-                    height: "64px",
-                    border:
-                      currentTool === "pen"
-                        ? "2px solid #f0d6a6"
-                        : "2px solid transparent",
-                    borderRadius: "3px",
-                    cursor: "pointer",
-                    overflow: "hidden",
-                    position: "relative",
+                    padding: "5px 10px",
+                    borderRadius: "5px",
+                    display: "flex",
+                    gap: "8px",
+                    alignItems: "center",
+                    pointerEvents: "auto",
                   }}
                 >
-                  <img
-                    src={toolTextures.pen.image.src}
-                    alt="Pen tool"
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
+                  <div
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setCurrentTool("pen");
                     }}
-                  />
-                </div>
-                <div
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setCurrentTool("eraser");
-                  }}
-                  style={{
-                    width: "64px",
-                    height: "64px",
-                    border:
-                      currentTool === "eraser"
-                        ? "2px solid #f0d6a6"
-                        : "2px solid transparent",
-                    borderRadius: "3px",
-                    cursor: "pointer",
-                    overflow: "hidden",
-                  }}
-                >
-                  <img
-                    src={toolTextures.eraser.image.src}
-                    alt="Eraser tool"
                     style={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
+                      width: "64px",
+                      height: "64px",
+                      border:
+                        currentTool === "pen"
+                          ? "2px solid #f0d6a6"
+                          : "2px solid transparent",
+                      borderRadius: "3px",
+                      cursor: "pointer",
+                      overflow: "hidden",
+                      position: "relative",
                     }}
-                  />
-                </div>
-                <div
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setCurrentTool("select");
-                  }}
-                  style={{
-                    width: "64px",
-                    height: "64px",
-                    border:
-                      currentTool === "select"
-                        ? "2px solid #f0d6a6"
-                        : "2px solid transparent",
-                    borderRadius: "3px",
-                    cursor: "pointer",
-                    overflow: "hidden",
-                  }}
-                >
-                  <img
-                    src={toolTextures.select.image.src}
-                    alt="Selection tool"
+                  >
+                    <img
+                      src={toolTextures.pen.image.src}
+                      alt="Pen tool"
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                      }}
+                    />
+                  </div>
+                  <div
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setCurrentTool("eraser");
+                    }}
                     style={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
+                      width: "64px",
+                      height: "64px",
+                      border:
+                        currentTool === "eraser"
+                          ? "2px solid #f0d6a6"
+                          : "2px solid transparent",
+                      borderRadius: "3px",
+                      cursor: "pointer",
+                      overflow: "hidden",
                     }}
-                  />
-                </div>
-                <div
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    clearCanvas();
-                  }}
-                  style={{
-                    width: "64px",
-                    height: "64px",
-                    border: "2px solid transparent",
-                    borderRadius: "3px",
-                    cursor: "pointer",
-                    overflow: "hidden",
-                  }}
-                >
-                  <img
-                    src={toolTextures.clear.image.src}
-                    alt="Clear canvas"
+                  >
+                    <img
+                      src={toolTextures.eraser.image.src}
+                      alt="Eraser tool"
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                      }}
+                    />
+                  </div>
+                  <div
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setCurrentTool("select");
+                    }}
                     style={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
+                      width: "64px",
+                      height: "64px",
+                      border:
+                        currentTool === "select"
+                          ? "2px solid #f0d6a6"
+                          : "2px solid transparent",
+                      borderRadius: "3px",
+                      cursor: "pointer",
+                      overflow: "hidden",
                     }}
-                  />
+                  >
+                    <img
+                      src={toolTextures.select.image.src}
+                      alt="Selection tool"
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                      }}
+                    />
+                  </div>
+                  <div
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      clearCanvas();
+                    }}
+                    style={{
+                      width: "64px",
+                      height: "64px",
+                      border: "2px solid transparent",
+                      borderRadius: "3px",
+                      cursor: "pointer",
+                      overflow: "hidden",
+                    }}
+                  >
+                    <img
+                      src={toolTextures.clear.image.src}
+                      alt="Clear canvas"
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                      }}
+                    />
+                  </div>
                 </div>
-              </div>
-            </Html>
-          </group>
-        )}
-      </mesh>
+              </Html>
+            </group>
+          </mesh>
+        </Billboard>
+      ) : (
+        // When map is down, use regular mesh with original rotation
+        <mesh
+          ref={mapRef}
+          position={position}
+          rotation={rotation}
+          scale={scale}
+          onPointerDown={handlePointerDown}
+          onPointerMove={handlePointerMove}
+          onPointerUp={handlePointerUp}
+        >
+          <planeGeometry args={[0.4, 0.3]} />
+          {materialRef.current && (
+            <primitive object={materialRef.current} attach="material" />
+          )}
+        </mesh>
+      )}
     </RigidBody>
   );
 };
