@@ -67,9 +67,12 @@ export const Player = () => {
     if (!controlsRef.current) return;
 
     const handleMouseMove = () => {
-      const euler = new Euler(0, 0, 0, "YXZ");
-      euler.setFromQuaternion(camera.quaternion);
-      playerRotation.current = euler.y;
+      // Only update player rotation if map is not up
+      if (isMapInHand) {
+        const euler = new Euler(0, 0, 0, "YXZ");
+        euler.setFromQuaternion(camera.quaternion);
+        playerRotation.current = euler.y;
+      }
     };
 
     const controls = controlsRef.current;
@@ -77,7 +80,7 @@ export const Player = () => {
     return () => {
       controls.removeEventListener("change", handleMouseMove);
     };
-  }, [camera]);
+  }, [camera, isMapInHand]);
 
   // Update player position and handle movement
   useFrame((state, delta) => {
@@ -100,28 +103,57 @@ export const Player = () => {
       playerPosition.z
     );
 
-    // Movement
-    frontVector.set(0, 0, backward - forward);
-    sideVector.set(left - right, 0, 0);
-    direction
-      .subVectors(frontVector, sideVector)
-      .normalize()
-      .multiplyScalar(SPEED)
-      .applyEuler(state.camera.rotation);
+    // Block movement and camera rotation when map is up
+    if (!isMapInHand) {
+      // Show cursor when map is up
+      document.body.style.cursor = 'crosshair';
+      
+      // Disable pointer lock controls when map is up
+      if (controlsRef.current.isLocked) {
+        controlsRef.current.unlock();
+      }
+      
+      // Only allow vertical movement (falling), no horizontal movement
+      playerRef.current.setLinvel(
+        {
+          x: 0,
+          y: velocity.y,
+          z: 0,
+        },
+        true
+      );
+    } else {
+      // Hide cursor when map is down
+      document.body.style.cursor = 'none';
+      
+      // Enable pointer lock controls when map is down
+      if (!controlsRef.current.isLocked) {
+        controlsRef.current.lock();
+      }
+      
+      // Normal movement
+      frontVector.set(0, 0, backward - forward);
+      sideVector.set(left - right, 0, 0);
+      direction
+        .subVectors(frontVector, sideVector)
+        .normalize()
+        .multiplyScalar(SPEED)
+        .applyEuler(state.camera.rotation);
 
-    // Apply movement
-    playerRef.current.setLinvel(
-      {
-        x: direction.x,
-        y: velocity.y,
-        z: direction.z,
-      },
-      true
-    );
+      // Apply movement
+      playerRef.current.setLinvel(
+        {
+          x: direction.x,
+          y: velocity.y,
+          z: direction.z,
+        },
+        true
+      );
+    }
 
     // Handle jumping
     const grounded = playerRef.current.translation().y <= 0.1;
-    if (jump && grounded) {
+    if (jump && grounded && isMapInHand) { // Only allow jumping when map is not up
       playerRef.current.setLinvel(
         { x: velocity.x, y: 7.5, z: velocity.z },
         true
@@ -208,8 +240,8 @@ export const Player = () => {
         const handPosition = new Vector3().copy(playerPosition).add(rotatedMapOffset);
         handPosition.y += breathingOffset.current + 1.5; // Add player height offset
         
-        // Lerp to hand position
-        mapRef.current.position.lerp(handPosition, 0.1);
+        // Directly set position instead of lerping
+        mapRef.current.position.copy(handPosition);
         mapRef.current.rotation.y = torchRotation.current - 0.5;
         mapRef.current.rotation.x = 0.2; // Tilt towards the player for better visibility
         mapRef.current.rotation.z = -0.2; // Slight tilt to make it more visible
@@ -223,8 +255,8 @@ export const Player = () => {
         forward.applyQuaternion(camera.quaternion);
         mapPos.add(forward);
         
-        // Lerp to face position
-        mapRef.current.position.lerp(mapPos, 0.1);
+        // Directly set position instead of lerping
+        mapRef.current.position.copy(mapPos);
         mapRef.current.rotation.y = playerRotation.current;
         mapRef.current.rotation.x = 0; // Flat when viewing
         mapRef.current.rotation.z = 0; // No tilt when viewing
@@ -239,6 +271,21 @@ export const Player = () => {
       // Toggle map position when 'm' is pressed
       if (e.key.toLowerCase() === 'm') {
         setIsMapInHand(!isMapInHand);
+        
+        // Toggle pointer lock and cursor visibility when map state changes
+        if (isMapInHand) {
+          // Map is going up, unlock controls and show cursor
+          if (controlsRef.current) {
+            controlsRef.current.unlock();
+          }
+          document.body.style.cursor = 'crosshair';
+        } else {
+          // Map is going down, lock controls and hide cursor
+          if (controlsRef.current) {
+            controlsRef.current.lock();
+          }
+          document.body.style.cursor = 'none';
+        }
       }
     };
 
@@ -252,6 +299,20 @@ export const Player = () => {
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
       window.removeEventListener("keyup", handleKeyUp);
+    };
+  }, [isMapInHand]);
+
+  // Add a click handler to prevent default browser behavior when clicking on the map
+  useEffect(() => {
+    const handleClick = (e: MouseEvent) => {
+      if (!isMapInHand) {
+        e.preventDefault();
+      }
+    };
+
+    window.addEventListener('click', handleClick, { capture: true });
+    return () => {
+      window.removeEventListener('click', handleClick, { capture: true });
     };
   }, [isMapInHand]);
 
@@ -276,7 +337,7 @@ export const Player = () => {
       />
       
       <group ref={mapRef}>
-        <Map />
+        <Map isMapUp={!isMapInHand} />
       </group>
     </>
   );
