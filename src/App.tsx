@@ -6,7 +6,7 @@ import { Room } from "./components/World/Room";
 import { Chest } from "./components/Chest";
 import { Skull } from "./components/Skull";
 
-const DEBUG = true ;
+const DEBUG = false ;
 
 export const App = () => {
   return (
