@@ -31,6 +31,14 @@ export const Map = ({
   // Load map texture
   const mapTexture = useTexture("/textures/map.png");
 
+  // Load tool textures
+  const toolTextures = useTexture({
+    pen: "/hud/tool-pen.jpg",
+    eraser: "/hud/tool-eraser.jpg",
+    select: "/hud/tool-selection.jpg",
+    clear: "/hud/tool-clear.jpg",
+  });
+
   // Create canvas for drawing
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const drawingTextureRef = useRef<CanvasTexture | null>(null);
@@ -460,7 +468,7 @@ export const Map = ({
 
     // Draw selection rectangle
     selectionCtx.save();
-    selectionCtx.strokeStyle = "#000"; 
+    selectionCtx.strokeStyle = "#000";
     selectionCtx.lineWidth = 1;
     selectionCtx.setLineDash([5, 3]); // Dashed line
 
@@ -497,11 +505,11 @@ export const Map = ({
     tempCanvas.width = selectionData.width;
     tempCanvas.height = selectionData.height;
     const tempCtx = tempCanvas.getContext("2d");
-    
+
     if (tempCtx) {
       // Put the selection data on the temp canvas
       tempCtx.putImageData(selectionData, 0, 0);
-      
+
       // Apply the selection to the main canvas using 'source-over' to only add non-transparent pixels
       ctx.save();
       ctx.globalCompositeOperation = "source-over";
@@ -775,7 +783,7 @@ export const Map = ({
               distanceFactor={0.15}
               position={[0, 0, 0]}
               style={{
-                width: "200px",
+                width: "400px",
                 display: "flex",
                 justifyContent: "center",
                 pointerEvents: "none",
@@ -783,84 +791,120 @@ export const Map = ({
             >
               <div
                 style={{
-                  background: "rgba(50, 30, 10, 0.8)",
                   padding: "5px 10px",
                   borderRadius: "5px",
-                  color: "#f0d6a6",
-                  fontFamily: "serif",
                   display: "flex",
-                  gap: "10px",
+                  gap: "8px",
                   alignItems: "center",
                   pointerEvents: "auto",
                 }}
               >
-                <button
+                <div
                   onClick={(e) => {
                     e.stopPropagation();
                     setCurrentTool("pen");
                   }}
                   style={{
-                    background:
-                      currentTool === "pen" ? "#8b5a2b" : "transparent",
-                    border: "1px solid #f0d6a6",
-                    color: "#f0d6a6",
-                    padding: "3px 8px",
+                    width: "64px",
+                    height: "64px",
+                    border:
+                      currentTool === "pen"
+                        ? "2px solid #f0d6a6"
+                        : "2px solid transparent",
                     borderRadius: "3px",
                     cursor: "pointer",
+                    overflow: "hidden",
+                    position: "relative",
                   }}
                 >
-                  Pen
-                </button>
-                <button
+                  <img
+                    src={toolTextures.pen.image.src}
+                    alt="Pen tool"
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                    }}
+                  />
+                </div>
+                <div
                   onClick={(e) => {
                     e.stopPropagation();
                     setCurrentTool("eraser");
                   }}
                   style={{
-                    background:
-                      currentTool === "eraser" ? "#8b5a2b" : "transparent",
-                    border: "1px solid #f0d6a6",
-                    color: "#f0d6a6",
-                    padding: "3px 8px",
+                    width: "64px",
+                    height: "64px",
+                    border:
+                      currentTool === "eraser"
+                        ? "2px solid #f0d6a6"
+                        : "2px solid transparent",
                     borderRadius: "3px",
                     cursor: "pointer",
+                    overflow: "hidden",
                   }}
                 >
-                  Eraser
-                </button>
-                <button
+                  <img
+                    src={toolTextures.eraser.image.src}
+                    alt="Eraser tool"
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                    }}
+                  />
+                </div>
+                <div
                   onClick={(e) => {
                     e.stopPropagation();
                     setCurrentTool("select");
                   }}
                   style={{
-                    background:
-                      currentTool === "select" ? "#8b5a2b" : "transparent",
-                    border: "1px solid #f0d6a6",
-                    color: "#f0d6a6",
-                    padding: "3px 8px",
+                    width: "64px",
+                    height: "64px",
+                    border:
+                      currentTool === "select"
+                        ? "2px solid #f0d6a6"
+                        : "2px solid transparent",
                     borderRadius: "3px",
                     cursor: "pointer",
+                    overflow: "hidden",
                   }}
                 >
-                  Select
-                </button>
-                <button
+                  <img
+                    src={toolTextures.select.image.src}
+                    alt="Selection tool"
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                    }}
+                  />
+                </div>
+                <div
                   onClick={(e) => {
                     e.stopPropagation();
                     clearCanvas();
                   }}
                   style={{
-                    background: "transparent",
-                    border: "1px solid #f0d6a6",
-                    color: "#f0d6a6",
-                    padding: "3px 8px",
+                    width: "64px",
+                    height: "64px",
+                    border: "2px solid transparent",
                     borderRadius: "3px",
                     cursor: "pointer",
+                    overflow: "hidden",
                   }}
                 >
-                  Clear
-                </button>
+                  <img
+                    src={toolTextures.clear.image.src}
+                    alt="Clear canvas"
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                    }}
+                  />
+                </div>
               </div>
             </Html>
           </group>
