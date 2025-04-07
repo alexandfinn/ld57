@@ -1420,13 +1420,13 @@
       "id": "15e6cfae-9d67-4ac2-8b9a-f900393575ce",
       "type": "model",
       "position": [
-        6.5,
-        0,
-        4.5
+        9,
+        1.064364240817902,
+        -15
       ],
       "rotation": [
         0,
-        0,
+        3.141592653589793,
         0
       ],
       "scale": [
@@ -1437,7 +1437,7 @@
       "color": "#b45d26",
       "modelPath": "/models/Dungeon/Dungeon_Wall_Var2.glb",
       "name": "Dungeon_Wall_Var2",
-      "groundLevel": true,
+      "groundLevel": false,
       "snapToGrid": true
     },
     {
@@ -3097,30 +3097,6 @@
       "snapToGrid": true
     },
     {
-      "id": "ba799efe-9f11-45c3-ba1a-76d1e5c3eb6b",
-      "type": "model",
-      "position": [
-        10,
-        1,
-        -15
-      ],
-      "rotation": [
-        0,
-        15.707963267948966,
-        0
-      ],
-      "scale": [
-        0.5,
-        0.5,
-        0.5
-      ],
-      "color": "#a081e5",
-      "modelPath": "/models/Dungeon/Dungeon_Big_Wall.glb",
-      "name": "Dungeon_Big_Wall",
-      "groundLevel": false,
-      "snapToGrid": true
-    },
-    {
       "id": "f3ee4ac9-7b96-4ad2-a13d-7ef5d83622ce",
       "type": "model",
       "position": [
@@ -4103,7 +4079,823 @@
       "name": "skull",
       "groundLevel": true,
       "snapToGrid": true
+    },
+    {
+      "id": "5534e2cd-46b6-4014-8244-9efe2d86acab",
+      "type": "model",
+      "position": [
+        11,
+        -0.23249977961664026,
+        -14
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#7be2a1",
+      "modelPath": "/models/Small/Stairs_Platform.glb",
+      "name": "Stairs_Platform",
+      "groundLevel": false,
+      "snapToGrid": false
+    },
+    {
+      "id": "fd4bf2ff-1ca7-4642-9397-82b23d66d501",
+      "type": "model",
+      "position": [
+        11,
+        -0.21246499786508732,
+        -12
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#f4687c",
+      "modelPath": "/models/Small/Stairs_Low.glb",
+      "name": "Stairs_Low",
+      "groundLevel": false,
+      "snapToGrid": true
+    },
+    {
+      "id": "22fc316f-50e1-4b79-a833-c5a3519d92f0",
+      "type": "model",
+      "position": [
+        11,
+        0,
+        -11
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#9582a8",
+      "modelPath": "/models/Dungeon/Dungeon_Passage.glb",
+      "name": "Dungeon_Passage",
+      "groundLevel": true,
+      "snapToGrid": true
+    },
+    {
+      "id": "9f155d77-6e9c-4e09-9279-56b11428a051",
+      "type": "model",
+      "position": [
+        10,
+        0.7806581948807638,
+        -13
+      ],
+      "rotation": [
+        0,
+        7.853981633974483,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#a081e5",
+      "modelPath": "/models/Dungeon/Dungeon_Big_Wall.glb",
+      "name": "Dungeon_Big_Wall",
+      "groundLevel": false,
+      "snapToGrid": true
+    },
+    {
+      "id": "e076c685-e631-41c5-ac01-27eb8b10007d",
+      "type": "model",
+      "position": [
+        12,
+        0.7806581948807638,
+        -13.5
+      ],
+      "rotation": [
+        0,
+        10.995574287564276,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#a081e5",
+      "modelPath": "/models/Dungeon/Dungeon_Big_Wall.glb",
+      "name": "Dungeon_Big_Wall",
+      "groundLevel": false,
+      "snapToGrid": true
+    },
+    {
+      "id": "ee26af75-eeab-4777-b242-d596f9f14c63",
+      "type": "model",
+      "position": [
+        11,
+        1.0430777447776198,
+        -14
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#341b8d",
+      "modelPath": "/models/Dungeon/Dungeon_Straight.glb",
+      "name": "Dungeon_Straight",
+      "groundLevel": false,
+      "snapToGrid": true
+    },
+    {
+      "id": "3a4af0c3-5fe3-4075-bbcb-c0dcd6eb4a27",
+      "type": "model",
+      "position": [
+        11,
+        1.064364240817902,
+        -15
+      ],
+      "rotation": [
+        0,
+        3.141592653589793,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#b45d26",
+      "modelPath": "/models/Dungeon/Dungeon_Wall_Var2.glb",
+      "name": "Dungeon_Wall_Var2",
+      "groundLevel": false,
+      "snapToGrid": true
+    },
+    {
+      "id": "2861e7d1-9479-4262-925d-c35fcc173e17",
+      "type": "model",
+      "position": [
+        -13.154706289791793,
+        0,
+        -4
+      ],
+      "rotation": [
+        0,
+        1.5707963267948966,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#942488",
+      "modelPath": "/models/Small/Oven.glb",
+      "name": "Oven",
+      "groundLevel": true,
+      "snapToGrid": false
+    },
+    {
+      "id": "a829e6c2-70d9-4c5f-9ccb-e10bf868b6cb",
+      "type": "model",
+      "position": [
+        -12.942936017750256,
+        0.37787112060711336,
+        -4.016091996963159
+      ],
+      "rotation": [
+        0,
+        0.5043547433367385,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#31aef4",
+      "modelPath": "/models/Small/Bread.glb",
+      "name": "Bread",
+      "groundLevel": false,
+      "snapToGrid": false
+    },
+    {
+      "id": "b4632e46-067e-4f3a-85c4-816d6e177c1d",
+      "type": "model",
+      "position": [
+        -12.9934693002221,
+        0.38046567935633313,
+        -4.414594623863865
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#493168",
+      "modelPath": "/models/Small/Bottle.glb",
+      "name": "Bottle",
+      "groundLevel": false,
+      "snapToGrid": false
+    },
+    {
+      "id": "0a7d5a89-1457-4332-904f-71a181bfdb13",
+      "type": "model",
+      "position": [
+        -10.5,
+        0,
+        -6
+      ],
+      "rotation": [
+        0,
+        1.5707963267948966,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#471cf2",
+      "modelPath": "/models/Furniture/Table_Small.glb",
+      "name": "Table_Small",
+      "groundLevel": true,
+      "snapToGrid": true
+    },
+    {
+      "id": "ede49565-f94f-4ac9-a566-01428e7cecc6",
+      "type": "model",
+      "position": [
+        -10.691096184031188,
+        0.4129169776064113,
+        -6
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#45595f",
+      "modelPath": "/models/Small/Bowl_Full.glb",
+      "name": "Bowl_Full",
+      "groundLevel": false,
+      "snapToGrid": false
+    },
+    {
+      "id": "4c39f22a-b7d5-4bb0-8a63-60687c14e013",
+      "type": "model",
+      "position": [
+        -10.551861081779554,
+        0.4033393538136953,
+        -5.5638118840070065
+      ],
+      "rotation": [
+        3.141592653589793,
+        -0.38411444851215965,
+        3.141592653589793
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#e83f42",
+      "modelPath": "/models/Small/Bread_Half.glb",
+      "name": "Bread_Half",
+      "groundLevel": false,
+      "snapToGrid": false
+    },
+    {
+      "id": "4b0cd1c9-d65d-44f5-af72-23621b7dd72a",
+      "type": "model",
+      "position": [
+        -10.294171793898382,
+        0.4155177139472702,
+        -5.6874022444899115
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#c13357",
+      "modelPath": "/models/Small/Bowl.glb",
+      "name": "Bowl",
+      "groundLevel": false,
+      "snapToGrid": false
+    },
+    {
+      "id": "98955df0-5f4c-496b-af47-aa36af032549",
+      "type": "model",
+      "position": [
+        -10.501995655260034,
+        0.39704978392578116,
+        -6.289695543998464
+      ],
+      "rotation": [
+        0,
+        -0.6872411399691342,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#73fbcf",
+      "modelPath": "/models/Small/Carrot.glb",
+      "name": "Carrot",
+      "groundLevel": false,
+      "snapToGrid": false
+    },
+    {
+      "id": "23c9b442-2a1f-4e59-9997-363f3c72d39f",
+      "type": "model",
+      "position": [
+        -10.581497257567488,
+        0.4117402071003225,
+        -5.857777041267327
+      ],
+      "rotation": [
+        0,
+        0.5654389658830314,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#28ba31",
+      "modelPath": "/models/Small/Mug.glb",
+      "name": "Mug",
+      "groundLevel": false,
+      "snapToGrid": false
+    },
+    {
+      "id": "c6610686-1c10-4baa-8506-54c4431aff44",
+      "type": "model",
+      "position": [
+        -10.336786548306796,
+        0.4117402071003225,
+        -5.926329476375591
+      ],
+      "rotation": [
+        -3.141592653589793,
+        0.9715934597181299,
+        -3.141592653589793
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#28ba31",
+      "modelPath": "/models/Small/Mug.glb",
+      "name": "Mug",
+      "groundLevel": false,
+      "snapToGrid": false
+    },
+    {
+      "id": "b3d09d14-e425-451d-a011-00a8d137f1b1",
+      "type": "model",
+      "position": [
+        -10.024584258000864,
+        0,
+        -6.276586962197156
+      ],
+      "rotation": [
+        0,
+        0.7726787090892836,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#b50e43",
+      "modelPath": "/models/Small/Meat.glb",
+      "name": "Meat",
+      "groundLevel": true,
+      "snapToGrid": false
+    },
+    {
+      "id": "f3ae2e14-3034-4fff-a500-b4ff5e85defc",
+      "type": "model",
+      "position": [
+        -8.800409445285387,
+        0,
+        -6.901651280405692
+      ],
+      "rotation": [
+        0,
+        0,
+        -0.4393528854987135
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#135c70",
+      "modelPath": "/models/Small/Bag.glb",
+      "name": "Bag",
+      "groundLevel": true,
+      "snapToGrid": false
+    },
+    {
+      "id": "aca8a4bd-3b7c-4ba7-a6a0-6806a9076ce9",
+      "type": "model",
+      "position": [
+        -8.510716569975914,
+        0,
+        -6.873926201070472
+      ],
+      "rotation": [
+        -0.17248085095596835,
+        0,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#eab659",
+      "modelPath": "/models/Small/Bag.glb",
+      "name": "Bag",
+      "groundLevel": true,
+      "snapToGrid": false
+    },
+    {
+      "id": "e6dda09c-610d-4a51-b095-4562b90b4aa5",
+      "type": "model",
+      "position": [
+        -7.673716230537124,
+        0,
+        -6
+      ],
+      "rotation": [
+        0,
+        4.71238898038469,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#e6465c",
+      "modelPath": "/models/Furniture/Shelf.glb",
+      "name": "Shelf",
+      "groundLevel": true,
+      "snapToGrid": false
+    },
+    {
+      "id": "53070569-f657-480f-8e9a-891150572be1",
+      "type": "model",
+      "position": [
+        -7.678326829695597,
+        0.7089951090884759,
+        -6.2688963388820635
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#b0410f",
+      "modelPath": "/models/Small/Plate_Small.glb",
+      "name": "Plate_Small",
+      "groundLevel": false,
+      "snapToGrid": false
+    },
+    {
+      "id": "6be7c5e2-8bb9-46d5-bd73-bc2a8e067082",
+      "type": "model",
+      "position": [
+        -7.665005007860715,
+        0.7180404727481483,
+        -6.275319745801987
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#b0410f",
+      "modelPath": "/models/Small/Plate_Small.glb",
+      "name": "Plate_Small",
+      "groundLevel": false,
+      "snapToGrid": false
+    },
+    {
+      "id": "5f3d30a3-5d4f-4a76-b03b-149a1e1e6996",
+      "type": "model",
+      "position": [
+        -7.680020682030291,
+        0.7408554736958061,
+        -6.266583814066839
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#b0410f",
+      "modelPath": "/models/Small/Plate_Small.glb",
+      "name": "Plate_Small",
+      "groundLevel": false,
+      "snapToGrid": false
+    },
+    {
+      "id": "22594050-d722-4b11-9d78-1ffe6061a31b",
+      "type": "model",
+      "position": [
+        -11.16852912539412,
+        0,
+        -6.1703813724319065
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#43ff81",
+      "modelPath": "/models/Small/Stool_square.glb",
+      "name": "Stool_square",
+      "groundLevel": true,
+      "snapToGrid": false
+    },
+    {
+      "id": "fce961be-bbdb-4907-acb6-41f0874b6df3",
+      "type": "model",
+      "position": [
+        -9.94729238552322,
+        0.08084960306300348,
+        -5.980334109345393
+      ],
+      "rotation": [
+        1.4468417758772367,
+        -0.003203926102430974,
+        0.016192096125329385
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#bead8f",
+      "modelPath": "/models/Small/Stool_round.glb",
+      "name": "Stool_round",
+      "groundLevel": false,
+      "snapToGrid": false
+    },
+    {
+      "id": "fd37550c-b0e7-4a19-8e3f-1addce38b74e",
+      "type": "model",
+      "position": [
+        -7.643947885880948,
+        0,
+        -6.313561414128413
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#8dbc6e",
+      "modelPath": "/models/Small/Bag.glb",
+      "name": "Bag",
+      "groundLevel": true,
+      "snapToGrid": false
+    },
+    {
+      "id": "756ab5c9-b06f-4a24-bda4-f5c90e19b6a6",
+      "type": "model",
+      "position": [
+        -7.676886373476796,
+        0.7138369952497352,
+        -6
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#828db5",
+      "modelPath": "/models/Small/Bowl.glb",
+      "name": "Bowl",
+      "groundLevel": false,
+      "snapToGrid": false
+    },
+    {
+      "id": "9ff7aa51-10de-4605-aed8-cc2086f32df5",
+      "type": "model",
+      "position": [
+        -7.65954615912613,
+        0.7138369952497352,
+        -5.85533619486256
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#828db5",
+      "modelPath": "/models/Small/Bowl.glb",
+      "name": "Bowl",
+      "groundLevel": false,
+      "snapToGrid": false
+    },
+    {
+      "id": "ef7189de-cffa-4174-b86e-cc22e5078673",
+      "type": "model",
+      "position": [
+        -7.681980490640401,
+        0.41120164663268083,
+        -6.125182225113381
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#91cfad",
+      "modelPath": "/models/Small/Carrot.glb",
+      "name": "Carrot",
+      "groundLevel": false,
+      "snapToGrid": false
+    },
+    {
+      "id": "f24ab818-47c8-4b87-b6ad-793d22e12e05",
+      "type": "model",
+      "position": [
+        -7.711219172289508,
+        0.41120164663268083,
+        -6.0491687155169895
+      ],
+      "rotation": [
+        3.141592653589793,
+        -0.9390003464509685,
+        3.141592653589793
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#91cfad",
+      "modelPath": "/models/Small/Carrot.glb",
+      "name": "Carrot",
+      "groundLevel": false,
+      "snapToGrid": false
+    },
+    {
+      "id": "a992dfc0-e8d0-4f8c-adb9-5b816da585e6",
+      "type": "model",
+      "position": [
+        -7.6363905762862325,
+        0.4064431145133812,
+        -5.845911607050593
+      ],
+      "rotation": [
+        -0.06643900389909964,
+        1.2985180399848504,
+        0.0639982426025112
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#bb1c0",
+      "modelPath": "/models/Small/Bread.glb",
+      "name": "Bread",
+      "groundLevel": false,
+      "snapToGrid": false
+    },
+    {
+      "id": "d62e7af4-966f-495a-917a-b6f43373b99a",
+      "type": "model",
+      "position": [
+        -12.5,
+        0,
+        -4.5
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#ba6a68",
+      "modelPath": "/models/Small/Cauldron_Empty.glb",
+      "name": "Cauldron_Empty",
+      "groundLevel": true,
+      "snapToGrid": true
+    },
+    {
+      "id": "c864db71-73ed-44f0-baef-814616d435a3",
+      "type": "model",
+      "position": [
+        -10.5,
+        0,
+        -5
+      ],
+      "rotation": [
+        0,
+        0.8018704157321862,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#fa1ff1",
+      "modelPath": "/models/Small/Bucket.glb",
+      "name": "Bucket",
+      "groundLevel": true,
+      "snapToGrid": true
     }
   ],
-  "timestamp": "2025-04-07T19:40:03.686Z"
+  "timestamp": "2025-04-07T20:14:23.768Z"
 }

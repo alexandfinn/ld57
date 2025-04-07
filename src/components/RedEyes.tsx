@@ -21,7 +21,7 @@ export const RedEyes = ({ playerPositionRef, playerRotationRef }: RedEyesProps) 
         const playerPosition = playerPositionRef.current;
         const playerRotation = playerRotationRef.current;
         
-        const distance = 10;
+        const distance = 18;
         const x = playerPosition.x - Math.sin(playerRotation) * distance;
         const z = playerPosition.z - Math.cos(playerRotation) * distance;
         groupRef.current.position.set(x, 3, z);
