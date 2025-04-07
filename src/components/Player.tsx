@@ -267,7 +267,7 @@ export const Player = ({ hasStarted }: PlayerProps) => {
 
         // Directly set position instead of lerping
         mapRef.current.position.copy(handPosition);
-        mapRef.current.rotation.y = torchRotation.current - 0.5;
+        mapRef.current.rotation.y = torchRotation.current ;
         mapRef.current.rotation.x = 0.2; // Tilt towards the player for better visibility
         mapRef.current.rotation.z = -0.2; // Slight tilt to make it more visible
       } else {

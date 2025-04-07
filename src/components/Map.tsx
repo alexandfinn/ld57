@@ -1,8 +1,8 @@
-import { useRef, useEffect, useState } from "react";
-import { Mesh, Vector2, CanvasTexture, ShaderMaterial, Vector3 } from "three";
-import { useThree, useFrame } from "@react-three/fiber";
-import { useTexture, Html, Text, Billboard } from "@react-three/drei";
+import { Billboard, Html, useTexture } from "@react-three/drei";
+import { useThree } from "@react-three/fiber";
 import { RigidBody } from "@react-three/rapier";
+import { useEffect, useRef, useState } from "react";
+import { CanvasTexture, Mesh, ShaderMaterial, Vector2, Vector3 } from "three";
 
 interface MapProps {
   position?: [number, number, number];
@@ -788,7 +788,6 @@ export const Map = ({
             onPointerDown={handlePointerDown}
             onPointerMove={handlePointerMove}
             onPointerUp={handlePointerUp}
-
           >
             <planeGeometry args={[0.4, 0.3]} />
             {materialRef.current && (
