@@ -8,8 +8,11 @@ import { SecretAudio } from "./components/SecretAudio";
 import { TriggerText } from "./components/TriggerText";
 import { TriggerList } from "./components/TriggerList";
 import { PaperSound } from "./components/PaperSound";
+import { CompletionMessage } from "./components/CompletionMessage";
+import { CompletedMapScene } from "./components/CompletedMapScene";
 import { useState, useEffect, useRef } from "react";
 import { Vector3 } from "three";
+import levelJson from "./level.json";
 
 const DEBUG = false;
 
@@ -24,11 +27,64 @@ export const App = () => {
   );
   const [showPaperSound, setShowPaperSound] = useState(true);
   const [dismissPaperSound, setDismissPaperSound] = useState(false);
+  const [showCompletionMessage, setShowCompletionMessage] = useState(false);
+  const [showCompletedMapScene, setShowCompletedMapScene] = useState(false);
+
+  // Get unique trigger names from level.json
+  const allUniqueTriggers = [
+    ...new Set(
+      levelJson.objects
+        .filter((obj) => obj.type === "trigger")
+        .map((obj) => obj.name)
+    ),
+  ];
+
+  // Initial player position (same as in Player.tsx)
+  const initialPlayerPosition = new Vector3(-5, 0.8, -35);
 
   useEffect(() => {
     // Play paper sound when component mounts
     setShowPaperSound(true);
   }, []);
+
+  // Check if all unique triggers have been triggered
+  useEffect(() => {
+    const allTriggersTriggered = allUniqueTriggers.every(trigger => 
+      triggeredTriggers.includes(trigger)
+    );
+    
+    if (allTriggersTriggered && allUniqueTriggers.length > 0) {
+      setShowCompletionMessage(true);
+    }
+  }, [triggeredTriggers, allUniqueTriggers]);
+
+  // Check if player is near start position when completion message is shown
+  useEffect(() => {
+    if (showCompletionMessage) {
+      const checkPlayerPosition = () => {
+        const playerPos = playerPositionRef.current;
+        const distance = playerPos.distanceTo(initialPlayerPosition);
+        
+        // If player is within 2 units of start position
+        if (distance <= 2) {
+          // Force release pointer lock with multiple approaches
+          if (document.pointerLockElement) {
+            document.exitPointerLock();
+          }
+          
+          // Set cursor style to visible
+          document.body.style.cursor = 'auto';
+          
+          setShowCompletedMapScene(true);
+        }
+      };
+      
+      // Check position every 500ms
+      const intervalId = setInterval(checkPlayerPosition, 500);
+      
+      return () => clearInterval(intervalId);
+    }
+  }, [showCompletionMessage]);
 
   const handleStart = () => {
     setDismissPaperSound(true);
@@ -36,6 +92,21 @@ export const App = () => {
     setTimeout(() => {
       setHasStarted(true);
     }, 500); // Adjust this timing based on your paper sound duration
+  };
+
+  const handleRestart = () => {
+    // Reset all game state
+    setTriggeredTriggers([]);
+    setShowCompletionMessage(false);
+    setShowCompletedMapScene(false);
+    setTriggerText(null);
+    setCurrentTriggerName(null);
+    setShouldPlaySecretAudio(false);
+    
+    // Reset player position
+    if (playerPositionRef.current) {
+      playerPositionRef.current.copy(initialPlayerPosition);
+    }
   };
 
   const handleTrigger = (name: string, isFirstTrigger: boolean) => {
@@ -69,16 +140,23 @@ export const App = () => {
       <Canvas shadows>
         <fog attach="fog" args={["#000000", 5, 60]} />
 
-        <Physics debug={DEBUG}>
-          <Level
-            onTrigger={handleTrigger}
-            triggeredTriggers={triggeredTriggers}
+        {showCompletedMapScene ? (
+          <CompletedMapScene 
+            isVisible={showCompletedMapScene} 
+            onRestart={handleRestart}
           />
-          <Player
-            hasStarted={hasStarted}
-            playerPositionRef={playerPositionRef}
-          />
-        </Physics>
+        ) : (
+          <Physics debug={DEBUG}>
+            <Level
+              onTrigger={handleTrigger}
+              triggeredTriggers={triggeredTriggers}
+            />
+            <Player
+              hasStarted={hasStarted}
+              playerPositionRef={playerPositionRef}
+            />
+          </Physics>
+        )}
 
         {DEBUG && <Stats className="stats" />}
       </Canvas>
@@ -88,6 +166,9 @@ export const App = () => {
 
       {/* Trigger list overlay */}
       <TriggerList triggeredTriggers={triggeredTriggers} />
+
+      {/* Completion message */}
+      <CompletionMessage isVisible={showCompletionMessage && !showCompletedMapScene} />
 
       {!hasStarted && (
         <div
