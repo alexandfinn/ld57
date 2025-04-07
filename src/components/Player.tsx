@@ -235,7 +235,7 @@ export const Player = ({ hasStarted, playerPositionRef }: PlayerProps) => {
       .clone()
       .applyAxisAngle(new Vector3(0, 1, 0), torchRotation.current);
     const torchPos = new Vector3().copy(playerPosition).add(rotatedOffset);
-    torchPos.y += breathingOffset.current + 1.5;
+    torchPos.y += breathingOffset.current + 1.3;
 
     // Update torch position in the scene
     if (torchRef.current) {
