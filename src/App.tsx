@@ -94,17 +94,73 @@ export const App = () => {
           }}
           onClick={handleStart}
         >
-          <h1 style={{ fontSize: "3rem", marginBottom: "1rem" }}>
-            Dungeon Cartographer
-          </h1>
-          <p style={{ fontSize: "1.5rem", marginBottom: "2rem" }}>
-            Click anywhere to start
-          </p>
           <div
-            style={{ fontSize: "1rem", textAlign: "center", maxWidth: "600px" }}
+            style={{
+              backgroundImage: "url('/textures/map.png')",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              padding: "3rem",
+              borderRadius: "15px",
+              maxWidth: "1200px",
+              width: "90%",
+              position: "relative",
+              boxShadow: "0 0 30px rgba(0,0,0,0.5)",
+            }}
           >
-            <p>Use WASD to move, SPACE to jump, and M to toggle the map.</p>
-            <p>Click to lock your mouse and begin exploring the dungeon.</p>
+            <div>
+              <h1
+                style={{
+                  fontSize: "4.5rem",
+                  marginBottom: "1.5rem",
+                  color: "#f4e0b6",
+                  fontFamily: "'MedievalSharp', cursive",
+                  textAlign: "center",
+                  textShadow: "2px 2px 4px rgba(0,0,0,0.7)",
+                }}
+              >
+                Cartographer's Guild Mission
+              </h1>
+              <div
+                style={{
+                  fontSize: "1.8rem",
+                  lineHeight: "1.8",
+                  color: "#f4e0b6",
+                  fontFamily: "'MedievalSharp', cursive",
+                  marginBottom: "3rem",
+                  textShadow: "2px 2px 4px rgba(0,0,0,0.7)",
+                }}
+              >
+                <p style={{ marginBottom: "1.5rem" }}>
+                  Greetings, brave cartographer. The Guild has received reports
+                  of an ancient dungeon that requires mapping. Your task is to
+                  explore and document its depths.
+                </p>
+                <p style={{ marginBottom: "1.5rem" }}>
+                  Use your map wisely - press M to view it, and document your
+                  findings as you discover new areas. The Guild has provided you
+                  with a torch to light your way.
+                </p>
+                <p style={{ marginBottom: "1.5rem" }}>Controls:</p>
+                <ul style={{ listStyle: "none", padding: "0" }}>
+                  <li>WASD - Move through the dungeon</li>
+m                  <li>M - Toggle map view</li>
+                  <li>Mouse - Look around</li>
+                </ul>
+              </div>
+              <p
+                style={{
+                  fontSize: "2.25rem",
+                  textAlign: "center",
+                  color: "#f4e0b6",
+                  fontFamily: "'MedievalSharp', cursive",
+                  cursor: "pointer",
+                  textShadow: "2px 2px 4px rgba(0,0,0,0.7)",
+                  marginTop: "3rem",
+                }}
+              >
+                Click to accept the mission
+              </p>
+            </div>
           </div>
         </div>
       )}
