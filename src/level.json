@@ -1,0 +1,362 @@
+{
+  "objects": [
+    {
+      "id": "d5921c3b-67a0-4091-b00a-e27aed23596e",
+      "type": "model",
+      "position": [
+        0.5,
+        0,
+        -0.5
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#2d6eb3",
+      "modelPath": "/models/Hallway/Hallway_Double.glb",
+      "groundLevel": true,
+      "snapToGrid": true
+    },
+    {
+      "id": "596657b5-d883-4952-8f80-963ff9ece7ad",
+      "type": "model",
+      "position": [
+        1,
+        0,
+        -3.5
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#4b2e55",
+      "modelPath": "/models/Hallway/Hallway_Curve_Long.glb",
+      "groundLevel": true,
+      "snapToGrid": true
+    },
+    {
+      "id": "bbde6a7f-96ee-455d-a9fb-8383445b34bc",
+      "type": "model",
+      "position": [
+        4,
+        0,
+        -4
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#5e9a96",
+      "modelPath": "/models/Dungeon/Dungeon_Big.001.glb",
+      "groundLevel": true,
+      "snapToGrid": true
+    },
+    {
+      "id": "e77f1b4c-7055-4576-a05f-2c4f96eb2b4e",
+      "type": "model",
+      "position": [
+        2,
+        0,
+        -4
+      ],
+      "rotation": [
+        0,
+        -1.5707963267948966,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#e8df4a",
+      "modelPath": "/models/Dungeon/Dungeon_Big_Passage.glb",
+      "name": "Dungeon_Big_Passage",
+      "groundLevel": true,
+      "snapToGrid": true
+    },
+    {
+      "id": "7c7e6851-5cd4-4a48-9a30-239e539e8e98",
+      "type": "model",
+      "position": [
+        4,
+        0,
+        -2
+      ],
+      "rotation": [
+        0,
+        3.141592653589793,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#201ca5",
+      "modelPath": "/models/Dungeon/Dungeon_Big_Wall.glb",
+      "name": "Dungeon_Big_Wall",
+      "groundLevel": true,
+      "snapToGrid": true
+    },
+    {
+      "id": "d3c4bf80-33f4-468a-b98e-39428d80f048",
+      "type": "model",
+      "position": [
+        6,
+        0,
+        -4
+      ],
+      "rotation": [
+        0,
+        4.71238898038469,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#707efe",
+      "modelPath": "/models/Dungeon/Dungeon_Big_Wall.glb",
+      "name": "Dungeon_Big_Wall",
+      "groundLevel": true,
+      "snapToGrid": true
+    },
+    {
+      "id": "b8e08e10-d7a9-4b44-8454-87e28f0af7b0",
+      "type": "model",
+      "position": [
+        4,
+        0,
+        -6
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#d2a1e3",
+      "modelPath": "/models/Dungeon/Dungeon_Big_Wall.glb",
+      "name": "Dungeon_Big_Wall",
+      "groundLevel": true,
+      "snapToGrid": true
+    },
+    {
+      "id": "2ddebe03-8a67-43a3-9eac-488fb3384358",
+      "type": "model",
+      "position": [
+        0.5,
+        0,
+        2.5
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#ebb56d",
+      "modelPath": "/models/Dungeon/Dungeon_CornerCrossing.glb",
+      "name": "Dungeon_CornerCrossing",
+      "groundLevel": true,
+      "snapToGrid": true
+    },
+    {
+      "id": "ba10a5a7-6e3c-4d0d-8caf-d730d68274cd",
+      "type": "model",
+      "position": [
+        -0.5,
+        0,
+        2.5
+      ],
+      "rotation": [
+        0,
+        1.5707963267948966,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#108a13",
+      "modelPath": "/models/Dungeon/Dungeon_Wall_Var1.glb",
+      "name": "Dungeon_Wall_Var1",
+      "groundLevel": true,
+      "snapToGrid": true
+    },
+    {
+      "id": "b362c822-e9f5-422b-8b71-fd917e351039",
+      "type": "model",
+      "position": [
+        0.5,
+        -0.13659317978264718,
+        1.5
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#ce80bb",
+      "modelPath": "/models/Dungeon/Dungeon_Passage.glb",
+      "name": "Dungeon_Passage",
+      "groundLevel": false,
+      "snapToGrid": false
+    },
+    {
+      "id": "544c7ee5-b92c-4d3f-a1ef-2fe3b43a29ce",
+      "type": "model",
+      "position": [
+        0.5,
+        0,
+        3.5
+      ],
+      "rotation": [
+        0,
+        3.141592653589793,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#6c5979",
+      "modelPath": "/models/Dungeon/Dungeon_Wall_Var3.glb",
+      "name": "Dungeon_Wall_Var3",
+      "groundLevel": true,
+      "snapToGrid": true
+    },
+    {
+      "id": "a1ab4ce0-03e8-4fba-8a3c-10f87ab54ef7",
+      "type": "model",
+      "position": [
+        1.5,
+        0,
+        2.5
+      ],
+      "rotation": [
+        0,
+        1.5707963267948966,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#6c5979",
+      "modelPath": "/models/Dungeon/Dungeon_Wall_Var3.glb",
+      "name": "Dungeon_Wall_Var3",
+      "groundLevel": true,
+      "snapToGrid": true
+    },
+    {
+      "id": "df450dee-b2e0-4a70-ae0c-eb5316a13094",
+      "type": "model",
+      "position": [
+        0.5,
+        0,
+        3
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#e5adde",
+      "modelPath": "/models/Objects/Table_Small.glb",
+      "name": "Table_Small",
+      "groundLevel": true,
+      "snapToGrid": true
+    },
+    {
+      "id": "52992942-90b4-4f21-912a-9dbaa1a9605f",
+      "type": "model",
+      "position": [
+        3.5,
+        0,
+        -3
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#60ad2",
+      "modelPath": "/models/Objects/Table_Big.glb",
+      "name": "Table_Big",
+      "groundLevel": true,
+      "snapToGrid": true
+    },
+    {
+      "id": "04a3df00-191a-4cd4-8698-7887b88f9f7d",
+      "type": "model",
+      "position": [
+        3.5002268391957476,
+        0.42317823218886463,
+        -2.940111321117259
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.5,
+        1.7,
+        0.5
+      ],
+      "color": "#6ed458",
+      "modelPath": "/models/Small/Book_Open.glb",
+      "name": "Book_Open",
+      "groundLevel": false,
+      "snapToGrid": false
+    }
+  ],
+  "timestamp": "2025-04-07T09:22:01.368Z"
+}

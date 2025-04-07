@@ -18,6 +18,8 @@ const frontVector = new Vector3();
 const sideVector = new Vector3();
 const tempVec = new Vector3();
 
+const initialPlayerPosition = new Vector3(2, 0.8, 2);
+
 export const Player = () => {
   const { camera } = useThree();
   const controlsRef = useRef<PointerLockControlsImpl>(null);
@@ -52,7 +54,7 @@ export const Player = () => {
 
   // Map state
   const [isMapInHand, setIsMapInHand] = useState(true);
-  
+
   // Lerping for map and torch transitions
   const mapPositionRef = useRef(new Vector3());
   const mapRotationRef = useRef(new Euler());
@@ -106,13 +108,13 @@ export const Player = () => {
     // Block movement and camera rotation when map is up
     if (!isMapInHand) {
       // Show cursor when map is up
-      document.body.style.cursor = 'crosshair';
-      
+      document.body.style.cursor = "crosshair";
+
       // Disable pointer lock controls when map is up
       if (controlsRef.current.isLocked) {
         controlsRef.current.unlock();
       }
-      
+
       // Only allow vertical movement (falling), no horizontal movement
       playerRef.current.setLinvel(
         {
@@ -124,13 +126,13 @@ export const Player = () => {
       );
     } else {
       // Hide cursor when map is down
-      document.body.style.cursor = 'none';
-      
+      document.body.style.cursor = "none";
+
       // Enable pointer lock controls when map is down
       if (!controlsRef.current.isLocked) {
         controlsRef.current.lock();
       }
-      
+
       // Normal movement
       frontVector.set(0, 0, backward - forward);
       sideVector.set(left - right, 0, 0);
@@ -153,7 +155,8 @@ export const Player = () => {
 
     // Handle jumping
     const grounded = playerRef.current.translation().y <= 0.1;
-    if (jump && grounded && isMapInHand) { // Only allow jumping when map is not up
+    if (jump && grounded && isMapInHand) {
+      // Only allow jumping when map is not up
       playerRef.current.setLinvel(
         { x: velocity.x, y: 7.5, z: velocity.z },
         true
@@ -220,9 +223,11 @@ export const Player = () => {
         const rotatedAwayOffset = awayOffset
           .clone()
           .applyAxisAngle(new Vector3(0, 1, 0), torchRotation.current);
-        const awayPosition = new Vector3().copy(playerPosition).add(rotatedAwayOffset);
+        const awayPosition = new Vector3()
+          .copy(playerPosition)
+          .add(rotatedAwayOffset);
         awayPosition.y += breathingOffset.current + 1.5;
-        
+
         // Lerp to the away position
         torchRef.current.position.lerp(awayPosition, 0.1);
         torchRef.current.rotation.y = torchRotation.current;
@@ -237,9 +242,11 @@ export const Player = () => {
         const rotatedMapOffset = mapOffset
           .clone()
           .applyAxisAngle(new Vector3(0, 1, 0), torchRotation.current);
-        const handPosition = new Vector3().copy(playerPosition).add(rotatedMapOffset);
+        const handPosition = new Vector3()
+          .copy(playerPosition)
+          .add(rotatedMapOffset);
         handPosition.y += breathingOffset.current + 1.5; // Add player height offset
-        
+
         // Directly set position instead of lerping
         mapRef.current.position.copy(handPosition);
         mapRef.current.rotation.y = torchRotation.current - 0.5;
@@ -249,12 +256,12 @@ export const Player = () => {
         // Position closer to face for better viewing
         const mapPos = new Vector3().copy(playerPosition);
         mapPos.y += 1.5; // Add player height offset
-        
+
         // Position closer to the player's view
         const forward = new Vector3(0, 0, -0.3); // Closer to face
         forward.applyQuaternion(camera.quaternion);
         mapPos.add(forward);
-        
+
         // Directly set position instead of lerping
         mapRef.current.position.copy(mapPos);
         mapRef.current.rotation.y = playerRotation.current;
@@ -267,24 +274,24 @@ export const Player = () => {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       keysPressed.current.add(e.key.toLowerCase());
-      
+
       // Toggle map position when 'm' is pressed
-      if (e.key.toLowerCase() === 'm') {
+      if (e.key.toLowerCase() === "m") {
         setIsMapInHand(!isMapInHand);
-        
+
         // Toggle pointer lock and cursor visibility when map state changes
         if (isMapInHand) {
           // Map is going up, unlock controls and show cursor
           if (controlsRef.current) {
             controlsRef.current.unlock();
           }
-          document.body.style.cursor = 'crosshair';
+          document.body.style.cursor = "crosshair";
         } else {
           // Map is going down, lock controls and hide cursor
           if (controlsRef.current) {
             controlsRef.current.lock();
           }
-          document.body.style.cursor = 'none';
+          document.body.style.cursor = "none";
         }
       }
     };
@@ -310,9 +317,9 @@ export const Player = () => {
       }
     };
 
-    window.addEventListener('click', handleClick, { capture: true });
+    window.addEventListener("click", handleClick, { capture: true });
     return () => {
-      window.removeEventListener('click', handleClick, { capture: true });
+      window.removeEventListener("click", handleClick, { capture: true });
     };
   }, [isMapInHand]);
 
@@ -324,7 +331,7 @@ export const Player = () => {
         colliders={false}
         mass={1}
         type="dynamic"
-        position={[0, 2, 0]}
+        position={initialPlayerPosition}
         enabledRotations={[false, false, false]}
       >
         <CapsuleCollider args={[0.75, 0.5]} />
@@ -335,7 +342,7 @@ export const Player = () => {
         position={[0, 0, 0]} // Initial position will be updated in useFrame
         rotation={[0, 0, 0]} // Initial rotation will be updated in useFrame
       />
-      
+
       <group ref={mapRef}>
         <Map isMapUp={!isMapInHand} />
       </group>
