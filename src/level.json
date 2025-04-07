@@ -1297,54 +1297,6 @@
       "snapToGrid": true
     },
     {
-      "id": "13237463-7682-4b2c-90ba-7d1e760d09e1",
-      "type": "model",
-      "position": [
-        4,
-        0,
-        4.5
-      ],
-      "rotation": [
-        0,
-        17.27875959474386,
-        0
-      ],
-      "scale": [
-        0.5,
-        0.5,
-        0.5
-      ],
-      "color": "#a98054",
-      "modelPath": "/models/Dungeon/Dungeon_Wall_Var1.003.glb",
-      "name": "Dungeon_Wall_Var1.003",
-      "groundLevel": true,
-      "snapToGrid": true
-    },
-    {
-      "id": "e490f911-12f7-4535-a1f9-9b3448296026",
-      "type": "model",
-      "position": [
-        1.5,
-        0,
-        4.5
-      ],
-      "rotation": [
-        0,
-        0,
-        0
-      ],
-      "scale": [
-        0.5,
-        0.5,
-        0.5
-      ],
-      "color": "#7c0378",
-      "modelPath": "/models/Dungeon/Dungeon_Wall_Window.001.glb",
-      "name": "Dungeon_Wall_Window.001",
-      "groundLevel": true,
-      "snapToGrid": true
-    },
-    {
       "id": "c025de7c-90c0-4204-8da1-12f00b6724d3",
       "type": "model",
       "position": [
@@ -1389,30 +1341,6 @@
       "color": "#77cb34",
       "modelPath": "/models/Basement/Basement_Wall_Var1.glb",
       "name": "Basement_Wall_Var1",
-      "groundLevel": true,
-      "snapToGrid": true
-    },
-    {
-      "id": "4afc4c0c-1818-4a7c-92fa-5c60af5de22b",
-      "type": "model",
-      "position": [
-        9,
-        0,
-        4.5
-      ],
-      "rotation": [
-        0,
-        0,
-        0
-      ],
-      "scale": [
-        0.5,
-        0.5,
-        0.5
-      ],
-      "color": "#942fee",
-      "modelPath": "/models/Dungeon/Dungeon_Passage.glb",
-      "name": "Dungeon_Passage",
       "groundLevel": true,
       "snapToGrid": true
     },
@@ -1701,54 +1629,6 @@
       "color": "#b45d26",
       "modelPath": "/models/Dungeon/Dungeon_Wall_Var2.glb",
       "name": "Dungeon_Wall_Var2",
-      "groundLevel": true,
-      "snapToGrid": true
-    },
-    {
-      "id": "9e4e425c-235b-4b63-bfef-de0cea399c0e",
-      "type": "model",
-      "position": [
-        4.5,
-        0,
-        5
-      ],
-      "rotation": [
-        0,
-        17.27875959474386,
-        0
-      ],
-      "scale": [
-        0.5,
-        0.5,
-        0.5
-      ],
-      "color": "#a98054",
-      "modelPath": "/models/Dungeon/Dungeon_Wall_Var1.003.glb",
-      "name": "Dungeon_Wall_Var1.003",
-      "groundLevel": true,
-      "snapToGrid": true
-    },
-    {
-      "id": "27603baa-8fa2-4c6e-9f6e-93ee65c637c3",
-      "type": "model",
-      "position": [
-        5,
-        0,
-        5.5
-      ],
-      "rotation": [
-        0,
-        17.27875959474386,
-        0
-      ],
-      "scale": [
-        0.5,
-        0.5,
-        0.5
-      ],
-      "color": "#a98054",
-      "modelPath": "/models/Dungeon/Dungeon_Wall_Var1.003.glb",
-      "name": "Dungeon_Wall_Var1.003",
       "groundLevel": true,
       "snapToGrid": true
     },
@@ -4081,150 +3961,6 @@
       "snapToGrid": true
     },
     {
-      "id": "5534e2cd-46b6-4014-8244-9efe2d86acab",
-      "type": "model",
-      "position": [
-        11,
-        -0.23249977961664026,
-        -14
-      ],
-      "rotation": [
-        0,
-        0,
-        0
-      ],
-      "scale": [
-        0.5,
-        0.5,
-        0.5
-      ],
-      "color": "#7be2a1",
-      "modelPath": "/models/Small/Stairs_Platform.glb",
-      "name": "Stairs_Platform",
-      "groundLevel": false,
-      "snapToGrid": false
-    },
-    {
-      "id": "fd4bf2ff-1ca7-4642-9397-82b23d66d501",
-      "type": "model",
-      "position": [
-        11,
-        -0.21246499786508732,
-        -12
-      ],
-      "rotation": [
-        0,
-        0,
-        0
-      ],
-      "scale": [
-        0.5,
-        0.5,
-        0.5
-      ],
-      "color": "#f4687c",
-      "modelPath": "/models/Small/Stairs_Low.glb",
-      "name": "Stairs_Low",
-      "groundLevel": false,
-      "snapToGrid": true
-    },
-    {
-      "id": "22fc316f-50e1-4b79-a833-c5a3519d92f0",
-      "type": "model",
-      "position": [
-        11,
-        0,
-        -11
-      ],
-      "rotation": [
-        0,
-        0,
-        0
-      ],
-      "scale": [
-        0.5,
-        0.5,
-        0.5
-      ],
-      "color": "#9582a8",
-      "modelPath": "/models/Dungeon/Dungeon_Passage.glb",
-      "name": "Dungeon_Passage",
-      "groundLevel": true,
-      "snapToGrid": true
-    },
-    {
-      "id": "9f155d77-6e9c-4e09-9279-56b11428a051",
-      "type": "model",
-      "position": [
-        10,
-        0.7806581948807638,
-        -13
-      ],
-      "rotation": [
-        0,
-        7.853981633974483,
-        0
-      ],
-      "scale": [
-        0.5,
-        0.5,
-        0.5
-      ],
-      "color": "#a081e5",
-      "modelPath": "/models/Dungeon/Dungeon_Big_Wall.glb",
-      "name": "Dungeon_Big_Wall",
-      "groundLevel": false,
-      "snapToGrid": true
-    },
-    {
-      "id": "e076c685-e631-41c5-ac01-27eb8b10007d",
-      "type": "model",
-      "position": [
-        12,
-        0.7806581948807638,
-        -13.5
-      ],
-      "rotation": [
-        0,
-        10.995574287564276,
-        0
-      ],
-      "scale": [
-        0.5,
-        0.5,
-        0.5
-      ],
-      "color": "#a081e5",
-      "modelPath": "/models/Dungeon/Dungeon_Big_Wall.glb",
-      "name": "Dungeon_Big_Wall",
-      "groundLevel": false,
-      "snapToGrid": true
-    },
-    {
-      "id": "ee26af75-eeab-4777-b242-d596f9f14c63",
-      "type": "model",
-      "position": [
-        11,
-        1.0430777447776198,
-        -14
-      ],
-      "rotation": [
-        0,
-        0,
-        0
-      ],
-      "scale": [
-        0.5,
-        0.5,
-        0.5
-      ],
-      "color": "#341b8d",
-      "modelPath": "/models/Dungeon/Dungeon_Straight.glb",
-      "name": "Dungeon_Straight",
-      "groundLevel": false,
-      "snapToGrid": true
-    },
-    {
       "id": "3a4af0c3-5fe3-4075-bbcb-c0dcd6eb4a27",
       "type": "model",
       "position": [
@@ -4961,7 +4697,7 @@
         1
       ],
       "color": "#459816",
-      "name": "chest",
+      "name": "Treasury",
       "groundLevel": true,
       "snapToGrid": false
     },
@@ -4984,7 +4720,7 @@
         0.8
       ],
       "color": "#4727dd",
-      "name": "jail",
+      "name": "Prison",
       "groundLevel": true,
       "snapToGrid": true
     },
@@ -6590,7 +6326,410 @@
       "name": "Scriptorium",
       "groundLevel": true,
       "snapToGrid": false
+    },
+    {
+      "id": "03cb2f3a-67e0-4013-a459-d15f7543e02e",
+      "type": "model",
+      "position": [
+        -14,
+        0,
+        2
+      ],
+      "rotation": [
+        0,
+        0.5,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#27fad8",
+      "modelPath": "/models/Small/ChestSmall.glb",
+      "name": "ChestSmall",
+      "groundLevel": true,
+      "snapToGrid": true
+    },
+    {
+      "id": "6e13b827-f7e3-4a24-99b7-dff48187afc9",
+      "type": "model",
+      "position": [
+        -14,
+        0,
+        2
+      ],
+      "rotation": [
+        0,
+        0.5,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#7e521b",
+      "modelPath": "/models/Small/ChestSmall_Lid.glb",
+      "name": "ChestSmall_Lid",
+      "groundLevel": true,
+      "snapToGrid": true
+    },
+    {
+      "id": "afb1af9f-6159-419d-a879-a11a8464eccc",
+      "type": "model",
+      "position": [
+        -14.166456701048851,
+        0,
+        1.7527319053114105
+      ],
+      "rotation": [
+        -3.141592653589793,
+        0.9470405753142243,
+        -3.141592653589793
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#72e547",
+      "modelPath": "/models/Small/Candlestick_Small.glb",
+      "name": "Candlestick_Small",
+      "groundLevel": true,
+      "snapToGrid": false
+    },
+    {
+      "id": "e0599b5d-f45b-465c-b779-7684584c7df3",
+      "type": "model",
+      "position": [
+        -14.964450479575332,
+        0,
+        2.233472717104908
+      ],
+      "rotation": [
+        0,
+        -1.030881108714448,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#c088b1",
+      "modelPath": "/models/Small/Scales.glb",
+      "name": "Scales",
+      "groundLevel": true,
+      "snapToGrid": false
+    },
+    {
+      "id": "fceabf72-99b8-452a-a9a3-a3b8075af671",
+      "type": "model",
+      "position": [
+        -14.71106797876236,
+        0,
+        1.8181592550543004
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#f006db",
+      "modelPath": "/models/Small/Goblet.glb",
+      "name": "Goblet",
+      "groundLevel": true,
+      "snapToGrid": false
+    },
+    {
+      "id": "cd77c556-a9bf-4b2a-b841-ac210d4b0e08",
+      "type": "model",
+      "position": [
+        -14.784049838957387,
+        0,
+        1.790872934923137
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#740eba",
+      "modelPath": "/models/Small/Goblet.glb",
+      "name": "Goblet",
+      "groundLevel": true,
+      "snapToGrid": false
+    },
+    {
+      "id": "259be83c-1908-4465-952d-49b1b3e40ed5",
+      "type": "model",
+      "position": [
+        -14.74063799621579,
+        0.018903398597849452,
+        1.7802197698868671
+      ],
+      "rotation": [
+        -1.4933278504594845,
+        0,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#740eba",
+      "modelPath": "/models/Small/Goblet.glb",
+      "name": "Goblet",
+      "groundLevel": false,
+      "snapToGrid": false
+    },
+    {
+      "id": "95b7541c-4238-4201-9e92-60f076ad0fb2",
+      "type": "model",
+      "position": [
+        -18.087484494994673,
+        0.024401554134886566,
+        -12.14567225519477
+      ],
+      "rotation": [
+        0,
+        -0.5968345274734199,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#cceb4b",
+      "modelPath": "/models/Small/Bone.glb",
+      "name": "Bone",
+      "groundLevel": false,
+      "snapToGrid": false
+    },
+    {
+      "id": "87684093-d404-46b3-a3c3-a69cbdb4f7a7",
+      "type": "model",
+      "position": [
+        1.9049026433870242,
+        0.4642588644243904,
+        -3.6572112646421173
+      ],
+      "rotation": [
+        3.141592653589793,
+        -0.4799812756914912,
+        3.006448319343861
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#81ad76",
+      "modelPath": "/models/Small/Quill.glb",
+      "name": "Quill",
+      "groundLevel": false,
+      "snapToGrid": false
+    },
+    {
+      "id": "91e373da-c02d-42ba-a5c7-680a7d79c3a2",
+      "type": "model",
+      "position": [
+        -9.594150504609129,
+        0.9818795891038901,
+        -0.17668276322785884
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#136276",
+      "modelPath": "/models/Small/Potion_Green.glb",
+      "name": "Potion_Green",
+      "groundLevel": false,
+      "snapToGrid": false
+    },
+    {
+      "id": "d4a30ca1-a03e-4a75-bb64-4b6f5b8b4921",
+      "type": "model",
+      "position": [
+        -9.601019983671241,
+        0.9840746900258025,
+        0.07773472936675918
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#1814b4",
+      "modelPath": "/models/Small/Potion_Blue.glb",
+      "name": "Potion_Blue",
+      "groundLevel": false,
+      "snapToGrid": false
+    },
+    {
+      "id": "90126d61-9e4c-4b04-a555-a88ea80ba957",
+      "type": "model",
+      "position": [
+        -9.605453721522249,
+        0.8327184822832513,
+        -0.043351194750279945
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#aa189f",
+      "modelPath": "/models/Small/Potion_Red.glb",
+      "name": "Potion_Red",
+      "groundLevel": false,
+      "snapToGrid": false
+    },
+    {
+      "id": "654d52d4-43e7-45c6-8ff3-7e97bcf48415",
+      "type": "light",
+      "position": [
+        0.4568123504428814,
+        3.804070470912116,
+        -20.943720926170737
+      ],
+      "rotation": [
+        -2.9219872410426646,
+        0.1839503367895929,
+        1.4281903137584184
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#56588d",
+      "name": "Directional Light",
+      "groundLevel": false,
+      "snapToGrid": false
+    },
+    {
+      "id": "7ce79b37-bc93-442a-8d9d-729075a53b38",
+      "type": "light",
+      "position": [
+        -3.623724757040526,
+        3.816608490847601,
+        -20.712035128456826
+      ],
+      "rotation": [
+        -2.9219872410426646,
+        0.1839503367895929,
+        1.4281903137584184
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#56588d",
+      "name": "Directional Light",
+      "groundLevel": false,
+      "snapToGrid": false
+    },
+    {
+      "id": "51f4fa99-3b9b-4f3c-a386-075a40c989b1",
+      "type": "light",
+      "position": [
+        -4.265704914375428,
+        4.073881056397866,
+        -13.498569433912493
+      ],
+      "rotation": [
+        -0.2977878178894117,
+        -0.18395033678959294,
+        -1.7134023398313756
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#56588d",
+      "name": "Directional Light",
+      "groundLevel": false,
+      "snapToGrid": false
+    },
+    {
+      "id": "0b7f9727-dd9a-4eb3-83a3-1636719f055f",
+      "type": "light",
+      "position": [
+        -3.765704914375428,
+        4.073881056397866,
+        -12.998569433912493
+      ],
+      "rotation": [
+        -0.2977878178894117,
+        -0.18395033678959294,
+        -1.7134023398313756
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#56588d",
+      "name": "Directional Light",
+      "groundLevel": false,
+      "snapToGrid": false
+    },
+    {
+      "id": "6e4e08c6-62a1-4f88-9027-c081a7611dfb",
+      "type": "light",
+      "position": [
+        -0.25707659623628487,
+        4.073881056397866,
+        -13.136466269575875
+      ],
+      "rotation": [
+        -0.2977878178894117,
+        -0.18395033678959294,
+        -1.7134023398313756
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#56588d",
+      "name": "Directional Light",
+      "groundLevel": false,
+      "snapToGrid": false
     }
   ],
-  "timestamp": "2025-04-07T22:11:05.603Z"
+  "timestamp": "2025-04-07T22:33:47.099Z"
 }

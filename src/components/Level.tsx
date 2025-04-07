@@ -1,7 +1,7 @@
 import { useGLTF } from "@react-three/drei";
 import { RigidBody } from "@react-three/rapier";
 import { useRef } from "react";
-import { Group, Mesh } from "three";
+import { Group, Mesh, PointLight } from "three";
 import levelData from "../level.json";
 import { Floor } from "./Floor";
 import { Trigger } from "./Trigger";
@@ -33,7 +33,7 @@ export const Level = ({ onTrigger, triggeredTriggers }: LevelProps) => {
 
       {/* Render regular objects */}
       {levelData.objects
-        .filter((object) => object.type !== "trigger")
+        .filter((object) => object.type !== "trigger" && object.type !== "light")
         .map((object) => {
           const modelRef = useRef<Group>(null);
           const model = getModel(object.modelPath as string);
@@ -70,6 +70,27 @@ export const Level = ({ onTrigger, triggeredTriggers }: LevelProps) => {
                 scale={scaledScale}
               />
             </RigidBody>
+          );
+        })}
+
+      {/* Render lights */}
+      {levelData.objects
+        .filter((object) => object.type === "light")
+        .map((object) => {
+          const scaledPosition = [
+            (object.position[0] as number) * SCALE_FACTOR,
+            (object.position[1] as number) * SCALE_FACTOR,
+            (object.position[2] as number) * SCALE_FACTOR,
+          ] as [number, number, number];
+
+          return (
+            <pointLight
+              key={object.id}
+              position={scaledPosition}
+              intensity={20}
+              decay={1.3}
+              color="#b4d4ff"
+            />
           );
         })}
 
