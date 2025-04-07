@@ -33,14 +33,14 @@ export const Map = ({
   const originalRotation = useRef<[number, number, number]>([...rotation]);
 
   // Load map texture
-  const mapTexture = useTexture("/textures/map.png");
+  const mapTexture = useTexture(`${import.meta.env.BASE_URL}textures/map.png`);
 
   // Load tool textures
   const toolTextures = useTexture({
-    pen: "/hud/tool-pen.jpg",
-    eraser: "/hud/tool-eraser.jpg",
-    select: "/hud/tool-selection.jpg",
-    clear: "/hud/tool-clear.jpg",
+    pen: `${import.meta.env.BASE_URL}hud/tool-pen.jpg`,
+    eraser: `${import.meta.env.BASE_URL}hud/tool-eraser.jpg`,
+    select: `${import.meta.env.BASE_URL}hud/tool-selection.jpg`,
+    clear: `${import.meta.env.BASE_URL}hud/tool-clear.jpg`,
   });
 
   // Create canvas for drawing

@@ -17,7 +17,7 @@ const baseDecay = 1.7;
 
 export const Torch = forwardRef<THREE.Group, TorchProps>(
   ({ position, rotation = [0, 0, 0] }, ref) => {
-    const { scene } = useGLTF("/models/Small/Torch.glb");
+    const { scene } = useGLTF(`${import.meta.env.BASE_URL}models/Small/Torch.glb`);
     const pointLightRef = useRef<THREE.PointLight>(null);
     const timeRef = useRef(0);
 

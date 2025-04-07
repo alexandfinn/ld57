@@ -9,7 +9,7 @@ export const StrikethroughSound = ({ shouldPlay }: StrikethroughSoundProps) => {
 
   useEffect(() => {
     // Create audio element
-    audioRef.current = new Audio("/audio/pencil-strikethrough.mp3");
+    audioRef.current = new Audio(`${import.meta.env.BASE_URL}audio/pencil-strikethrough.mp3`);
     
     // Configure audio
     if (audioRef.current) {

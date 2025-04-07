@@ -20,7 +20,7 @@ export const PaperSound = ({ shouldPlay, onEnded }: PaperSoundProps) => {
   return (
     <audio
       ref={audioRef}
-      src="/audio/paper.mp3"
+      src={`${import.meta.env.BASE_URL}audio/paper.mp3`}
       onEnded={onEnded}
       preload="auto"
     />

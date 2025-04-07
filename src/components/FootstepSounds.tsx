@@ -65,8 +65,8 @@ export const FootstepSounds = ({ isMoving }: FootstepSoundsProps) => {
   const playFootstepSound = () => {
     if (!audioRef.current) return;
 
-    const soundPath = `/audio/Tiles/Steps_tiles-${String(
-      currentSoundIndex.current
+    const soundPath = `${import.meta.env.BASE_URL}audio/Tiles/Steps_tiles-${String(
+      Math.floor(Math.random() * 8) + 1
     ).padStart(3, "0")}.ogg`;
 
     // Create a new Audio instance for each play to allow overlapping sounds

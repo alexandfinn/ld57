@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc && vite build",
+    "build:itch": "tsc && vite build && pnpm run zip",
+    "zip": "cd dist && zip -r ../dungeon-cartographer.zip .",
     "lint": "eslint .",
     "preview": "vite preview"
   },

@@ -8,13 +8,13 @@ export const BackgroundMusic = ({ hasStarted }: BackgroundMusicProps) => {
   const backgroundAudioRef = useRef<HTMLAudioElement | null>(null);
   const chainAudioRef = useRef<HTMLAudioElement | null>(null);
   const doorAudioRef = useRef<HTMLAudioElement | null>(null);
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const intervalRef = useRef<number | null>(null);
 
   useEffect(() => {
     // Create audio elements
-    backgroundAudioRef.current = new Audio("/audio/dungeon-air.mp3");
-    chainAudioRef.current = new Audio("/audio/chain-drag.mp3");
-    doorAudioRef.current = new Audio("/audio/door-creaking.mp3");
+    backgroundAudioRef.current = new Audio(`${import.meta.env.BASE_URL}audio/dungeon-air.mp3`);
+    chainAudioRef.current = new Audio(`${import.meta.env.BASE_URL}audio/chain-drag.mp3`);
+    doorAudioRef.current = new Audio(`${import.meta.env.BASE_URL}audio/door-creaking.mp3`);
 
     // Configure background audio
     if (backgroundAudioRef.current) {

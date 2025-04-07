@@ -192,7 +192,7 @@ export const App = () => {
         >
           <div
             style={{
-              backgroundImage: "url('/textures/map.png')",
+              backgroundImage: `url('${import.meta.env.BASE_URL}textures/map.png')`,
               backgroundSize: "cover",
               backgroundPosition: "center",
               padding: "3rem",

@@ -10,7 +10,7 @@ export const SecretAudio = ({ shouldPlay, triggerName }: SecretAudioProps) => {
 
   useEffect(() => {
     // Create audio element
-    secretAudioRef.current = new Audio("/audio/secret.mp3");
+    secretAudioRef.current = new Audio(`${import.meta.env.BASE_URL}audio/secret.mp3`);
     
     // Configure secret audio
     if (secretAudioRef.current) {

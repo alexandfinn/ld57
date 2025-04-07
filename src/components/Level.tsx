@@ -17,11 +17,12 @@ export const Level = ({ onTrigger, triggeredTriggers }: LevelProps) => {
 
   // Function to load and cache a model
   const getModel = (modelPath: string) => {
-    if (!modelCache.has(modelPath)) {
-      const { scene } = useGLTF(modelPath);
-      modelCache.set(modelPath, scene);
+    const fullPath = `${import.meta.env.BASE_URL}${modelPath.startsWith('/') ? modelPath.slice(1) : modelPath}`;
+    if (!modelCache.has(fullPath)) {
+      const { scene } = useGLTF(fullPath);
+      modelCache.set(fullPath, scene);
     }
-    return modelCache.get(modelPath);
+    return modelCache.get(fullPath);
   };
 
   // Scale factor for all models
@@ -131,6 +132,7 @@ export const Level = ({ onTrigger, triggeredTriggers }: LevelProps) => {
 // Preload all models
 levelData.objects.forEach((object: any) => {
   if (object.modelPath) {
-    useGLTF.preload(object.modelPath);
+    const fullPath = `${import.meta.env.BASE_URL}${object.modelPath.startsWith('/') ? object.modelPath.slice(1) : object.modelPath}`;
+    useGLTF.preload(fullPath);
   }
 });

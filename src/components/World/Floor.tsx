@@ -7,7 +7,7 @@ export const Floor = () => {
   const floorRef = useRef<Mesh>(null);
 
   // Load floor texture
-  const floorTexture = useTexture("/textures/floor.png");
+  const floorTexture = useTexture(`${import.meta.env.BASE_URL}textures/floor.png`);
 
   const width = 1000;
   const length = 1000;
