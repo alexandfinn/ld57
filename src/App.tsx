@@ -4,15 +4,24 @@ import { Physics } from "@react-three/rapier";
 import { Player } from "./components/Player";
 import { Level } from "./components/Level";
 import { BackgroundMusic } from "./components/BackgroundMusic";
-import { useState, useEffect } from "react";
+import { TriggerText } from "./components/TriggerText";
+import { useState, useEffect, useRef } from "react";
+import { Vector3 } from "three";
 
 const DEBUG = false;
 
 export const App = () => {
   const [hasStarted, setHasStarted] = useState(false);
+  const playerPositionRef = useRef(new Vector3());
+  const [triggerText, setTriggerText] = useState<string | null>(null);
 
   const handleStart = () => {
     setHasStarted(true);
+  };
+
+  const handleTrigger = (name: string) => {
+    console.log("Trigger:", name);
+    setTriggerText(name);
   };
 
   return (
@@ -22,12 +31,15 @@ export const App = () => {
         <fog attach="fog" args={["#000000", 5, 60]} />
 
         <Physics debug={DEBUG}>
-          <Level />
-          <Player hasStarted={hasStarted} />
+          <Level onTrigger={handleTrigger} />
+          <Player hasStarted={hasStarted} playerPositionRef={playerPositionRef} />
         </Physics>
 
         {DEBUG && <Stats className="stats" />}
       </Canvas>
+
+      {/* Trigger text overlay */}
+      <TriggerText text={triggerText} />
 
       {!hasStarted && (
         <div

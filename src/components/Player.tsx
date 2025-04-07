@@ -24,9 +24,10 @@ const initialPlayerPosition = new Vector3(-5, 0.8, -35);
 
 interface PlayerProps {
   hasStarted: boolean;
+  playerPositionRef: React.RefObject<Vector3>;
 }
 
-export const Player = ({ hasStarted }: PlayerProps) => {
+export const Player = ({ hasStarted, playerPositionRef }: PlayerProps) => {
   const { camera } = useThree();
   const controlsRef = useRef<PointerLockControlsImpl>(null);
   const playerRef = useRef<RapierRigidBody>(null);
@@ -38,7 +39,6 @@ export const Player = ({ hasStarted }: PlayerProps) => {
   const [isGrounded, setIsGrounded] = useState(false);
   
   // Add refs for RedEyes component
-  const playerPositionRef = useRef<Vector3>(new Vector3());
   const playerRotationRef = useRef<number>(0);
 
   // Track which keys are currently pressed
@@ -117,6 +117,9 @@ export const Player = ({ hasStarted }: PlayerProps) => {
       playerPosition.y + 1.5,
       playerPosition.z
     );
+
+    // Update playerPositionRef for trigger detection
+    playerPositionRef.current.copy(playerPosition);
 
     // Check if player is grounded
     const playerIsGrounded = playerPosition.y <= 0.1;
@@ -294,7 +297,6 @@ export const Player = ({ hasStarted }: PlayerProps) => {
     }
 
     // Update player position ref for RedEyes component
-    playerPositionRef.current.copy(playerPosition);
     playerRotationRef.current = playerRotation.current;
   });
 

@@ -4895,7 +4895,385 @@
       "name": "Bucket",
       "groundLevel": true,
       "snapToGrid": true
+    },
+    {
+      "id": "959a98f8-cf5a-4d21-951a-6db11412fc7a",
+      "type": "trigger",
+      "position": [
+        -8,
+        0,
+        -4
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.8
+      ],
+      "color": "#8a45bf",
+      "name": "kitchen",
+      "groundLevel": true,
+      "snapToGrid": true
+    },
+    {
+      "id": "d7e9ffa4-4892-4bd2-a5d9-efd4b54b148b",
+      "type": "trigger",
+      "position": [
+        -12.5,
+        0,
+        -6.5
+      ],
+      "rotation": [
+        0,
+        1.5707963267948966,
+        0
+      ],
+      "scale": [
+        0.8,
+        0.5,
+        0.8
+      ],
+      "color": "#8a45bf",
+      "name": "kitchen",
+      "groundLevel": true,
+      "snapToGrid": true
+    },
+    {
+      "id": "bf7a022e-94db-4103-9a58-94490b02fcdb",
+      "type": "trigger",
+      "position": [
+        -14.126127009156013,
+        0,
+        0.028684913896404485
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        0.5,
+        1
+      ],
+      "color": "#459816",
+      "name": "chest",
+      "groundLevel": true,
+      "snapToGrid": false
+    },
+    {
+      "id": "5f965eb4-6739-4448-bfb8-a2daf0a88964",
+      "type": "trigger",
+      "position": [
+        -18.5,
+        0,
+        -13
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.8,
+        0.5,
+        0.8
+      ],
+      "color": "#4727dd",
+      "name": "jail",
+      "groundLevel": true,
+      "snapToGrid": true
+    },
+    {
+      "id": "be4a9672-45c7-4fd9-8528-67ca60ee6763",
+      "type": "trigger",
+      "position": [
+        -0.5081852323596174,
+        0,
+        -15.386450760945428
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1.2995888791512218,
+        0.5,
+        0.5
+      ],
+      "color": "#28d1f",
+      "name": "dining-hall",
+      "groundLevel": true,
+      "snapToGrid": false
+    },
+    {
+      "id": "fffc82e1-a4f4-4251-849c-954d12f1f6dd",
+      "type": "trigger",
+      "position": [
+        -5.5721123735855524,
+        0,
+        -16.964840526385498
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.7506197323577777,
+        0.2887912263638394,
+        3.4616291612701624
+      ],
+      "color": "#28d1f",
+      "name": "dining-hall",
+      "groundLevel": true,
+      "snapToGrid": false
+    },
+    {
+      "id": "dc3e5d01-0f18-4885-9817-f3f1ba1c5890",
+      "type": "model",
+      "position": [
+        -3,
+        0,
+        -17
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#a110b8",
+      "modelPath": "/models/Furniture/Table_Big.glb",
+      "name": "Table_Big",
+      "groundLevel": true,
+      "snapToGrid": true
+    },
+    {
+      "id": "ac0a52fa-aac4-4526-aaf0-7d79fb24add9",
+      "type": "model",
+      "position": [
+        -1,
+        0,
+        -17
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#a110b8",
+      "modelPath": "/models/Furniture/Table_Big.glb",
+      "name": "Table_Big",
+      "groundLevel": true,
+      "snapToGrid": true
+    },
+    {
+      "id": "ee39770b-beec-4ee9-8ed5-2b383dbd253f",
+      "type": "model",
+      "position": [
+        -2.739960559252357,
+        0.4464472826968968,
+        -16.74537332978579
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#6e7834",
+      "modelPath": "/models/Small/Wineglass.glb",
+      "name": "Wineglass",
+      "groundLevel": false,
+      "snapToGrid": false
+    },
+    {
+      "id": "b31a639c-f19a-418a-848a-9de3978b4d54",
+      "type": "model",
+      "position": [
+        -3.262983917705941,
+        0,
+        -17.71387232635058
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#e5cc24",
+      "modelPath": "/models/Small/Chair.glb",
+      "name": "Chair",
+      "groundLevel": true,
+      "snapToGrid": false
+    },
+    {
+      "id": "ce0ff90c-f386-491a-a598-b9260ee4b8e1",
+      "type": "model",
+      "position": [
+        -2.4883634217795163,
+        0,
+        -17.72143698558419
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#e5cc24",
+      "modelPath": "/models/Small/Chair.glb",
+      "name": "Chair",
+      "groundLevel": true,
+      "snapToGrid": false
+    },
+    {
+      "id": "6c2ca122-a549-4cc7-bced-796dde484cf6",
+      "type": "model",
+      "position": [
+        -1.784585594042647,
+        0,
+        -17.65843330250894
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#e5cc24",
+      "modelPath": "/models/Small/Chair.glb",
+      "name": "Chair",
+      "groundLevel": true,
+      "snapToGrid": false
+    },
+    {
+      "id": "638215b1-b351-4913-bbe6-cb51a9010024",
+      "type": "model",
+      "position": [
+        -1.2266689450757262,
+        0,
+        -17.681592966376403
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#e5cc24",
+      "modelPath": "/models/Small/Chair.glb",
+      "name": "Chair",
+      "groundLevel": true,
+      "snapToGrid": false
+    },
+    {
+      "id": "2bff0bdc-4478-41a4-9e80-8194d9f6a784",
+      "type": "model",
+      "position": [
+        -0.5884012497223372,
+        0,
+        -17.634077842211333
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#e5cc24",
+      "modelPath": "/models/Small/Chair.glb",
+      "name": "Chair",
+      "groundLevel": true,
+      "snapToGrid": false
+    },
+    {
+      "id": "c565a8bf-ee32-416f-8e7e-b56cba26072d",
+      "type": "model",
+      "position": [
+        -1.9607017752256044,
+        0,
+        -16.33849994125012
+      ],
+      "rotation": [
+        0,
+        3.141592653589793,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#e5cc24",
+      "modelPath": "/models/Small/Chair.glb",
+      "name": "Chair",
+      "groundLevel": true,
+      "snapToGrid": false
+    },
+    {
+      "id": "b749432a-fa2a-4429-babb-64e58b2ebb23",
+      "type": "model",
+      "position": [
+        -3.2749064734829734,
+        0,
+        -16.391562970298132
+      ],
+      "rotation": [
+        0,
+        3.141592653589793,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#e5cc24",
+      "modelPath": "/models/Small/Chair.glb",
+      "name": "Chair",
+      "groundLevel": true,
+      "snapToGrid": false
     }
   ],
-  "timestamp": "2025-04-07T20:14:23.768Z"
+  "timestamp": "2025-04-07T21:15:58.098Z"
 }
