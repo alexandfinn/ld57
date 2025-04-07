@@ -137,6 +137,7 @@ export const App = () => {
       />
       <PaperSound shouldPlay={showPaperSound} />
       <PaperSound shouldPlay={dismissPaperSound} />
+      <ambientLight intensity={1} />
       <Canvas shadows>
         <fog attach="fog" args={["#000000", 5, 60]} />
 

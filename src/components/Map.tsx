@@ -941,7 +941,12 @@ export const Map = ({
         >
           <planeGeometry args={[0.5, 0.4]} />
           {materialRef.current && (
-            <primitive object={materialRef.current} attach="material" />
+            <primitive 
+              object={materialRef.current} 
+              attach="material"
+              roughness={1}
+              metalness={0}
+            />
           )}
         </mesh>
       )}
