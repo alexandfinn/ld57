@@ -19,7 +19,7 @@ const frontVector = new Vector3();
 const sideVector = new Vector3();
 const tempVec = new Vector3();
 
-const initialPlayerPosition = new Vector3(2, 0.8, 2);
+const initialPlayerPosition = new Vector3(-5, 0.8, -35);
 
 interface PlayerProps {
   hasStarted: boolean;
