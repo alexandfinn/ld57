@@ -788,7 +788,7 @@ export const Map = ({
             onPointerDown={handlePointerDown}
             onPointerMove={handlePointerMove}
             onPointerUp={handlePointerUp}
-            castShadow={false}
+
           >
             <planeGeometry args={[0.4, 0.3]} />
             {materialRef.current && (
@@ -939,7 +939,6 @@ export const Map = ({
           onPointerDown={handlePointerDown}
           onPointerMove={handlePointerMove}
           onPointerUp={handlePointerUp}
-          castShadow={false}
         >
           <planeGeometry args={[0.4, 0.3]} />
           {materialRef.current && (

@@ -9,32 +9,31 @@ interface TorchProps {
   rotation?: [number, number, number];
 }
 
-const scale: [number, number, number] = [0.2, 0.2, 0.2];
+const scale: [number, number, number] = [0.5, 0.5, 0.5];
 
 const baseIntensity = 30;
 const baseDistance = 600;
-const baseDecay = 0.9;
+const baseDecay = 1.6;
 
 export const Torch = forwardRef<THREE.Group, TorchProps>(
   ({ position, rotation = [0, 0, 0] }, ref) => {
-    const { scene } = useGLTF("/models/handtorch.glb");
+    const { scene } = useGLTF("/models/Small/Torch.glb");
     const pointLightRef = useRef<THREE.PointLight>(null);
     const timeRef = useRef(0);
 
     // Update flicker effect every frame with more natural fire-like pattern
     useFrame((state, delta) => {
-      timeRef.current += delta;
+      timeRef.current += delta * 0.05; // Slow down the overall time progression
 
       if (pointLightRef.current) {
         // Create fire-like flicker pattern for decay
         const noise =
-          Math.sin(timeRef.current * 2) * 0.15 + // Base flicker (doubled speed)
-          Math.sin(timeRef.current * 0.68) * 0.08 + // Medium frequency (doubled speed)
-          Math.sin(timeRef.current * 1.28) * 0.04; // Higher frequency (doubled speed)
+          Math.sin(timeRef.current * 0.17) * 0.08 + // Medium frequency (quarter speed)
+          Math.sin(timeRef.current * 0.32) * 0.04; // Higher frequency (quarter speed)
 
         // Add slight randomness for more natural fire behavior
-        const randomFactor = 0.02 * (Math.random() - 0.5);
-        
+        const randomFactor = 0.3 * (Math.random() - 0.5);
+
         // Apply flicker to both decay and intensity for more dynamic effect
         const flickerFactor = 1 + noise + randomFactor;
         pointLightRef.current.decay = baseDecay * flickerFactor;
@@ -45,18 +44,7 @@ export const Torch = forwardRef<THREE.Group, TorchProps>(
     return (
       <group ref={ref} position={position} rotation={rotation} scale={scale}>
         {/* Render the torch model */}
-        <primitive 
-          object={scene} 
-          onBeforeRender={(object) => {
-            object.traverse((child) => {
-              if (child instanceof THREE.Mesh) {
-                child.material = child.material.clone();
-                child.material.emissive = new THREE.Color(0x000000);
-                child.material.emissiveIntensity = 0.0001;
-              }
-            });
-          }}
-        />
+        <primitive object={scene} />
 
         {/* Add TorchFlame component */}
         <TorchFlame position={[0, 1.4, 0]} scale={[0.3, 0.8, 0.3]} />
