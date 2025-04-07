@@ -70,22 +70,22 @@ export const Map = ({
   // Create pencil texture
   useEffect(() => {
     const pencilCanvas = document.createElement("canvas");
-    pencilCanvas.width = 4;
-    pencilCanvas.height = 4;
+    pencilCanvas.width = 3;
+    pencilCanvas.height = 3;
     const pencilCtx = pencilCanvas.getContext("2d");
 
     if (pencilCtx) {
       // Create a gradient for the pencil texture
-      const gradient = pencilCtx.createRadialGradient(2, 2, 0, 2, 2, 2);
+      const gradient = pencilCtx.createRadialGradient(1.5, 1.5, 0, 1.5, 1.5, 1.5);
       gradient.addColorStop(0, "rgba(80, 52, 25, 1)");
       gradient.addColorStop(0.5, "rgba(80, 52, 25, 0.8)");
       gradient.addColorStop(1, "rgba(80, 52, 25, 0)");
 
       pencilCtx.fillStyle = gradient;
-      pencilCtx.fillRect(0, 0, 4, 4);
+      pencilCtx.fillRect(0, 0, 3, 3);
 
       // Add some noise for texture
-      const imageData = pencilCtx.getImageData(0, 0, 4, 4);
+      const imageData = pencilCtx.getImageData(0, 0, 3, 3);
       const data = imageData.data;
 
       for (let i = 0; i < data.length; i += 4) {
@@ -266,7 +266,7 @@ export const Map = ({
       // Draw a point with the pencil texture
       ctx.save();
       ctx.globalAlpha = 0.8;
-      ctx.drawImage(pencilTexture.image, point.x - 2, point.y - 2, 4, 4);
+      ctx.drawImage(pencilTexture.image, point.x - 1.5, point.y - 1.5, 3, 3);
       ctx.restore();
     } else if (currentTool === "eraser") {
       // Erase a circular area
@@ -300,7 +300,7 @@ export const Map = ({
 
     if (currentTool === "pen" && pencilTexture) {
       // Draw multiple points along the line to create a textured line
-      const steps = Math.max(1, Math.floor(distance / 1));
+      const steps = Math.max(1, Math.floor(distance / 0.75));
       for (let i = 0; i <= steps; i++) {
         const t = i / steps;
         const x = start.x + dx * t;
@@ -314,10 +314,10 @@ export const Map = ({
         ctx.globalAlpha = 0.7 + Math.random() * 0.3;
         ctx.drawImage(
           pencilTexture.image,
-          x + offsetX - 2,
-          y + offsetY - 2,
-          4,
-          4
+          x + offsetX - 1.5,
+          y + offsetY - 1.5,
+          3,
+          3
         );
         ctx.restore();
       }
@@ -789,7 +789,7 @@ export const Map = ({
             onPointerMove={handlePointerMove}
             onPointerUp={handlePointerUp}
           >
-            <planeGeometry args={[0.4, 0.3]} />
+            <planeGeometry args={[0.5, 0.4]} />
             {materialRef.current && (
               <primitive object={materialRef.current} attach="material" />
             )}
@@ -939,7 +939,7 @@ export const Map = ({
           onPointerMove={handlePointerMove}
           onPointerUp={handlePointerUp}
         >
-          <planeGeometry args={[0.4, 0.3]} />
+          <planeGeometry args={[0.5, 0.4]} />
           {materialRef.current && (
             <primitive object={materialRef.current} attach="material" />
           )}
