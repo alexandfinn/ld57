@@ -4,6 +4,7 @@ import { Vector3, Euler, Group } from "three";
 import { PointerLockControls } from "@react-three/drei";
 import { Torch } from "./Torch";
 import { Map } from "./Map";
+import { FootstepSounds } from "./FootstepSounds";
 import {
   RigidBody,
   CapsuleCollider,
@@ -20,13 +21,20 @@ const tempVec = new Vector3();
 
 const initialPlayerPosition = new Vector3(2, 0.8, 2);
 
-export const Player = () => {
+interface PlayerProps {
+  hasStarted: boolean;
+}
+
+export const Player = ({ hasStarted }: PlayerProps) => {
   const { camera } = useThree();
   const controlsRef = useRef<PointerLockControlsImpl>(null);
   const playerRef = useRef<RapierRigidBody>(null);
   const torchRef = useRef<Group>(null);
   const mapRef = useRef<Group>(null);
   const rapier = useRapier();
+  const [hasInteracted, setHasInteracted] = useState(false);
+  const [isMoving, setIsMoving] = useState(false);
+  const [isGrounded, setIsGrounded] = useState(false);
 
   // Track which keys are currently pressed
   const keysPressed = useRef<Set<string>>(new Set());
@@ -105,6 +113,10 @@ export const Player = () => {
       playerPosition.z
     );
 
+    // Check if player is grounded
+    const playerIsGrounded = playerPosition.y <= 0.1;
+    setIsGrounded(playerIsGrounded);
+
     // Block movement and camera rotation when map is up
     if (!isMapInHand) {
       // Show cursor when map is up
@@ -124,12 +136,15 @@ export const Player = () => {
         },
         true
       );
+      
+      // Not moving when map is up
+      setIsMoving(false);
     } else {
       // Hide cursor when map is down
       document.body.style.cursor = "none";
 
-      // Enable pointer lock controls when map is down
-      if (!controlsRef.current.isLocked) {
+      // Enable pointer lock controls when map is down and game has started
+      if (!controlsRef.current.isLocked && hasStarted && hasInteracted) {
         controlsRef.current.lock();
       }
 
@@ -141,6 +156,10 @@ export const Player = () => {
         .normalize()
         .multiplyScalar(SPEED)
         .applyEuler(state.camera.rotation);
+
+      // Check if player is moving
+      const isCurrentlyMoving = forward > 0 || backward > 0 || left > 0 || right > 0;
+      setIsMoving(isCurrentlyMoving);
 
       // Apply movement
       playerRef.current.setLinvel(
@@ -154,8 +173,7 @@ export const Player = () => {
     }
 
     // Handle jumping
-    const grounded = playerRef.current.translation().y <= 0.1;
-    if (jump && grounded && isMapInHand) {
+    if (jump && playerIsGrounded && isMapInHand) {
       // Only allow jumping when map is not up
       playerRef.current.setLinvel(
         { x: velocity.x, y: 7.5, z: velocity.z },
@@ -209,7 +227,7 @@ export const Player = () => {
       .clone()
       .applyAxisAngle(new Vector3(0, 1, 0), torchRotation.current);
     const torchPos = new Vector3().copy(playerPosition).add(rotatedOffset);
-    torchPos.y += breathingOffset.current + 1.5; // Add player height offset
+    torchPos.y += breathingOffset.current + 1.5;
 
     // Update torch position in the scene
     if (torchRef.current) {
@@ -288,7 +306,7 @@ export const Player = () => {
           document.body.style.cursor = "crosshair";
         } else {
           // Map is going down, lock controls and hide cursor
-          if (controlsRef.current) {
+          if (controlsRef.current && hasStarted && hasInteracted) {
             controlsRef.current.lock();
           }
           document.body.style.cursor = "none";
@@ -300,14 +318,21 @@ export const Player = () => {
       keysPressed.current.delete(e.key.toLowerCase());
     };
 
+    // Add click handler to detect user interaction
+    const handleClick = () => {
+      setHasInteracted(true);
+    };
+
     window.addEventListener("keydown", handleKeyDown);
     window.addEventListener("keyup", handleKeyUp);
+    window.addEventListener("click", handleClick);
 
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
       window.removeEventListener("keyup", handleKeyUp);
+      window.removeEventListener("click", handleClick);
     };
-  }, [isMapInHand]);
+  }, [isMapInHand, hasInteracted, hasStarted]);
 
   // Add a click handler to prevent default browser behavior when clicking on the map
   useEffect(() => {
@@ -346,6 +371,9 @@ export const Player = () => {
       <group ref={mapRef}>
         <Map isMapUp={!isMapInHand} />
       </group>
+
+      {/* Add footstep sounds component */}
+      <FootstepSounds isMoving={isMoving} />
     </>
   );
 };
