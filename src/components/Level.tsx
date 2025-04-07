@@ -5,11 +5,13 @@ import { Group, Mesh } from "three";
 import levelData from "../level.json";
 import { Floor } from "./Floor";
 import { Trigger } from "./Trigger";
+
 interface LevelProps {
-  onTrigger: (name: string) => void;
+  onTrigger: (name: string, isFirstTrigger: boolean) => void;
+  triggeredTriggers: string[];
 }
 
-export const Level = ({ onTrigger }: LevelProps) => {
+export const Level = ({ onTrigger, triggeredTriggers }: LevelProps) => {
   // Create a map to store loaded models
   const modelCache = new Map<string, any>();
 
@@ -87,6 +89,8 @@ export const Level = ({ onTrigger }: LevelProps) => {
             (object.scale[2] as number) * SCALE_FACTOR,
           ] as [number, number, number];
 
+          const isAlreadyTriggered = triggeredTriggers.includes(object.name);
+
           return (
             <Trigger
               key={object.id}
@@ -95,6 +99,7 @@ export const Level = ({ onTrigger }: LevelProps) => {
               scale={scaledScale}
               name={object.name}
               onTrigger={onTrigger}
+              isAlreadyTriggered={isAlreadyTriggered}
             />
           );
         })}

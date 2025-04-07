@@ -7,22 +7,19 @@ export const Floor = () => {
   const floorRef = useRef<Mesh>(null);
 
   // Load floor texture
-  const floorTexture = useTexture("/textures/floor.png");
 
   // Scale factor to match the scaled models
   const SCALE_FACTOR = 4;
-  
+
   // Base dimensions
   const baseWidth = 25;
   const baseLength = 25;
-  
+
   // Scaled dimensions
   const width = baseWidth * SCALE_FACTOR;
   const length = baseLength * SCALE_FACTOR;
 
   // Configure texture repeating
-  floorTexture.wrapS = floorTexture.wrapT = RepeatWrapping;
-  floorTexture.repeat.set(width / 2, length / 2);
 
   return (
     <RigidBody type="fixed" colliders="cuboid">
@@ -34,15 +31,8 @@ export const Floor = () => {
         position={[0, 0, 0]}
         receiveShadow
         visible={false}
-      >
-        <meshStandardMaterial
-          map={floorTexture}
-          roughness={1}
-          metalness={0.5}
-          side={DoubleSide}
-        />
-      </Plane>
-      
+      />
+
       {/* Invisible collider for the entire level */}
       <mesh
         position={[0, -0.1, 0]} // Slightly below the visible floor
@@ -53,4 +43,4 @@ export const Floor = () => {
       </mesh>
     </RigidBody>
   );
-}; 
+};

@@ -4,6 +4,7 @@ import { Physics } from "@react-three/rapier";
 import { Player } from "./components/Player";
 import { Level } from "./components/Level";
 import { BackgroundMusic } from "./components/BackgroundMusic";
+import { SecretAudio } from "./components/SecretAudio";
 import { TriggerText } from "./components/TriggerText";
 import { TriggerList } from "./components/TriggerList";
 import { useState, useEffect, useRef } from "react";
@@ -16,31 +17,53 @@ export const App = () => {
   const playerPositionRef = useRef(new Vector3());
   const [triggerText, setTriggerText] = useState<string | null>(null);
   const [triggeredTriggers, setTriggeredTriggers] = useState<string[]>([]);
+  const [shouldPlaySecretAudio, setShouldPlaySecretAudio] = useState(false);
+  const [currentTriggerName, setCurrentTriggerName] = useState<string | null>(
+    null
+  );
 
   const handleStart = () => {
     setHasStarted(true);
   };
 
-  const handleTrigger = (name: string) => {
-    console.log("Trigger:", name);
-    setTriggerText(name);
+  const handleTrigger = (name: string, isFirstTrigger: boolean) => {
+    console.log("Trigger:", name, "isFirstTrigger:", isFirstTrigger);
+
+    // Update triggered triggers list
     setTriggeredTriggers((prev) => {
       if (!prev.includes(name)) {
         return [...prev, name];
       }
       return prev;
     });
+
+    // Play secret audio for subsequent triggers
+    if (isFirstTrigger) {
+      setShouldPlaySecretAudio(true);
+      setCurrentTriggerName(name);
+      setTriggerText(name);
+    }
   };
 
   return (
     <div style={{ width: "100vw", height: "100vh" }}>
       <BackgroundMusic hasStarted={hasStarted} />
+      <SecretAudio
+        shouldPlay={shouldPlaySecretAudio}
+        triggerName={currentTriggerName}
+      />
       <Canvas shadows>
         <fog attach="fog" args={["#000000", 5, 60]} />
 
         <Physics debug={DEBUG}>
-          <Level onTrigger={handleTrigger} />
-          <Player hasStarted={hasStarted} playerPositionRef={playerPositionRef} />
+          <Level
+            onTrigger={handleTrigger}
+            triggeredTriggers={triggeredTriggers}
+          />
+          <Player
+            hasStarted={hasStarted}
+            playerPositionRef={playerPositionRef}
+          />
         </Physics>
 
         {DEBUG && <Stats className="stats" />}
@@ -48,7 +71,7 @@ export const App = () => {
 
       {/* Trigger text overlay */}
       <TriggerText text={triggerText} />
-      
+
       {/* Trigger list overlay */}
       <TriggerList triggeredTriggers={triggeredTriggers} />
 
@@ -77,7 +100,9 @@ export const App = () => {
           <p style={{ fontSize: "1.5rem", marginBottom: "2rem" }}>
             Click anywhere to start
           </p>
-          <div style={{ fontSize: "1rem", textAlign: "center", maxWidth: "600px" }}>
+          <div
+            style={{ fontSize: "1rem", textAlign: "center", maxWidth: "600px" }}
+          >
             <p>Use WASD to move, SPACE to jump, and M to toggle the map.</p>
             <p>Click to lock your mouse and begin exploring the dungeon.</p>
           </div>

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import levelJson from "../level.json";
 
 interface TriggerListProps {
   triggeredTriggers: string[];
@@ -6,7 +6,13 @@ interface TriggerListProps {
 
 export const TriggerList = ({ triggeredTriggers }: TriggerListProps) => {
   // Get unique trigger names from level.json
-  const allTriggers = ["kitchen", "chest", "jail", "dining-hall"];
+  const allTriggers = [
+    ...new Set(
+      levelJson.objects
+        .filter((obj) => obj.type === "trigger")
+        .map((obj) => obj.name)
+    ),
+  ];
 
   return (
     <>
@@ -23,7 +29,8 @@ export const TriggerList = ({ triggeredTriggers }: TriggerListProps) => {
           fontSize: "24px",
           fontFamily: "'MedievalSharp', cursive",
           textAlign: "right",
-          textShadow: "2px 2px 4px rgba(0,0,0,0.7), 0 0 10px rgba(240,214,166,0.5)",
+          textShadow:
+            "2px 2px 4px rgba(0,0,0,0.7), 0 0 10px rgba(240,214,166,0.5)",
           pointerEvents: "none",
           zIndex: 1000,
           padding: "20px",
@@ -38,11 +45,17 @@ export const TriggerList = ({ triggeredTriggers }: TriggerListProps) => {
             style={{
               marginBottom: "10px",
               opacity: triggeredTriggers.includes(trigger) ? 1 : 0.3,
-              textDecoration: triggeredTriggers.includes(trigger) ? "line-through" : "none",
-              animation: triggeredTriggers.includes(trigger) ? "strikeThrough 0.5s ease-out" : "none",
+              textDecoration: triggeredTriggers.includes(trigger)
+                ? "line-through"
+                : "none",
+              animation: triggeredTriggers.includes(trigger)
+                ? "strikeThrough 0.5s ease-out"
+                : "none",
             }}
           >
-            {triggeredTriggers.includes(trigger) ? trigger.toUpperCase().replace(/-/g, " ") : "???????"}
+            {triggeredTriggers.includes(trigger)
+              ? trigger.toUpperCase().replace(/-/g, " ")
+              : "???????"}
           </div>
         ))}
         <style>
@@ -56,4 +69,4 @@ export const TriggerList = ({ triggeredTriggers }: TriggerListProps) => {
       </div>
     </>
   );
-}; 
+};

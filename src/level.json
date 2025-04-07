@@ -5015,13 +5015,13 @@
       "id": "fffc82e1-a4f4-4251-849c-954d12f1f6dd",
       "type": "trigger",
       "position": [
-        -5.5721123735855524,
+        -5.587339557031999,
         0,
-        -16.964840526385498
+        -16.94925610672925
       ],
       "rotation": [
         0,
-        0,
+        3.141592653589793,
         0
       ],
       "scale": [
@@ -5086,9 +5086,9 @@
       "id": "ee39770b-beec-4ee9-8ed5-2b383dbd253f",
       "type": "model",
       "position": [
-        -2.739960559252357,
-        0.4464472826968968,
-        -16.74537332978579
+        -3.423355758378233,
+        0.42181672515684554,
+        -17.342743538212066
       ],
       "rotation": [
         0,
@@ -5134,13 +5134,13 @@
       "id": "ce0ff90c-f386-491a-a598-b9260ee4b8e1",
       "type": "model",
       "position": [
-        -2.4883634217795163,
+        -2.4677557159112244,
         0,
-        -17.72143698558419
+        -17.765044095785967
       ],
       "rotation": [
         0,
-        0,
+        -0.6243817859185141,
         0
       ],
       "scale": [
@@ -5161,30 +5161,6 @@
         -1.784585594042647,
         0,
         -17.65843330250894
-      ],
-      "rotation": [
-        0,
-        0,
-        0
-      ],
-      "scale": [
-        0.5,
-        0.5,
-        0.5
-      ],
-      "color": "#e5cc24",
-      "modelPath": "/models/Small/Chair.glb",
-      "name": "Chair",
-      "groundLevel": true,
-      "snapToGrid": false
-    },
-    {
-      "id": "638215b1-b351-4913-bbe6-cb51a9010024",
-      "type": "model",
-      "position": [
-        -1.2266689450757262,
-        0,
-        -17.681592966376403
       ],
       "rotation": [
         0,
@@ -5230,9 +5206,9 @@
       "id": "c565a8bf-ee32-416f-8e7e-b56cba26072d",
       "type": "model",
       "position": [
-        -1.9607017752256044,
+        -1.927936935239258,
         0,
-        -16.33849994125012
+        -16.21488403700986
       ],
       "rotation": [
         0,
@@ -5273,7 +5249,822 @@
       "name": "Chair",
       "groundLevel": true,
       "snapToGrid": false
+    },
+    {
+      "id": "4455852c-affb-46be-9f73-f2df63db947a",
+      "type": "model",
+      "position": [
+        -2.565478156980462,
+        0,
+        -16.284252761618983
+      ],
+      "rotation": [
+        0,
+        3.141592653589793,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#e5cc24",
+      "modelPath": "/models/Small/Chair.glb",
+      "name": "Chair",
+      "groundLevel": true,
+      "snapToGrid": false
+    },
+    {
+      "id": "fb597078-ffca-4d5e-8ca8-8acb169b70f8",
+      "type": "model",
+      "position": [
+        -1.0973033182207463,
+        0,
+        -16.258141123377165
+      ],
+      "rotation": [
+        0,
+        3.141592653589793,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#e5cc24",
+      "modelPath": "/models/Small/Chair.glb",
+      "name": "Chair",
+      "groundLevel": true,
+      "snapToGrid": false
+    },
+    {
+      "id": "f2de9162-711d-4383-aaa2-971d627edd50",
+      "type": "model",
+      "position": [
+        -0.46465281992448126,
+        0,
+        -16.304960403904865
+      ],
+      "rotation": [
+        0,
+        3.141592653589793,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#e5cc24",
+      "modelPath": "/models/Small/Chair.glb",
+      "name": "Chair",
+      "groundLevel": true,
+      "snapToGrid": false
+    },
+    {
+      "id": "29bb6ae2-8baf-46f0-96b5-45a67344aa67",
+      "type": "model",
+      "position": [
+        -4.263942840322317,
+        0,
+        -16.989815540702473
+      ],
+      "rotation": [
+        0,
+        7.853981633974483,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#e5cc24",
+      "modelPath": "/models/Small/Chair.glb",
+      "name": "Chair",
+      "groundLevel": true,
+      "snapToGrid": false
+    },
+    {
+      "id": "49da0df2-af77-4adc-8074-554543b02e59",
+      "type": "model",
+      "position": [
+        -2.690100076459293,
+        0.4378208633511166,
+        -17.009725744541743
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#6ee505",
+      "modelPath": "/models/Small/Candlestick_Triple.glb",
+      "name": "Candlestick_Triple",
+      "groundLevel": false,
+      "snapToGrid": false
+    },
+    {
+      "id": "a684c811-b86d-4774-8955-d0724b400cfe",
+      "type": "model",
+      "position": [
+        -0.7849012403074405,
+        0.4378208633511166,
+        -17.000020666539367
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#6ee505",
+      "modelPath": "/models/Small/Candlestick_Triple.glb",
+      "name": "Candlestick_Triple",
+      "groundLevel": false,
+      "snapToGrid": false
+    },
+    {
+      "id": "d18a0dfc-333a-46f1-9fc6-5fc13bdf53b3",
+      "type": "model",
+      "position": [
+        -3.7627591954730493,
+        0.4230206167951476,
+        -16.839501771242347
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#eecd34",
+      "modelPath": "/models/Small/Goblet.glb",
+      "name": "Goblet",
+      "groundLevel": false,
+      "snapToGrid": false
+    },
+    {
+      "id": "371eeebe-5cdd-4a70-9fdc-c696626f51b6",
+      "type": "model",
+      "position": [
+        -2.9644136484840176,
+        0.03323335744262035,
+        -17.98194429294334
+      ],
+      "rotation": [
+        -7.154050260867686e-17,
+        0.6825921369541244,
+        -1.605107864662674
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#6e7834",
+      "modelPath": "/models/Small/Wineglass.glb",
+      "name": "Wineglass",
+      "groundLevel": false,
+      "snapToGrid": false
+    },
+    {
+      "id": "2104bbf2-f5b6-4c9e-8630-4f6b4bd02f2b",
+      "type": "model",
+      "position": [
+        -2.2297288797604105,
+        0.42181672515684554,
+        -17.374903749888993
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#6e7834",
+      "modelPath": "/models/Small/Wineglass.glb",
+      "name": "Wineglass",
+      "groundLevel": false,
+      "snapToGrid": false
+    },
+    {
+      "id": "316112d9-dbd2-4a37-a695-7276757c9f52",
+      "type": "model",
+      "position": [
+        -1.4768377440874385,
+        0.42181672515684554,
+        -17.414416411939236
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#6e7834",
+      "modelPath": "/models/Small/Wineglass.glb",
+      "name": "Wineglass",
+      "groundLevel": false,
+      "snapToGrid": false
+    },
+    {
+      "id": "bed7281c-1388-4f7b-8556-f2713f3fcbfd",
+      "type": "model",
+      "position": [
+        -0.8410737958197374,
+        0.42181672515684554,
+        -17.377810302054893
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#6e7834",
+      "modelPath": "/models/Small/Wineglass.glb",
+      "name": "Wineglass",
+      "groundLevel": false,
+      "snapToGrid": false
+    },
+    {
+      "id": "4b71e7f8-c253-4607-97de-16435f8fe9e5",
+      "type": "model",
+      "position": [
+        -0.5286888073527947,
+        0.42181672515684554,
+        -16.776457924976
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#6e7834",
+      "modelPath": "/models/Small/Wineglass.glb",
+      "name": "Wineglass",
+      "groundLevel": false,
+      "snapToGrid": false
+    },
+    {
+      "id": "ed4c917e-60d9-4ab0-b564-4f17e6bdde36",
+      "type": "model",
+      "position": [
+        -1.445332927891954,
+        0.42181672515684554,
+        -16.79536002903508
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#6e7834",
+      "modelPath": "/models/Small/Wineglass.glb",
+      "name": "Wineglass",
+      "groundLevel": false,
+      "snapToGrid": false
+    },
+    {
+      "id": "9806a8a4-2be0-4973-948f-6786719bf639",
+      "type": "model",
+      "position": [
+        -1.9307525696230985,
+        0.42181672515684554,
+        -16.70391181420706
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#6e7834",
+      "modelPath": "/models/Small/Wineglass.glb",
+      "name": "Wineglass",
+      "groundLevel": false,
+      "snapToGrid": false
+    },
+    {
+      "id": "348bac07-b91e-4f33-90f7-cb8fc752630e",
+      "type": "model",
+      "position": [
+        -3.2634682807688087,
+        0.42181672515684554,
+        -16.738196515732167
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#6e7834",
+      "modelPath": "/models/Small/Wineglass.glb",
+      "name": "Wineglass",
+      "groundLevel": false,
+      "snapToGrid": false
+    },
+    {
+      "id": "15d2a1c5-a315-40b4-a493-efd99731e87d",
+      "type": "model",
+      "position": [
+        -2.634121538337356,
+        0.42181672515684554,
+        -16.72893934287618
+      ],
+      "rotation": [
+        0,
+        0.5314291831804603,
+        -1.4812692336026265
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#6e7834",
+      "modelPath": "/models/Small/Wineglass.glb",
+      "name": "Wineglass",
+      "groundLevel": false,
+      "snapToGrid": false
+    },
+    {
+      "id": "e4a734bc-7f5a-43c7-8658-86cf8d8ed096",
+      "type": "model",
+      "position": [
+        -1.2015995352523627,
+        0,
+        -17.759747040749314
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#e5cc24",
+      "modelPath": "/models/Small/Chair.glb",
+      "name": "Chair",
+      "groundLevel": true,
+      "snapToGrid": false
+    },
+    {
+      "id": "70e09499-3c7d-4364-83a4-87d73a384df2",
+      "type": "model",
+      "position": [
+        11.5,
+        1,
+        -17
+      ],
+      "rotation": [
+        0,
+        4.71238898038469,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#801bd0",
+      "modelPath": "/models/Small/Fireplace.glb",
+      "name": "Fireplace",
+      "groundLevel": false,
+      "snapToGrid": true
+    },
+    {
+      "id": "a43c547b-a255-4ce2-b544-03d9cabf3a50",
+      "type": "model",
+      "position": [
+        10.306117117185524,
+        1.0178458291173051,
+        -17.37204732093227
+      ],
+      "rotation": [
+        0,
+        4.71238898038469,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#a404ed",
+      "modelPath": "/models/Small/Throne.glb",
+      "name": "Throne",
+      "groundLevel": false,
+      "snapToGrid": false
+    },
+    {
+      "id": "d04ecb24-a52c-4a42-8714-284c8fc8a230",
+      "type": "model",
+      "position": [
+        10.321056218807316,
+        1.0178458291173051,
+        -16.71838899164221
+      ],
+      "rotation": [
+        0,
+        4.71238898038469,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#a404ed",
+      "modelPath": "/models/Small/Throne.glb",
+      "name": "Throne",
+      "groundLevel": false,
+      "snapToGrid": false
+    },
+    {
+      "id": "58d758c6-d547-4fbd-9422-ea6a527f6b19",
+      "type": "model",
+      "position": [
+        9.802564845276015,
+        1.8534384638812884,
+        -18.93520230351698
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#3d6fd0",
+      "modelPath": "/models/Small/Shield.glb",
+      "name": "Shield",
+      "groundLevel": false,
+      "snapToGrid": false
+    },
+    {
+      "id": "f4673aea-c650-42ab-9fb7-5fa8bca346b1",
+      "type": "model",
+      "position": [
+        10.05369032574994,
+        1.5704010544851699,
+        -18.979966568598023
+      ],
+      "rotation": [
+        -0.6438936606183524,
+        0.8290495343204491,
+        0.7943527753037247
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#beeef6",
+      "modelPath": "/models/Small/Spear.glb",
+      "name": "Spear",
+      "groundLevel": false,
+      "snapToGrid": false
+    },
+    {
+      "id": "e5dd9e73-245a-456f-b722-cc3e7bb69ef0",
+      "type": "model",
+      "position": [
+        9.602461931052583,
+        1.5618973428915537,
+        -18.966092267081287
+      ],
+      "rotation": [
+        0.5923263247850084,
+        0.8615713316479957,
+        -0.7254499172101516
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#beeef6",
+      "modelPath": "/models/Small/Spear.glb",
+      "name": "Spear",
+      "groundLevel": false,
+      "snapToGrid": false
+    },
+    {
+      "id": "a32078c5-7b16-4de5-811a-8baa51abeccb",
+      "type": "model",
+      "position": [
+        10.539268914581218,
+        1,
+        -17
+      ],
+      "rotation": [
+        0,
+        1.5707963267948966,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#a819b1",
+      "modelPath": "/models/Small/Carpet_Red.glb",
+      "name": "Carpet_Red",
+      "groundLevel": false,
+      "snapToGrid": false
+    },
+    {
+      "id": "8a4cf4d1-f790-4349-97a6-dfd9e56d6285",
+      "type": "model",
+      "position": [
+        11.89659696154227,
+        1.5465186908979844,
+        -17.961981506814226
+      ],
+      "rotation": [
+        0,
+        4.71238898038469,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#d1f796",
+      "modelPath": "/models/Small/Candlestick_Wall.glb",
+      "name": "Candlestick_Wall",
+      "groundLevel": false,
+      "snapToGrid": false
+    },
+    {
+      "id": "f1bc7376-a9ea-4315-8610-0c8c42597694",
+      "type": "model",
+      "position": [
+        11.889247007120048,
+        1.5706313232281346,
+        -16.01165113168934
+      ],
+      "rotation": [
+        0,
+        4.71238898038469,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#d1f796",
+      "modelPath": "/models/Small/Candlestick_Wall.glb",
+      "name": "Candlestick_Wall",
+      "groundLevel": false,
+      "snapToGrid": false
+    },
+    {
+      "id": "f2f5b972-2c76-419d-9a36-800c5ae8477b",
+      "type": "trigger",
+      "position": [
+        7,
+        1,
+        -17
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        2.29399523210081
+      ],
+      "color": "#9b52db",
+      "name": "Throne Room",
+      "groundLevel": false,
+      "snapToGrid": true
+    },
+    {
+      "id": "3f173c3d-77de-4954-998c-22ea7a246dd1",
+      "type": "model",
+      "position": [
+        -4.463459766499601,
+        0.5669804177571105,
+        -15.160927640817034
+      ],
+      "rotation": [
+        0,
+        3.141592653589793,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#c84f0",
+      "modelPath": "/models/Small/Torch_Wall.glb",
+      "name": "Torch_Wall",
+      "groundLevel": false,
+      "snapToGrid": false
+    },
+    {
+      "id": "3856ffdb-d2ec-4555-ae15-a7b303714543",
+      "type": "model",
+      "position": [
+        -2.4626070887183307,
+        0.5669804177571105,
+        -15.327696749715122
+      ],
+      "rotation": [
+        0,
+        3.141592653589793,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#c84f0",
+      "modelPath": "/models/Small/Torch_Wall.glb",
+      "name": "Torch_Wall",
+      "groundLevel": false,
+      "snapToGrid": false
+    },
+    {
+      "id": "79c85fad-1cde-45d6-999f-ba35b6af2fe3",
+      "type": "model",
+      "position": [
+        4,
+        0.504826470557148,
+        -17
+      ],
+      "rotation": [
+        0,
+        0,
+        0.25083856286098566
+      ],
+      "scale": [
+        0.8254854265194299,
+        0.48930201174534427,
+        0.36106542503879346
+      ],
+      "color": "#4ed9d0",
+      "modelPath": "/models/Small/Carpet_Green.glb",
+      "name": "Carpet_Green",
+      "groundLevel": false,
+      "snapToGrid": true
+    },
+    {
+      "id": "0a9b3f70-662b-4d6a-885e-5313ffaedf4a",
+      "type": "model",
+      "position": [
+        1.5999996207673228,
+        0,
+        -17.80459899564395
+      ],
+      "rotation": [
+        0,
+        -0.12171322040117337,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#88693a",
+      "modelPath": "/models/Door/DoorGate_Wooden_Right.glb",
+      "name": "DoorGate_Wooden_Right",
+      "groundLevel": true,
+      "snapToGrid": false
+    },
+    {
+      "id": "0f9be78c-3164-4556-98d0-48836cd50546",
+      "type": "model",
+      "position": [
+        1.7912142454333644,
+        0,
+        -16.48495351605823
+      ],
+      "rotation": [
+        0,
+        -0.9629718101918514,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#6c36e5",
+      "modelPath": "/models/Door/DoorGate_Wooden_Right.glb",
+      "name": "DoorGate_Wooden_Right",
+      "groundLevel": true,
+      "snapToGrid": false
+    },
+    {
+      "id": "81de7569-2b17-4fe2-b7ef-563b875e5ba7",
+      "type": "model",
+      "position": [
+        -5.96631805135311,
+        0,
+        -16.01224235182444
+      ],
+      "rotation": [
+        0,
+        1.5707963267948966,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#a9f8af",
+      "modelPath": "/models/Door/Door_Wooden_Left.glb",
+      "name": "Door_Wooden_Left",
+      "groundLevel": true,
+      "snapToGrid": false
+    },
+    {
+      "id": "c48b90fd-746c-4161-bcd1-94df89278dce",
+      "type": "model",
+      "position": [
+        -5.606220287244727,
+        0,
+        -17.650966437415285
+      ],
+      "rotation": [
+        -0.01707728328810699,
+        0.07002127717134476,
+        0.0011949118765411419
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#a9f8af",
+      "modelPath": "/models/Door/Door_Wooden_Left.glb",
+      "name": "Door_Wooden_Left",
+      "groundLevel": true,
+      "snapToGrid": false
     }
   ],
-  "timestamp": "2025-04-07T21:15:58.098Z"
+  "timestamp": "2025-04-07T21:46:16.019Z"
 }

@@ -8,7 +8,8 @@ interface TriggerProps {
   position: [number, number, number];
   scale: [number, number, number];
   name: string;
-  onTrigger: (name: string) => void;
+  onTrigger: (name: string, isFirstTrigger: boolean) => void;
+  isAlreadyTriggered?: boolean;
 }
 
 export const Trigger = ({
@@ -17,8 +18,9 @@ export const Trigger = ({
   scale,
   name,
   onTrigger,
+  isAlreadyTriggered = false,
 }: TriggerProps) => {
-  const [hasTriggered, setHasTriggered] = useState(false);
+  const [hasTriggered, setHasTriggered] = useState(isAlreadyTriggered);
   const triggerRef = useRef<Mesh>(null);
 
   return (
@@ -31,7 +33,10 @@ export const Trigger = ({
           console.log("Trigger entered");
           if (!hasTriggered) {
             setHasTriggered(true);
-            onTrigger(name);
+            onTrigger(name, true);
+          } else {
+            // This is a subsequent trigger
+            onTrigger(name, false);
           }
         }}
       >
