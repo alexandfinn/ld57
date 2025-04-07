@@ -5,6 +5,7 @@ import { Player } from "./components/Player";
 import { Level } from "./components/Level";
 import { BackgroundMusic } from "./components/BackgroundMusic";
 import { TriggerText } from "./components/TriggerText";
+import { TriggerList } from "./components/TriggerList";
 import { useState, useEffect, useRef } from "react";
 import { Vector3 } from "three";
 
@@ -14,6 +15,7 @@ export const App = () => {
   const [hasStarted, setHasStarted] = useState(false);
   const playerPositionRef = useRef(new Vector3());
   const [triggerText, setTriggerText] = useState<string | null>(null);
+  const [triggeredTriggers, setTriggeredTriggers] = useState<string[]>([]);
 
   const handleStart = () => {
     setHasStarted(true);
@@ -22,6 +24,12 @@ export const App = () => {
   const handleTrigger = (name: string) => {
     console.log("Trigger:", name);
     setTriggerText(name);
+    setTriggeredTriggers((prev) => {
+      if (!prev.includes(name)) {
+        return [...prev, name];
+      }
+      return prev;
+    });
   };
 
   return (
@@ -40,6 +48,9 @@ export const App = () => {
 
       {/* Trigger text overlay */}
       <TriggerText text={triggerText} />
+      
+      {/* Trigger list overlay */}
+      <TriggerList triggeredTriggers={triggeredTriggers} />
 
       {!hasStarted && (
         <div

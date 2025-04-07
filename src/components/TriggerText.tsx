@@ -50,7 +50,8 @@ export const TriggerText = ({ text }: TriggerTextProps) => {
           fontSize: "36px",
           fontFamily: "'MedievalSharp', cursive",
           textAlign: "center",
-          textShadow: "2px 2px 4px rgba(0,0,0,0.7), 0 0 10px rgba(240,214,166,0.5)",
+          textShadow:
+            "2px 2px 4px rgba(0,0,0,0.7), 0 0 10px rgba(240,214,166,0.5)",
           pointerEvents: "none",
           zIndex: 1000,
           width: "100%",
@@ -59,7 +60,7 @@ export const TriggerText = ({ text }: TriggerTextProps) => {
           letterSpacing: "2px",
         }}
       >
-        {text.toUpperCase()}
+        {text.toUpperCase().replace(/-/g, " ")}
         <style>
           {`
             @keyframes fadeInOut {
