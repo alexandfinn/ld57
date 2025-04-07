@@ -11,9 +11,9 @@ interface TorchProps {
 
 const scale: [number, number, number] = [0.5, 0.5, 0.5];
 
-const baseIntensity = 30;
+const baseIntensity = 70;
 const baseDistance = 600;
-const baseDecay = 1.6;
+const baseDecay = 2;
 
 export const Torch = forwardRef<THREE.Group, TorchProps>(
   ({ position, rotation = [0, 0, 0] }, ref) => {

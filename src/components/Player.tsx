@@ -5,6 +5,7 @@ import { PointerLockControls } from "@react-three/drei";
 import { Torch } from "./Torch";
 import { Map } from "./Map";
 import { FootstepSounds } from "./FootstepSounds";
+import { RedEyes } from "./RedEyes";
 import {
   RigidBody,
   CapsuleCollider,
@@ -35,6 +36,10 @@ export const Player = ({ hasStarted }: PlayerProps) => {
   const [hasInteracted, setHasInteracted] = useState(false);
   const [isMoving, setIsMoving] = useState(false);
   const [isGrounded, setIsGrounded] = useState(false);
+  
+  // Add refs for RedEyes component
+  const playerPositionRef = useRef<Vector3>(new Vector3());
+  const playerRotationRef = useRef<number>(0);
 
   // Track which keys are currently pressed
   const keysPressed = useRef<Set<string>>(new Set());
@@ -287,6 +292,10 @@ export const Player = ({ hasStarted }: PlayerProps) => {
         mapRef.current.rotation.z = 0; // No tilt when viewing
       }
     }
+
+    // Update player position ref for RedEyes component
+    playerPositionRef.current.copy(playerPosition);
+    playerRotationRef.current = playerRotation.current;
   });
 
   useEffect(() => {
@@ -371,6 +380,14 @@ export const Player = ({ hasStarted }: PlayerProps) => {
       <group ref={mapRef}>
         <Map isMapUp={!isMapInHand} />
       </group>
+
+      {/* Add RedEyes component */}
+      {playerRef.current && (
+        <RedEyes
+          playerPositionRef={playerPositionRef}
+          playerRotationRef={playerRotationRef}
+        />
+      )}
 
       {/* Add footstep sounds component */}
       <FootstepSounds isMoving={isMoving} />

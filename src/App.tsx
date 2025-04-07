@@ -19,8 +19,6 @@ export const App = () => {
     <div style={{ width: "100vw", height: "100vh" }}>
       <BackgroundMusic hasStarted={hasStarted} />
       <Canvas shadows>
-        <Environment preset="night" />
-        <ambientLight intensity={1} color="#404040" />
         <fog attach="fog" args={["#000000", 5, 60]} />
 
         <Physics debug={DEBUG}>
