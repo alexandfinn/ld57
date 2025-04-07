@@ -1,10 +1,15 @@
 import levelJson from "../level.json";
+import { useState, useEffect } from "react";
+import { StrikethroughSound } from "./StrikethroughSound";
 
 interface TriggerListProps {
   triggeredTriggers: string[];
 }
 
 export const TriggerList = ({ triggeredTriggers }: TriggerListProps) => {
+  const [prevTriggeredTriggers, setPrevTriggeredTriggers] = useState<string[]>([]);
+  const [shouldPlaySound, setShouldPlaySound] = useState(false);
+
   // Get unique trigger names from level.json
   const allTriggers = [
     ...new Set(
@@ -14,8 +19,29 @@ export const TriggerList = ({ triggeredTriggers }: TriggerListProps) => {
     ),
   ];
 
+  useEffect(() => {
+    // Check if any new triggers were added
+    const newTriggers = triggeredTriggers.filter(
+      trigger => !prevTriggeredTriggers.includes(trigger)
+    );
+    
+    if (newTriggers.length > 0) {
+      setShouldPlaySound(true);
+      // Reset the sound flag after a short delay
+      const timer = setTimeout(() => {
+        setShouldPlaySound(false);
+      }, 100);
+      return () => clearTimeout(timer);
+    }
+  }, [triggeredTriggers, prevTriggeredTriggers]);
+
+  useEffect(() => {
+    setPrevTriggeredTriggers(triggeredTriggers);
+  }, [triggeredTriggers]);
+
   return (
     <>
+      <StrikethroughSound shouldPlay={shouldPlaySound} />
       <link
         href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap"
         rel="stylesheet"

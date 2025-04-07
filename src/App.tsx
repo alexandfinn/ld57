@@ -7,6 +7,7 @@ import { BackgroundMusic } from "./components/BackgroundMusic";
 import { SecretAudio } from "./components/SecretAudio";
 import { TriggerText } from "./components/TriggerText";
 import { TriggerList } from "./components/TriggerList";
+import { PaperSound } from "./components/PaperSound";
 import { useState, useEffect, useRef } from "react";
 import { Vector3 } from "three";
 
@@ -21,9 +22,20 @@ export const App = () => {
   const [currentTriggerName, setCurrentTriggerName] = useState<string | null>(
     null
   );
+  const [showPaperSound, setShowPaperSound] = useState(true);
+  const [dismissPaperSound, setDismissPaperSound] = useState(false);
+
+  useEffect(() => {
+    // Play paper sound when component mounts
+    setShowPaperSound(true);
+  }, []);
 
   const handleStart = () => {
-    setHasStarted(true);
+    setDismissPaperSound(true);
+    // Wait for the paper sound to finish before starting
+    setTimeout(() => {
+      setHasStarted(true);
+    }, 500); // Adjust this timing based on your paper sound duration
   };
 
   const handleTrigger = (name: string, isFirstTrigger: boolean) => {
@@ -52,6 +64,8 @@ export const App = () => {
         shouldPlay={shouldPlaySecretAudio}
         triggerName={currentTriggerName}
       />
+      <PaperSound shouldPlay={showPaperSound} />
+      <PaperSound shouldPlay={dismissPaperSound} />
       <Canvas shadows>
         <fog attach="fog" args={["#000000", 5, 60]} />
 
@@ -143,7 +157,7 @@ export const App = () => {
                 <p style={{ marginBottom: "1.5rem" }}>Controls:</p>
                 <ul style={{ listStyle: "none", padding: "0" }}>
                   <li>WASD - Move through the dungeon</li>
-m                  <li>M - Toggle map view</li>
+                  <li>M - Toggle map view</li>
                   <li>Mouse - Look around</li>
                 </ul>
               </div>

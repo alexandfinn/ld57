@@ -4565,7 +4565,7 @@
       "type": "model",
       "position": [
         -7.673716230537124,
-        0,
+        0.008250966804995596,
         -6
       ],
       "rotation": [
@@ -4581,7 +4581,7 @@
       "color": "#e6465c",
       "modelPath": "/models/Furniture/Shelf.glb",
       "name": "Shelf",
-      "groundLevel": true,
+      "groundLevel": false,
       "snapToGrid": false
     },
     {
@@ -6064,7 +6064,533 @@
       "name": "Door_Wooden_Left",
       "groundLevel": true,
       "snapToGrid": false
+    },
+    {
+      "id": "e4b7301f-bb08-4342-8b1f-c31d675da8e0",
+      "type": "model",
+      "position": [
+        -8.5,
+        0,
+        -1.5
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#b12507",
+      "modelPath": "/models/Small/Amphora_Stand.glb",
+      "name": "Amphora_Stand",
+      "groundLevel": true,
+      "snapToGrid": true
+    },
+    {
+      "id": "c1c9a39c-fa29-4b08-b3c8-52e69f81e184",
+      "type": "model",
+      "position": [
+        -8.5,
+        0.1275137809130379,
+        -1.5
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#108f3d",
+      "modelPath": "/models/Small/Amphora.glb",
+      "name": "Amphora",
+      "groundLevel": false,
+      "snapToGrid": true
+    },
+    {
+      "id": "a692822f-2d51-43b3-8a39-3ce9015d6711",
+      "type": "model",
+      "position": [
+        -8.2138550081721,
+        0.12162649433596412,
+        -1.4758128711550456
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#108f3d",
+      "modelPath": "/models/Small/Amphora.glb",
+      "name": "Amphora",
+      "groundLevel": false,
+      "snapToGrid": false
+    },
+    {
+      "id": "2f4f0ad0-1732-4eb3-80d7-118b3aa70d65",
+      "type": "model",
+      "position": [
+        -8,
+        0,
+        -2.5
+      ],
+      "rotation": [
+        -1.8216380999167436,
+        0.1116569914560939,
+        2.2853322440388024
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#46e5ee",
+      "modelPath": "/models/Small/Bag.glb",
+      "name": "Bag",
+      "groundLevel": true,
+      "snapToGrid": true
+    },
+    {
+      "id": "9963c6f0-14fd-4837-b0ff-49736de44f29",
+      "type": "model",
+      "position": [
+        0.4929959551731209,
+        0,
+        -4.170035630942606
+      ],
+      "rotation": [
+        0,
+        1.5707963267948966,
+        0
+      ],
+      "scale": [
+        0.38950882255628483,
+        0.5,
+        0.5
+      ],
+      "color": "#6d6aa9",
+      "modelPath": "/models/Small/Bench.glb",
+      "name": "Bench",
+      "groundLevel": true,
+      "snapToGrid": false
+    },
+    {
+      "id": "a51b5a8b-fcc8-42e6-8f6e-f9d7460fdde5",
+      "type": "model",
+      "position": [
+        0,
+        0,
+        -5
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#cce764",
+      "modelPath": "/models/Small/Scroll_Stack.glb",
+      "name": "Scroll_Stack",
+      "groundLevel": true,
+      "snapToGrid": true
+    },
+    {
+      "id": "9b01c6a3-a436-4783-bc1f-ef15b966c2de",
+      "type": "model",
+      "position": [
+        2,
+        0,
+        -4.5
+      ],
+      "rotation": [
+        0,
+        -0.7723731621887473,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#f2fad0",
+      "modelPath": "/models/Small/Scroll_Elder.glb",
+      "name": "Scroll_Elder",
+      "groundLevel": true,
+      "snapToGrid": true
+    },
+    {
+      "id": "68da5e9f-b76a-4033-b2a5-25368caf3c84",
+      "type": "model",
+      "position": [
+        1.431436471793063,
+        0,
+        -4.916557352874324
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#98051a",
+      "modelPath": "/models/Small/CoatHook_Full.glb",
+      "name": "CoatHook_Full",
+      "groundLevel": true,
+      "snapToGrid": false
+    },
+    {
+      "id": "cf9b29a4-9c69-450b-9934-39e68cd15146",
+      "type": "model",
+      "position": [
+        -0.4958852404567442,
+        0,
+        -4.1475554105141335
+      ],
+      "rotation": [
+        0,
+        1.5707963267948966,
+        0
+      ],
+      "scale": [
+        0.38825884893266244,
+        0.5,
+        0.5
+      ],
+      "color": "#6d6aa9",
+      "modelPath": "/models/Small/Bench.glb",
+      "name": "Bench",
+      "groundLevel": true,
+      "snapToGrid": false
+    },
+    {
+      "id": "d58f0449-6e3f-48d5-85c4-56a00e05af14",
+      "type": "model",
+      "position": [
+        2,
+        0,
+        -4
+      ],
+      "rotation": [
+        0,
+        23.561944901923454,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#7d5ec9",
+      "modelPath": "/models/Furniture/Desk.glb",
+      "name": "Desk",
+      "groundLevel": true,
+      "snapToGrid": true
+    },
+    {
+      "id": "144b23fd-0f47-43a3-925b-ca81b3210c26",
+      "type": "model",
+      "position": [
+        1.9911016723633488,
+        0.5831484862271931,
+        -4.002016602373859
+      ],
+      "rotation": [
+        1.5663863721214422,
+        -0.5731620074122373,
+        1.5684048351643898
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#15384",
+      "modelPath": "/models/Small/Book_Open.glb",
+      "name": "Book_Open",
+      "groundLevel": false,
+      "snapToGrid": false
+    },
+    {
+      "id": "154bfb63-0b8a-42bf-96a7-9a1067937d06",
+      "type": "model",
+      "position": [
+        -0.19327482898745563,
+        0.05710550980643146,
+        -4.135179318089479
+      ],
+      "rotation": [
+        -1.6935939054433692e-16,
+        -0.8558953485667942,
+        1.6194683537442882
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#e2ff90",
+      "modelPath": "/models/Small/Book_Big_DeepRed.glb",
+      "name": "Book_Big_DeepRed",
+      "groundLevel": false,
+      "snapToGrid": false
+    },
+    {
+      "id": "492e5b85-2874-48dd-8774-05ea8ba52486",
+      "type": "model",
+      "position": [
+        0.8624424588687929,
+        0.03409834447557153,
+        -4.776258478843471
+      ],
+      "rotation": [
+        0,
+        0,
+        -1.5878154086712106
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#3ae2ff",
+      "modelPath": "/models/Small/Book_Green.glb",
+      "name": "Book_Green",
+      "groundLevel": false,
+      "snapToGrid": false
+    },
+    {
+      "id": "3326ca73-2b08-469e-8d1e-82153151b7d2",
+      "type": "model",
+      "position": [
+        0.8590185633837252,
+        0.0832240679498567,
+        -4.822303022723461
+      ],
+      "rotation": [
+        -2.8805460831612443e-17,
+        -0.27081734409280167,
+        -1.5865515021423708
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#9d38da",
+      "modelPath": "/models/Small/Book_Brown.glb",
+      "name": "Book_Brown",
+      "groundLevel": false,
+      "snapToGrid": false
+    },
+    {
+      "id": "a8a1fe4e-dd31-4ab8-be24-7da559f07c32",
+      "type": "model",
+      "position": [
+        1.164202538691997,
+        0.009594407346130596,
+        -4.860045613932443
+      ],
+      "rotation": [
+        0,
+        0,
+        0.6549968550515328
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#e00dfa",
+      "modelPath": "/models/Small/Book_Red.glb",
+      "name": "Book_Red",
+      "groundLevel": false,
+      "snapToGrid": false
+    },
+    {
+      "id": "0442b53e-959b-460a-a259-37b43d3954a1",
+      "type": "model",
+      "position": [
+        0.48355354613303403,
+        0.26710688588988585,
+        -4.266837966289765
+      ],
+      "rotation": [
+        0.07103676942713526,
+        0.817838640188276,
+        -1.6057248728222877
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#7d3d5b",
+      "modelPath": "/models/Small/Book_Small_Green.glb",
+      "name": "Book_Small_Green",
+      "groundLevel": false,
+      "snapToGrid": false
+    },
+    {
+      "id": "d20d06aa-8f15-490b-a917-e77aaf8bf9fd",
+      "type": "model",
+      "position": [
+        -7.702521282347374,
+        0.9342091201594043,
+        -6.1860989020108565
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#cb5a8a",
+      "modelPath": "/models/Jail/Jar_Empty.glb",
+      "name": "Jar_Empty",
+      "groundLevel": false,
+      "snapToGrid": false
+    },
+    {
+      "id": "f9868454-c67e-43c6-ab19-7e4fd466a3dd",
+      "type": "model",
+      "position": [
+        -7.660643738572628,
+        0.937447386914849,
+        -6.060417470059327
+      ],
+      "rotation": [
+        0,
+        1.5707963267948966,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#1f4b4f",
+      "modelPath": "/models/Jail/Jar_Full.glb",
+      "name": "Jar_Full",
+      "groundLevel": false,
+      "snapToGrid": false
+    },
+    {
+      "id": "0882aad0-d3ca-44f1-9190-b880b302003f",
+      "type": "model",
+      "position": [
+        -10.5,
+        0.07630522347947694,
+        -1.5
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#dd5ae",
+      "modelPath": "/models/Small/Cauldron_Small.glb",
+      "name": "Cauldron_Small",
+      "groundLevel": false,
+      "snapToGrid": true
+    },
+    {
+      "id": "97e5d0a3-ca00-475c-b349-10ca78ce8043",
+      "type": "model",
+      "position": [
+        -10.5,
+        0,
+        -1.5
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "color": "#a01653",
+      "modelPath": "/models/Small/Cauldron_Small_Stand.glb",
+      "name": "Cauldron_Small_Stand",
+      "groundLevel": true,
+      "snapToGrid": true
+    },
+    {
+      "id": "ca5742fc-67f8-4e32-b3e3-96dd1e4f0dcc",
+      "type": "trigger",
+      "position": [
+        1.3488587502744778,
+        0,
+        -3.341448535390818
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1.1074744898528162,
+        0.5,
+        0.5
+      ],
+      "color": "#bfb4ef",
+      "name": "Scriptorium",
+      "groundLevel": true,
+      "snapToGrid": false
+    },
+    {
+      "id": "a1d2ddce-a993-43d5-8f98-698eb7c9834f",
+      "type": "trigger",
+      "position": [
+        -3.0491049219396897,
+        0,
+        -3.9844832353411577
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.9014429977907362
+      ],
+      "color": "#bfb4ef",
+      "name": "Scriptorium",
+      "groundLevel": true,
+      "snapToGrid": false
     }
   ],
-  "timestamp": "2025-04-07T21:46:16.019Z"
+  "timestamp": "2025-04-07T22:11:05.603Z"
 }
