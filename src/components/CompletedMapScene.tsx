@@ -14,11 +14,13 @@ export const CompletedMapScene = ({
   onRestart,
 }: CompletedMapSceneProps) => {
   const [mapData, setMapData] = useState<string | null>(null);
+  const [showGuildmasterMap, setShowGuildmasterMap] = useState(false);
   const { camera } = useThree();
   const mapCanvasRef = useRef<HTMLCanvasElement | null>(null);
 
-  // Load the map texture
+  // Load the map textures
   const mapTexture = useTexture("/textures/map.png");
+  const guildmasterMapTexture = useTexture("/textures/map_with_result.jpeg");
 
   // Load the completed map data from localStorage and adjust camera
   useEffect(() => {
@@ -122,23 +124,21 @@ export const CompletedMapScene = ({
 
   return (
     <group position={[0, 0, 0]}>
-      {/* Background */}
-
       {/* Map display */}
       <group position={[0, 0, 0]}>
         {/* Base map texture */}
         <mesh>
-          <planeGeometry args={[15, 12]} />
+          <planeGeometry args={showGuildmasterMap ? [13, 10.4] : [15, 12]} />
           <meshBasicMaterial
-            map={mapTexture}
+            map={showGuildmasterMap ? guildmasterMapTexture : mapTexture}
             transparent
             opacity={1}
             side={2}
           />
         </mesh>
 
-        {/* Player's drawings overlay */}
-        {mapData && (
+        {/* Player's drawings overlay - only show if not showing Guildmaster's map */}
+        {mapData && !showGuildmasterMap && (
           <mesh position={[0, 0, 0.01]}>
             <planeGeometry args={[15, 12]} />
             <meshBasicMaterial
@@ -146,6 +146,20 @@ export const CompletedMapScene = ({
               transparent
               opacity={0.8}
               side={2}
+            />
+          </mesh>
+        )}
+
+        {/* Guildmaster's map with special styling */}
+        {showGuildmasterMap && (
+          <mesh position={[0, 0, 0.01]}>
+            <planeGeometry args={[13, 10.4]} />
+            <meshBasicMaterial
+              map={guildmasterMapTexture}
+              transparent
+              opacity={0.95}
+              side={2}
+              color="#e6c9a8" // Brownish-orange tint
             />
           </mesh>
         )}
@@ -238,6 +252,33 @@ export const CompletedMapScene = ({
           </button>
 
           <button
+            onClick={() => setShowGuildmasterMap(!showGuildmasterMap)}
+            style={{
+              padding: "1rem 2rem",
+              fontSize: "1.5rem",
+              backgroundColor: "#654321",
+              color: "#f4e0b6",
+              border: "2px solid #8b6b43",
+              borderRadius: "0.5rem",
+              cursor: "pointer",
+              fontFamily: "'MedievalSharp', cursive",
+              boxShadow: "0 4px 8px rgba(0,0,0,0.5)",
+              transition: "all 0.3s",
+              textShadow: "1px 1px 2px rgba(0,0,0,0.7)",
+            }}
+            onMouseOver={(e) => {
+              e.currentTarget.style.backgroundColor = "#8b6b43";
+              e.currentTarget.style.transform = "translateY(-2px)";
+            }}
+            onMouseOut={(e) => {
+              e.currentTarget.style.backgroundColor = "#654321";
+              e.currentTarget.style.transform = "translateY(0)";
+            }}
+          >
+            {showGuildmasterMap ? "Show Your Map" : "Show Guildmaster's Map"}
+          </button>
+
+          <button
             onClick={onRestart}
             style={{
               padding: "1rem 2rem",
@@ -261,7 +302,7 @@ export const CompletedMapScene = ({
               e.currentTarget.style.transform = "translateY(0)";
             }}
           >
-            Restart Game
+            Restart
           </button>
         </div>
       </Html>
