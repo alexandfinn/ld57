@@ -19,8 +19,8 @@ export const CompletedMapScene = ({
   const mapCanvasRef = useRef<HTMLCanvasElement | null>(null);
 
   // Load the map textures
-  const mapTexture = useTexture("/textures/map.png");
-  const guildmasterMapTexture = useTexture("/textures/map_with_result.png");
+  const mapTexture = useTexture(`${import.meta.env.BASE_URL}textures/map.png`);
+  const guildmasterMapTexture = useTexture(`${import.meta.env.BASE_URL}textures/map_with_result.png`);
 
   // Load the completed map data from localStorage and adjust camera
   useEffect(() => {
@@ -65,7 +65,7 @@ export const CompletedMapScene = ({
 
     // Draw the base map texture
     const mapImage = new Image();
-    mapImage.src = "/textures/map.png";
+    mapImage.src = `${import.meta.env.BASE_URL}textures/map.png`;
 
     mapImage.onload = () => {
       // Draw the base map
