@@ -49,10 +49,10 @@ export const App = () => {
 
   // Check if all unique triggers have been triggered
   useEffect(() => {
-    const allTriggersTriggered = allUniqueTriggers.every(trigger => 
+    const allTriggersTriggered = allUniqueTriggers.every((trigger) =>
       triggeredTriggers.includes(trigger)
     );
-    
+
     if (allTriggersTriggered && allUniqueTriggers.length > 0) {
       setShowCompletionMessage(true);
     }
@@ -64,24 +64,24 @@ export const App = () => {
       const checkPlayerPosition = () => {
         const playerPos = playerPositionRef.current;
         const distance = playerPos.distanceTo(initialPlayerPosition);
-        
+
         // If player is within 2 units of start position
         if (distance <= 2) {
           // Force release pointer lock with multiple approaches
           if (document.pointerLockElement) {
             document.exitPointerLock();
           }
-          
+
           // Set cursor style to visible
-          document.body.style.cursor = 'auto';
-          
+          document.body.style.cursor = "auto";
+
           setShowCompletedMapScene(true);
         }
       };
-      
+
       // Check position every 500ms
       const intervalId = setInterval(checkPlayerPosition, 500);
-      
+
       return () => clearInterval(intervalId);
     }
   }, [showCompletionMessage]);
@@ -102,7 +102,7 @@ export const App = () => {
     setTriggerText(null);
     setCurrentTriggerName(null);
     setShouldPlaySecretAudio(false);
-    
+
     // Reset player position
     if (playerPositionRef.current) {
       playerPositionRef.current.copy(initialPlayerPosition);
@@ -142,8 +142,8 @@ export const App = () => {
         <fog attach="fog" args={["#000000", 5, 60]} />
 
         {showCompletedMapScene ? (
-          <CompletedMapScene 
-            isVisible={showCompletedMapScene} 
+          <CompletedMapScene
+            isVisible={showCompletedMapScene}
             onRestart={handleRestart}
           />
         ) : (
@@ -169,7 +169,9 @@ export const App = () => {
       <TriggerList triggeredTriggers={triggeredTriggers} />
 
       {/* Completion message */}
-      <CompletionMessage isVisible={showCompletionMessage && !showCompletedMapScene} />
+      <CompletionMessage
+        isVisible={showCompletionMessage && !showCompletedMapScene}
+      />
 
       {!hasStarted && (
         <div
@@ -192,7 +194,9 @@ export const App = () => {
         >
           <div
             style={{
-              backgroundImage: `url('${import.meta.env.BASE_URL}textures/map.png')`,
+              backgroundImage: `url('${
+                import.meta.env.BASE_URL
+              }textures/map.png')`,
               backgroundSize: "cover",
               backgroundPosition: "center",
               padding: "3rem",
