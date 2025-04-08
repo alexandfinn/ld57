@@ -20,7 +20,7 @@ export const CompletedMapScene = ({
 
   // Load the map textures
   const mapTexture = useTexture("/textures/map.png");
-  const guildmasterMapTexture = useTexture("/textures/map_with_result.jpeg");
+  const guildmasterMapTexture = useTexture("/textures/map_with_result.png");
 
   // Load the completed map data from localStorage and adjust camera
   useEffect(() => {
@@ -126,11 +126,11 @@ export const CompletedMapScene = ({
     <group position={[0, 0, 0]}>
       {/* Map display */}
       <group position={[0, 0, 0]}>
-        {/* Base map texture */}
+        {/* Base map texture - always show this */}
         <mesh>
-          <planeGeometry args={showGuildmasterMap ? [13, 10.4] : [15, 12]} />
+          <planeGeometry args={[15, 12]} />
           <meshBasicMaterial
-            map={showGuildmasterMap ? guildmasterMapTexture : mapTexture}
+            map={mapTexture}
             transparent
             opacity={1}
             side={2}
@@ -150,16 +150,16 @@ export const CompletedMapScene = ({
           </mesh>
         )}
 
-        {/* Guildmaster's map with special styling */}
+        {/* Guildmaster's map overlay */}
         {showGuildmasterMap && (
-          <mesh position={[0, 0, 0.01]}>
-            <planeGeometry args={[13, 10.4]} />
+          <mesh position={[0, 0, 0.02]}>
+            <planeGeometry args={[13.5, 10.8]} />
             <meshBasicMaterial
               map={guildmasterMapTexture}
               transparent
-              opacity={0.95}
+              opacity={1.0}
               side={2}
-              color="#e6c9a8" // Brownish-orange tint
+              color="#000000" // Make all non-transparent parts black
             />
           </mesh>
         )}

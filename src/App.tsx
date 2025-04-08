@@ -28,7 +28,7 @@ export const App = () => {
   const [showPaperSound, setShowPaperSound] = useState(true);
   const [dismissPaperSound, setDismissPaperSound] = useState(false);
   const [showCompletionMessage, setShowCompletionMessage] = useState(false);
-  const [showCompletedMapScene, setShowCompletedMapScene] = useState(true);
+  const [showCompletedMapScene, setShowCompletedMapScene] = useState(false);
 
   // Get unique trigger names from level.json
   const allUniqueTriggers = [
